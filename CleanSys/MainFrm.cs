@@ -55,8 +55,8 @@ namespace CleanSys
         private void RTC_Tick(object sender, EventArgs e)
         {
 
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString()+"   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = DateTime.Now.ToString("M月dd日") + "   " + DateTime.Now.DayOfWeek.ToString();
+            TimeLabel.Text = DateTime.Now.ToShortTimeString();
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
@@ -75,6 +75,11 @@ namespace CleanSys
             helper.StartPosition = FormStartPosition.Manual;
             helper.Location = this.Location;
             helper.Show();
+        }
+
+        private void DataLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

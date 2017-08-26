@@ -126,6 +126,7 @@
             this.DataLabel.Size = new System.Drawing.Size(73, 17);
             this.DataLabel.TabIndex = 1;
             this.DataLabel.Text = "skinLabel1";
+            this.DataLabel.Click += new System.EventHandler(this.DataLabel_Click);
             // 
             // RTC
             // 
