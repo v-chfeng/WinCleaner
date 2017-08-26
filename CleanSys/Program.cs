@@ -36,5 +36,47 @@ namespace CleanSys
             newFrm.Location = (Point)myData.myPossition;
             newFrm.Show();
         }
+
+        public static string MiddleTitle()
+        {
+            return DateTime.Now.ToString("M月dd日") + "  " + GetWeek();
+        }
+
+        public static string RightTime()
+        {
+            return DateTime.Now.ToShortTimeString();
+        }
+
+         public static string GetWeek()
+        {
+            DayOfWeek week = DateTime.Now.DayOfWeek;
+            string weekStr = string.Empty;
+            switch (week)
+            {
+                case DayOfWeek.Monday:
+                    weekStr = "星期一";
+                    break;
+                case DayOfWeek.Tuesday:
+                    weekStr = "星期二";
+                    break;
+                case DayOfWeek.Wednesday:
+                    weekStr = "星期三";
+                    break;
+                case DayOfWeek.Thursday:
+                    weekStr = "星期四";
+                    break;
+                case DayOfWeek.Friday:
+                    weekStr = "星期五";
+                    break;
+                case DayOfWeek.Saturday:
+                    weekStr = "星期六";
+                    break;
+                case DayOfWeek.Sunday:
+                    weekStr = "星期日";
+                    break;
+            }
+
+            return weekStr;
+        }
     }
 }
