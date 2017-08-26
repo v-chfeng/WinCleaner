@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClearFrm));
             this.Clean = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
@@ -60,12 +61,12 @@
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
-            this.DataLabel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DataLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.DataLabel.ForeColor = System.Drawing.Color.Black;
-            this.DataLabel.Location = new System.Drawing.Point(339, 9);
+            this.DataLabel.Location = new System.Drawing.Point(616, 13);
             this.DataLabel.Name = "DataLabel";
-            this.DataLabel.Size = new System.Drawing.Size(73, 17);
-            this.DataLabel.TabIndex = 3;
+            this.DataLabel.Size = new System.Drawing.Size(83, 19);
+            this.DataLabel.TabIndex = 1;
             this.DataLabel.Text = "skinLabel1";
             // 
             // TimeLabel
@@ -73,12 +74,12 @@
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
-            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TimeLabel.ForeColor = System.Drawing.Color.Black;
-            this.TimeLabel.Location = new System.Drawing.Point(661, 9);
+            this.TimeLabel.Location = new System.Drawing.Point(1225, 13);
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(69, 17);
-            this.TimeLabel.TabIndex = 4;
+            this.TimeLabel.Size = new System.Drawing.Size(83, 19);
+            this.TimeLabel.TabIndex = 2;
             this.TimeLabel.Text = "skinLabel1";
             // 
             // RTC
@@ -120,6 +121,7 @@
             this.skinButton1.TabIndex = 5;
             this.skinButton1.Text = "自动清理";
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // skinButton2
             // 
@@ -158,7 +160,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(805, 451);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
             this.Controls.Add(this.Home);
             this.Controls.Add(this.skinButton2);

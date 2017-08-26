@@ -20,14 +20,14 @@ namespace CleanSys
 
         private void CleanFrm_Load(object sender, EventArgs e)
         {
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString() + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
         }
 
         private void RTC_Tick(object sender, EventArgs e)
         {
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString() + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
         }
 
         private void Home_Click(object sender, EventArgs e)
@@ -35,6 +35,15 @@ namespace CleanSys
             this.Close();
             myData.mainFrm.Visible = true;
             
+        }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+            AutoCleanFrm clearFrm = new AutoCleanFrm();
+            this.Hide();
+            clearFrm.StartPosition = FormStartPosition.Manual;
+            clearFrm.Location = this.Location;
+            clearFrm.Show();
         }
     }
 }

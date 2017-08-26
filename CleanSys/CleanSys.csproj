@@ -73,6 +73,12 @@
     <Compile Include="CHeckFrm.Designer.cs">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="formTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formTemplate.Designer.cs">
+      <DependentUpon>formTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     <Compile Include="RecordFrm.Designer.cs">
       <DependentUpon>RecordFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AutoCleanFrm.resx">
       <DependentUpon>AutoCleanFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CHeckFrm.resx">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formTemplate.resx">
+      <DependentUpon>formTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helper.resx">
       <DependentUpon>Helper.cs</DependentUpon>
@@ -120,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="RecordFrm.resx">
       <DependentUpon>RecordFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

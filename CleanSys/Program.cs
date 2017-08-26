@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 
 namespace CleanSys
 {
@@ -77,6 +77,15 @@ namespace CleanSys
             }
 
             return weekStr;
+        }
+
+        public static void SaveRecord()
+        {            
+            string fileName = string.Format("record_{0}.log", DateTime.Now.ToString("yyyyMMdd"));
+            string filePath = @".\log\" + fileName;
+            string content = "";
+
+            File.AppendAllText(filePath, content);
         }
     }
 }

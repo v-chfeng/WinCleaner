@@ -1,18 +1,16 @@
-﻿using System;
-
-namespace CleanSys
+﻿namespace CleanSys
 {
-    partial class Helper
+    partial class formTemplate
     {
         /// <summary>
-        /// Required designer variable.
+        /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// 清理所有正在使用的资源。
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,16 +20,16 @@ namespace CleanSys
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows 窗体设计器生成的代码
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// 设计器支持所需的方法 - 不要修改
+        /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Helper));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formTemplate));
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.RTC = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
@@ -69,38 +67,37 @@ namespace CleanSys
             this.TimeLabel.TabIndex = 2;
             this.TimeLabel.Text = "skinLabel1";
             // 
-            // Helper
+            // formTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1366, 727);
+            this.ClientSize = new System.Drawing.Size(1366, 727);//1366 * 768
             this.ControlBox = false;
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);
             this.MaximizeBox = false;
             this.MdiBackColor = System.Drawing.Color.Transparent;
             this.MinimizeBox = false;
-            this.Name = "Helper";
+            this.Name = "formTemplate";
             this.ShadowColor = System.Drawing.Color.Transparent;
             this.ShowDrawIcon = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "";
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Load += new System.EventHandler(this.Helper_Load);
+            this.Load += new System.EventHandler(this.initLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-
         #endregion
-        
         protected CCWin.SkinControl.SkinLabel DataLabel;
         protected System.Windows.Forms.Timer RTC;
         protected CCWin.SkinControl.SkinLabel TimeLabel;
     }
 }
+
