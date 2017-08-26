@@ -39,6 +39,13 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.b18 = new CCWin.SkinControl.SkinButton();
+            this.b17 = new CCWin.SkinControl.SkinButton();
+            this.b16 = new CCWin.SkinControl.SkinButton();
+            this.b15 = new CCWin.SkinControl.SkinButton();
+            this.b14 = new CCWin.SkinControl.SkinButton();
+            this.b13 = new CCWin.SkinControl.SkinButton();
+            this.b12 = new CCWin.SkinControl.SkinButton();
             this.b11 = new CCWin.SkinControl.SkinButton();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -53,17 +60,18 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.b12 = new CCWin.SkinControl.SkinButton();
-            this.b13 = new CCWin.SkinControl.SkinButton();
-            this.b14 = new CCWin.SkinControl.SkinButton();
-            this.b15 = new CCWin.SkinControl.SkinButton();
-            this.b16 = new CCWin.SkinControl.SkinButton();
-            this.b17 = new CCWin.SkinControl.SkinButton();
-            this.b18 = new CCWin.SkinControl.SkinButton();
             this.Home = new CCWin.SkinControl.SkinButton();
             this.RTC = new System.Windows.Forms.Timer(this.components);
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
+            this.b28 = new CCWin.SkinControl.SkinButton();
+            this.b27 = new CCWin.SkinControl.SkinButton();
+            this.b26 = new CCWin.SkinControl.SkinButton();
+            this.b25 = new CCWin.SkinControl.SkinButton();
+            this.b24 = new CCWin.SkinControl.SkinButton();
+            this.b23 = new CCWin.SkinControl.SkinButton();
+            this.b22 = new CCWin.SkinControl.SkinButton();
+            this.b21 = new CCWin.SkinControl.SkinButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,11 +90,12 @@
             this.Record.TabIndex = 2;
             this.Record.Text = "记录  Record";
             this.Record.UseVisualStyleBackColor = false;
+            this.Record.Click += new System.EventHandler(this.Record_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 132);
+            this.label1.Location = new System.Drawing.Point(31, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
@@ -165,6 +174,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Silver;
+            this.groupBox1.Controls.Add(this.b28);
+            this.groupBox1.Controls.Add(this.b27);
+            this.groupBox1.Controls.Add(this.b26);
+            this.groupBox1.Controls.Add(this.b25);
+            this.groupBox1.Controls.Add(this.b24);
+            this.groupBox1.Controls.Add(this.b23);
+            this.groupBox1.Controls.Add(this.b22);
+            this.groupBox1.Controls.Add(this.b21);
             this.groupBox1.Controls.Add(this.b18);
             this.groupBox1.Controls.Add(this.b17);
             this.groupBox1.Controls.Add(this.b16);
@@ -191,6 +208,125 @@
             this.groupBox1.Size = new System.Drawing.Size(737, 263);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // b18
+            // 
+            this.b18.BackColor = System.Drawing.Color.Black;
+            this.b18.BaseColor = System.Drawing.Color.Black;
+            this.b18.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b18.DownBack = null;
+            this.b18.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b18.Location = new System.Drawing.Point(631, 82);
+            this.b18.MouseBack = null;
+            this.b18.MouseBaseColor = System.Drawing.Color.Black;
+            this.b18.Name = "b18";
+            this.b18.NormlBack = null;
+            this.b18.Size = new System.Drawing.Size(34, 15);
+            this.b18.TabIndex = 5;
+            this.b18.UseVisualStyleBackColor = false;
+            this.b18.Click += new System.EventHandler(this.b18_Click);
+            // 
+            // b17
+            // 
+            this.b17.BackColor = System.Drawing.Color.Black;
+            this.b17.BaseColor = System.Drawing.Color.Black;
+            this.b17.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b17.DownBack = null;
+            this.b17.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b17.Location = new System.Drawing.Point(551, 82);
+            this.b17.MouseBack = null;
+            this.b17.MouseBaseColor = System.Drawing.Color.Black;
+            this.b17.Name = "b17";
+            this.b17.NormlBack = null;
+            this.b17.Size = new System.Drawing.Size(34, 15);
+            this.b17.TabIndex = 5;
+            this.b17.UseVisualStyleBackColor = false;
+            this.b17.Click += new System.EventHandler(this.b17_Click);
+            // 
+            // b16
+            // 
+            this.b16.BackColor = System.Drawing.Color.Black;
+            this.b16.BaseColor = System.Drawing.Color.Black;
+            this.b16.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b16.DownBack = null;
+            this.b16.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b16.Location = new System.Drawing.Point(485, 82);
+            this.b16.MouseBack = null;
+            this.b16.MouseBaseColor = System.Drawing.Color.Black;
+            this.b16.Name = "b16";
+            this.b16.NormlBack = null;
+            this.b16.Size = new System.Drawing.Size(34, 15);
+            this.b16.TabIndex = 5;
+            this.b16.UseVisualStyleBackColor = false;
+            this.b16.Click += new System.EventHandler(this.b16_Click);
+            // 
+            // b15
+            // 
+            this.b15.BackColor = System.Drawing.Color.Black;
+            this.b15.BaseColor = System.Drawing.Color.Black;
+            this.b15.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b15.DownBack = null;
+            this.b15.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b15.Location = new System.Drawing.Point(413, 82);
+            this.b15.MouseBack = null;
+            this.b15.MouseBaseColor = System.Drawing.Color.Black;
+            this.b15.Name = "b15";
+            this.b15.NormlBack = null;
+            this.b15.Size = new System.Drawing.Size(34, 15);
+            this.b15.TabIndex = 5;
+            this.b15.UseVisualStyleBackColor = false;
+            this.b15.Click += new System.EventHandler(this.b15_Click);
+            // 
+            // b14
+            // 
+            this.b14.BackColor = System.Drawing.Color.Black;
+            this.b14.BaseColor = System.Drawing.Color.Black;
+            this.b14.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b14.DownBack = null;
+            this.b14.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b14.Location = new System.Drawing.Point(343, 82);
+            this.b14.MouseBack = null;
+            this.b14.MouseBaseColor = System.Drawing.Color.Black;
+            this.b14.Name = "b14";
+            this.b14.NormlBack = null;
+            this.b14.Size = new System.Drawing.Size(34, 15);
+            this.b14.TabIndex = 5;
+            this.b14.UseVisualStyleBackColor = false;
+            this.b14.Click += new System.EventHandler(this.b14_Click);
+            // 
+            // b13
+            // 
+            this.b13.BackColor = System.Drawing.Color.Black;
+            this.b13.BaseColor = System.Drawing.Color.Black;
+            this.b13.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b13.DownBack = null;
+            this.b13.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b13.Location = new System.Drawing.Point(274, 82);
+            this.b13.MouseBack = null;
+            this.b13.MouseBaseColor = System.Drawing.Color.Black;
+            this.b13.Name = "b13";
+            this.b13.NormlBack = null;
+            this.b13.Size = new System.Drawing.Size(34, 15);
+            this.b13.TabIndex = 5;
+            this.b13.UseVisualStyleBackColor = false;
+            this.b13.Click += new System.EventHandler(this.b13_Click);
+            // 
+            // b12
+            // 
+            this.b12.BackColor = System.Drawing.Color.Black;
+            this.b12.BaseColor = System.Drawing.Color.Black;
+            this.b12.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b12.DownBack = null;
+            this.b12.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b12.Location = new System.Drawing.Point(200, 82);
+            this.b12.MouseBack = null;
+            this.b12.MouseBaseColor = System.Drawing.Color.Black;
+            this.b12.Name = "b12";
+            this.b12.NormlBack = null;
+            this.b12.Size = new System.Drawing.Size(34, 15);
+            this.b12.TabIndex = 5;
+            this.b12.UseVisualStyleBackColor = false;
+            this.b12.Click += new System.EventHandler(this.b12_Click);
             // 
             // b11
             // 
@@ -326,125 +462,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "检测点8";
             // 
-            // b12
-            // 
-            this.b12.BackColor = System.Drawing.Color.Black;
-            this.b12.BaseColor = System.Drawing.Color.Black;
-            this.b12.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b12.DownBack = null;
-            this.b12.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b12.Location = new System.Drawing.Point(200, 82);
-            this.b12.MouseBack = null;
-            this.b12.MouseBaseColor = System.Drawing.Color.Black;
-            this.b12.Name = "b12";
-            this.b12.NormlBack = null;
-            this.b12.Size = new System.Drawing.Size(34, 15);
-            this.b12.TabIndex = 5;
-            this.b12.UseVisualStyleBackColor = false;
-            this.b12.Click += new System.EventHandler(this.b12_Click);
-            // 
-            // b13
-            // 
-            this.b13.BackColor = System.Drawing.Color.Black;
-            this.b13.BaseColor = System.Drawing.Color.Black;
-            this.b13.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b13.DownBack = null;
-            this.b13.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b13.Location = new System.Drawing.Point(274, 82);
-            this.b13.MouseBack = null;
-            this.b13.MouseBaseColor = System.Drawing.Color.Black;
-            this.b13.Name = "b13";
-            this.b13.NormlBack = null;
-            this.b13.Size = new System.Drawing.Size(34, 15);
-            this.b13.TabIndex = 5;
-            this.b13.UseVisualStyleBackColor = false;
-            this.b13.Click += new System.EventHandler(this.b13_Click);
-            // 
-            // b14
-            // 
-            this.b14.BackColor = System.Drawing.Color.Black;
-            this.b14.BaseColor = System.Drawing.Color.Black;
-            this.b14.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b14.DownBack = null;
-            this.b14.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b14.Location = new System.Drawing.Point(343, 82);
-            this.b14.MouseBack = null;
-            this.b14.MouseBaseColor = System.Drawing.Color.Black;
-            this.b14.Name = "b14";
-            this.b14.NormlBack = null;
-            this.b14.Size = new System.Drawing.Size(34, 15);
-            this.b14.TabIndex = 5;
-            this.b14.UseVisualStyleBackColor = false;
-            this.b14.Click += new System.EventHandler(this.b14_Click);
-            // 
-            // b15
-            // 
-            this.b15.BackColor = System.Drawing.Color.Black;
-            this.b15.BaseColor = System.Drawing.Color.Black;
-            this.b15.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b15.DownBack = null;
-            this.b15.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b15.Location = new System.Drawing.Point(413, 82);
-            this.b15.MouseBack = null;
-            this.b15.MouseBaseColor = System.Drawing.Color.Black;
-            this.b15.Name = "b15";
-            this.b15.NormlBack = null;
-            this.b15.Size = new System.Drawing.Size(34, 15);
-            this.b15.TabIndex = 5;
-            this.b15.UseVisualStyleBackColor = false;
-            this.b15.Click += new System.EventHandler(this.b15_Click);
-            // 
-            // b16
-            // 
-            this.b16.BackColor = System.Drawing.Color.Black;
-            this.b16.BaseColor = System.Drawing.Color.Black;
-            this.b16.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b16.DownBack = null;
-            this.b16.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b16.Location = new System.Drawing.Point(485, 82);
-            this.b16.MouseBack = null;
-            this.b16.MouseBaseColor = System.Drawing.Color.Black;
-            this.b16.Name = "b16";
-            this.b16.NormlBack = null;
-            this.b16.Size = new System.Drawing.Size(34, 15);
-            this.b16.TabIndex = 5;
-            this.b16.UseVisualStyleBackColor = false;
-            this.b16.Click += new System.EventHandler(this.b16_Click);
-            // 
-            // b17
-            // 
-            this.b17.BackColor = System.Drawing.Color.Black;
-            this.b17.BaseColor = System.Drawing.Color.Black;
-            this.b17.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b17.DownBack = null;
-            this.b17.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b17.Location = new System.Drawing.Point(551, 82);
-            this.b17.MouseBack = null;
-            this.b17.MouseBaseColor = System.Drawing.Color.Black;
-            this.b17.Name = "b17";
-            this.b17.NormlBack = null;
-            this.b17.Size = new System.Drawing.Size(34, 15);
-            this.b17.TabIndex = 5;
-            this.b17.UseVisualStyleBackColor = false;
-            this.b17.Click += new System.EventHandler(this.b17_Click);
-            // 
-            // b18
-            // 
-            this.b18.BackColor = System.Drawing.Color.Black;
-            this.b18.BaseColor = System.Drawing.Color.Black;
-            this.b18.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b18.DownBack = null;
-            this.b18.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b18.Location = new System.Drawing.Point(631, 82);
-            this.b18.MouseBack = null;
-            this.b18.MouseBaseColor = System.Drawing.Color.Black;
-            this.b18.Name = "b18";
-            this.b18.NormlBack = null;
-            this.b18.Size = new System.Drawing.Size(34, 15);
-            this.b18.TabIndex = 5;
-            this.b18.UseVisualStyleBackColor = false;
-            this.b18.Click += new System.EventHandler(this.b18_Click);
-            // 
             // Home
             // 
             this.Home.BackColor = System.Drawing.Color.Transparent;
@@ -491,6 +508,135 @@
             this.TimeLabel.Size = new System.Drawing.Size(69, 17);
             this.TimeLabel.TabIndex = 9;
             this.TimeLabel.Text = "skinLabel1";
+            // 
+            // b28
+            // 
+            this.b28.BackColor = System.Drawing.Color.Black;
+            this.b28.BaseColor = System.Drawing.Color.Black;
+            this.b28.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b28.DownBack = null;
+            this.b28.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b28.Location = new System.Drawing.Point(632, 128);
+            this.b28.MouseBack = null;
+            this.b28.MouseBaseColor = System.Drawing.Color.Black;
+            this.b28.Name = "b28";
+            this.b28.NormlBack = null;
+            this.b28.Size = new System.Drawing.Size(34, 15);
+            this.b28.TabIndex = 7;
+            this.b28.UseVisualStyleBackColor = false;
+            // 
+            // b27
+            // 
+            this.b27.BackColor = System.Drawing.Color.Black;
+            this.b27.BaseColor = System.Drawing.Color.Black;
+            this.b27.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b27.DownBack = null;
+            this.b27.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b27.Location = new System.Drawing.Point(552, 128);
+            this.b27.MouseBack = null;
+            this.b27.MouseBaseColor = System.Drawing.Color.Black;
+            this.b27.Name = "b27";
+            this.b27.NormlBack = null;
+            this.b27.Size = new System.Drawing.Size(34, 15);
+            this.b27.TabIndex = 8;
+            this.b27.UseVisualStyleBackColor = false;
+            // 
+            // b26
+            // 
+            this.b26.BackColor = System.Drawing.Color.Black;
+            this.b26.BaseColor = System.Drawing.Color.Black;
+            this.b26.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b26.DownBack = null;
+            this.b26.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b26.Location = new System.Drawing.Point(486, 128);
+            this.b26.MouseBack = null;
+            this.b26.MouseBaseColor = System.Drawing.Color.Black;
+            this.b26.Name = "b26";
+            this.b26.NormlBack = null;
+            this.b26.Size = new System.Drawing.Size(34, 15);
+            this.b26.TabIndex = 9;
+            this.b26.UseVisualStyleBackColor = false;
+            // 
+            // b25
+            // 
+            this.b25.BackColor = System.Drawing.Color.Black;
+            this.b25.BaseColor = System.Drawing.Color.Black;
+            this.b25.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b25.DownBack = null;
+            this.b25.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b25.Location = new System.Drawing.Point(414, 128);
+            this.b25.MouseBack = null;
+            this.b25.MouseBaseColor = System.Drawing.Color.Black;
+            this.b25.Name = "b25";
+            this.b25.NormlBack = null;
+            this.b25.Size = new System.Drawing.Size(34, 15);
+            this.b25.TabIndex = 10;
+            this.b25.UseVisualStyleBackColor = false;
+            // 
+            // b24
+            // 
+            this.b24.BackColor = System.Drawing.Color.Black;
+            this.b24.BaseColor = System.Drawing.Color.Black;
+            this.b24.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b24.DownBack = null;
+            this.b24.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b24.Location = new System.Drawing.Point(344, 128);
+            this.b24.MouseBack = null;
+            this.b24.MouseBaseColor = System.Drawing.Color.Black;
+            this.b24.Name = "b24";
+            this.b24.NormlBack = null;
+            this.b24.Size = new System.Drawing.Size(34, 15);
+            this.b24.TabIndex = 11;
+            this.b24.UseVisualStyleBackColor = false;
+            // 
+            // b23
+            // 
+            this.b23.BackColor = System.Drawing.Color.Black;
+            this.b23.BaseColor = System.Drawing.Color.Black;
+            this.b23.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b23.DownBack = null;
+            this.b23.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b23.Location = new System.Drawing.Point(275, 128);
+            this.b23.MouseBack = null;
+            this.b23.MouseBaseColor = System.Drawing.Color.Black;
+            this.b23.Name = "b23";
+            this.b23.NormlBack = null;
+            this.b23.Size = new System.Drawing.Size(34, 15);
+            this.b23.TabIndex = 12;
+            this.b23.UseVisualStyleBackColor = false;
+            // 
+            // b22
+            // 
+            this.b22.BackColor = System.Drawing.Color.Black;
+            this.b22.BaseColor = System.Drawing.Color.Black;
+            this.b22.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b22.DownBack = null;
+            this.b22.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b22.Location = new System.Drawing.Point(201, 128);
+            this.b22.MouseBack = null;
+            this.b22.MouseBaseColor = System.Drawing.Color.Black;
+            this.b22.Name = "b22";
+            this.b22.NormlBack = null;
+            this.b22.Size = new System.Drawing.Size(34, 15);
+            this.b22.TabIndex = 13;
+            this.b22.UseVisualStyleBackColor = false;
+            // 
+            // b21
+            // 
+            this.b21.BackColor = System.Drawing.Color.Black;
+            this.b21.BaseColor = System.Drawing.Color.Black;
+            this.b21.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.b21.DownBack = null;
+            this.b21.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.b21.Location = new System.Drawing.Point(123, 128);
+            this.b21.MouseBack = null;
+            this.b21.MouseBaseColor = System.Drawing.Color.Black;
+            this.b21.Name = "b21";
+            this.b21.NormlBack = null;
+            this.b21.Size = new System.Drawing.Size(34, 15);
+            this.b21.TabIndex = 6;
+            this.b21.UseVisualStyleBackColor = false;
+            this.b21.Click += new System.EventHandler(this.b21_Click);
             // 
             // RecordFrm
             // 
@@ -560,5 +706,13 @@
         private System.Windows.Forms.Timer RTC;
         private CCWin.SkinControl.SkinLabel DataLabel;
         private CCWin.SkinControl.SkinLabel TimeLabel;
+        private CCWin.SkinControl.SkinButton b28;
+        private CCWin.SkinControl.SkinButton b27;
+        private CCWin.SkinControl.SkinButton b26;
+        private CCWin.SkinControl.SkinButton b25;
+        private CCWin.SkinControl.SkinButton b24;
+        private CCWin.SkinControl.SkinButton b23;
+        private CCWin.SkinControl.SkinButton b22;
+        private CCWin.SkinControl.SkinButton b21;
     }
 }
