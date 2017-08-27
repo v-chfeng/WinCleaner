@@ -46,5 +46,11 @@ namespace CleanSys
             clearFrm.Location = this.Location;
             clearFrm.Show();
         }
+
+        private void HomeBtn_Click(object sender, EventArgs e)
+        {
+            myData.mainFrm.Visible = true;
+            this.Close();
+        }
     }
 }

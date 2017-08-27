@@ -81,12 +81,11 @@ namespace CleanSys
             return weekStr;
         }
 
-        public static void SaveRecord()
+        public static void SaveRecord(string content)
         {            
             string fileName = string.Format("record_{0}.log", DateTime.Now.ToString("yyyyMMdd"));
             string filePath = @".\log\" + fileName;
-            string content = "";
-
+             
             File.AppendAllText(filePath, content);
         }
     }

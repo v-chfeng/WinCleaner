@@ -32,24 +32,25 @@ namespace CleanSys
             myData.mainFrm = this;
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
+           // CheckButton.Location = (Point)new Size((x+ System.Windows.Forms.SystemInformation.WorkingArea.Width - CheckButton.Size.Width )/ 7*2, (y+ System.Windows.Forms.SystemInformation.WorkingArea.Height - CheckButton.Size.Height )/ 7*2);
+            //Help.Location= (Point)new Size((x + System.Windows.Forms.SystemInformation.WorkingArea.Width - Help.Size.Width) / 7*2, (y + System.Windows.Forms.SystemInformation.WorkingArea.Height - Help.Size.Height )/ 7*5);
+            //CleanButton.Location = (Point)new Size((x + System.Windows.Forms.SystemInformation.WorkingArea.Width - CleanButton.Size.Width) / 7*5,( y + System.Windows.Forms.SystemInformation.WorkingArea.Height - CleanButton.Size.Height )/ 7*2);
+           // RecordButton.Location= (Point)new Size((x + System.Windows.Forms.SystemInformation.WorkingArea.Width - RecordButton.Size.Width) / 7*5, (y + System.Windows.Forms.SystemInformation.WorkingArea.Height - RecordButton.Size.Height )/ 7*5);
+            skinPictureBox1.Location = (Point)new Size((this.Size.Width - skinPictureBox1.Size.Width)/2, (this.Size.Height -skinPictureBox1.Size.Height)/2 );
         }
 
         private void CleanButton_Click(object sender, EventArgs e)
         {
-            ClearFrm clearFrm = new ClearFrm();
-            this.Hide();
-            clearFrm.StartPosition = FormStartPosition.Manual;
-            clearFrm.Location = this.Location;
-            clearFrm.Show();
+            
         }
 
         private void CheckButton_Click(object sender, EventArgs e)
         {
             CHeckFrm checkFrm = new CHeckFrm();
-            this.Hide();
             checkFrm.StartPosition = FormStartPosition.Manual;
             checkFrm.Location = this.Location;
             checkFrm.Show();
+            this.Hide();
         }
 
         private void RTC_Tick(object sender, EventArgs e)
@@ -70,14 +71,46 @@ namespace CleanSys
 
         private void HelpButton_Click(object sender, EventArgs e)
         {
-            Helper helper = new Helper();
-            this.Hide();
-            helper.StartPosition = FormStartPosition.Manual;
-            helper.Location = this.Location;
-            helper.Show();
+           
         }
 
         private void DataLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CleanButton_Click_1(object sender, EventArgs e)
+        {
+            
+
+            ClearFrm clearFrm = new ClearFrm();
+            clearFrm.StartPosition = FormStartPosition.Manual;
+            clearFrm.Location = this.Location;
+            clearFrm.Show();
+            this.Hide();
+        }
+
+        private void RecordButton_Click(object sender, EventArgs e)
+        {
+            RecordFrm recordFrm = new RecordFrm();
+           
+            recordFrm.StartPosition = FormStartPosition.Manual;
+            recordFrm.Location = this.Location;
+            recordFrm.Show();
+            this.Hide();
+        }
+
+        private void Help_Click(object sender, EventArgs e)
+        {
+            Helper helper = new Helper();
+           
+            helper.StartPosition = FormStartPosition.Manual;
+            helper.Location = this.Location;
+            helper.Show();
+            this.Hide();
+        }
+
+        private void skinPictureBox1_Click(object sender, EventArgs e)
         {
 
         }

@@ -30,89 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.CheckButton = new CCWin.SkinControl.SkinButton();
-            this.HelpBtn = new CCWin.SkinControl.SkinButton();
-            this.CleanButton = new CCWin.SkinControl.SkinButton();
-            this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.RTC = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
+            this.CleanButton = new CCWin.SkinControl.SkinButton();
+            this.CheckButton = new CCWin.SkinControl.SkinButton();
+            this.RecordButton = new CCWin.SkinControl.SkinButton();
+            this.Help = new CCWin.SkinControl.SkinButton();
+            this.skinPictureBox1 = new CCWin.SkinControl.SkinPictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // CheckButton
-            // 
-            this.CheckButton.BackColor = System.Drawing.Color.Transparent;
-            this.CheckButton.BaseColor = System.Drawing.Color.Black;
-            this.CheckButton.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.CheckButton.DownBack = null;
-            this.CheckButton.ForeColor = System.Drawing.Color.White;
-            this.CheckButton.Location = new System.Drawing.Point(175, 105);
-            this.CheckButton.MouseBack = null;
-            this.CheckButton.Name = "CheckButton";
-            this.CheckButton.NormlBack = null;
-            this.CheckButton.Size = new System.Drawing.Size(83, 74);
-            this.CheckButton.TabIndex = 0;
-            this.CheckButton.Text = " 自检\r\nCheck";
-            this.CheckButton.UseVisualStyleBackColor = false;
-            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
-            // 
-            // HelpButton
-            // 
-            this.HelpBtn.BackColor = System.Drawing.Color.Transparent;
-            this.HelpBtn.BaseColor = System.Drawing.Color.Black;
-            this.HelpBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.HelpBtn.DownBack = null;
-            this.HelpBtn.ForeColor = System.Drawing.Color.White;
-            this.HelpBtn.Location = new System.Drawing.Point(175, 303);
-            this.HelpBtn.MouseBack = null;
-            this.HelpBtn.Name = "HelpButton";
-            this.HelpBtn.NormlBack = null;
-            this.HelpBtn.Size = new System.Drawing.Size(83, 74);
-            this.HelpBtn.TabIndex = 0;
-            this.HelpBtn.Text = "帮助\r\nHelp";
-            this.HelpBtn.UseVisualStyleBackColor = false;
-            this.HelpBtn.Click += new System.EventHandler(this.HelpButton_Click);
-            // 
-            // CleanButton
-            // 
-            this.CleanButton.BackColor = System.Drawing.Color.Transparent;
-            this.CleanButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CleanButton.BackgroundImage")));
-            this.CleanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CleanButton.BaseColor = System.Drawing.Color.Transparent;
-            this.CleanButton.BorderColor = System.Drawing.Color.Transparent;
-            this.CleanButton.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.CleanButton.DownBack = null;
-            this.CleanButton.DrawType = CCWin.SkinControl.DrawStyle.Img;
-            this.CleanButton.FadeGlow = false;
-            this.CleanButton.ForeColor = System.Drawing.Color.White;
-            this.CleanButton.InnerBorderColor = System.Drawing.Color.Transparent;
-            this.CleanButton.IsDrawBorder = false;
-            this.CleanButton.Location = new System.Drawing.Point(551, 105);
-            this.CleanButton.MouseBack = null;
-            this.CleanButton.Name = "CleanButton";
-            this.CleanButton.NormlBack = null;
-            this.CleanButton.Size = new System.Drawing.Size(83, 74);
-            this.CleanButton.TabIndex = 0;
-            this.CleanButton.Text = "清理\r\nClean";
-            this.CleanButton.UseVisualStyleBackColor = false;
-            this.CleanButton.Click += new System.EventHandler(this.CleanButton_Click);
-            // 
-            // skinButton2
-            // 
-            this.skinButton2.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton2.BaseColor = System.Drawing.Color.Black;
-            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton2.DownBack = null;
-            this.skinButton2.ForeColor = System.Drawing.Color.White;
-            this.skinButton2.Location = new System.Drawing.Point(551, 303);
-            this.skinButton2.MouseBack = null;
-            this.skinButton2.Name = "skinButton2";
-            this.skinButton2.NormlBack = null;
-            this.skinButton2.Size = new System.Drawing.Size(83, 74);
-            this.skinButton2.TabIndex = 0;
-            this.skinButton2.Text = " 记录 \r\nRecord";
-            this.skinButton2.UseVisualStyleBackColor = false;
-            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
             // DataLabel
             // 
@@ -148,6 +75,118 @@
             this.TimeLabel.TabIndex = 2;
             this.TimeLabel.Text = "skinLabel1";
             // 
+            // CleanButton
+            // 
+            this.CleanButton.BackColor = System.Drawing.Color.Transparent;
+            this.CleanButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CleanButton.BackgroundImage")));
+            this.CleanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CleanButton.BaseColor = System.Drawing.Color.Transparent;
+            this.CleanButton.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.CleanButton.DownBack = null;
+            this.CleanButton.DownBaseColor = System.Drawing.Color.Transparent;
+            this.CleanButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CleanButton.ForeColor = System.Drawing.Color.Transparent;
+            this.CleanButton.Image = ((System.Drawing.Image)(resources.GetObject("CleanButton.Image")));
+            this.CleanButton.IsDrawBorder = false;
+            this.CleanButton.IsDrawGlass = false;
+            this.CleanButton.Location = new System.Drawing.Point(872, 177);
+            this.CleanButton.MouseBack = null;
+            this.CleanButton.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.CleanButton.Name = "CleanButton";
+            this.CleanButton.NormlBack = null;
+            this.CleanButton.Size = new System.Drawing.Size(104, 104);
+            this.CleanButton.TabIndex = 3;
+            this.CleanButton.Text = " 清 理  \r\nClean";
+            this.CleanButton.UseVisualStyleBackColor = false;
+            this.CleanButton.Click += new System.EventHandler(this.CleanButton_Click_1);
+            // 
+            // CheckButton
+            // 
+            this.CheckButton.BackColor = System.Drawing.Color.Transparent;
+            this.CheckButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CheckButton.BackgroundImage")));
+            this.CheckButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CheckButton.BaseColor = System.Drawing.Color.Transparent;
+            this.CheckButton.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.CheckButton.DownBack = null;
+            this.CheckButton.DownBaseColor = System.Drawing.Color.Transparent;
+            this.CheckButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CheckButton.ForeColor = System.Drawing.Color.Transparent;
+            this.CheckButton.Image = ((System.Drawing.Image)(resources.GetObject("CheckButton.Image")));
+            this.CheckButton.IsDrawBorder = false;
+            this.CheckButton.IsDrawGlass = false;
+            this.CheckButton.Location = new System.Drawing.Point(389, 177);
+            this.CheckButton.MouseBack = null;
+            this.CheckButton.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.CheckButton.Name = "CheckButton";
+            this.CheckButton.NormlBack = null;
+            this.CheckButton.Size = new System.Drawing.Size(104, 104);
+            this.CheckButton.TabIndex = 4;
+            this.CheckButton.Text = " 自 检\r\nCheck";
+            this.CheckButton.UseVisualStyleBackColor = false;
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
+            // 
+            // RecordButton
+            // 
+            this.RecordButton.BackColor = System.Drawing.Color.Transparent;
+            this.RecordButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RecordButton.BackgroundImage")));
+            this.RecordButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RecordButton.BaseColor = System.Drawing.Color.Transparent;
+            this.RecordButton.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.RecordButton.DownBack = null;
+            this.RecordButton.DownBaseColor = System.Drawing.Color.Transparent;
+            this.RecordButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RecordButton.ForeColor = System.Drawing.Color.Transparent;
+            this.RecordButton.Image = ((System.Drawing.Image)(resources.GetObject("RecordButton.Image")));
+            this.RecordButton.IsDrawBorder = false;
+            this.RecordButton.IsDrawGlass = false;
+            this.RecordButton.Location = new System.Drawing.Point(872, 453);
+            this.RecordButton.MouseBack = null;
+            this.RecordButton.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.RecordButton.Name = "RecordButton";
+            this.RecordButton.NormlBack = null;
+            this.RecordButton.Size = new System.Drawing.Size(104, 104);
+            this.RecordButton.TabIndex = 5;
+            this.RecordButton.Text = "记 录\r\nRecord";
+            this.RecordButton.UseVisualStyleBackColor = false;
+            this.RecordButton.Click += new System.EventHandler(this.RecordButton_Click);
+            // 
+            // Help
+            // 
+            this.Help.BackColor = System.Drawing.Color.Transparent;
+            this.Help.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Help.BackgroundImage")));
+            this.Help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Help.BaseColor = System.Drawing.Color.Transparent;
+            this.Help.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.Help.DownBack = null;
+            this.Help.DownBaseColor = System.Drawing.Color.Transparent;
+            this.Help.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Help.ForeColor = System.Drawing.Color.Transparent;
+            this.Help.Image = ((System.Drawing.Image)(resources.GetObject("Help.Image")));
+            this.Help.IsDrawBorder = false;
+            this.Help.IsDrawGlass = false;
+            this.Help.Location = new System.Drawing.Point(389, 453);
+            this.Help.MouseBack = null;
+            this.Help.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.Help.Name = "Help";
+            this.Help.NormlBack = null;
+            this.Help.Size = new System.Drawing.Size(104, 104);
+            this.Help.TabIndex = 6;
+            this.Help.Text = "帮 助\r\nHelp";
+            this.Help.UseVisualStyleBackColor = false;
+            this.Help.Click += new System.EventHandler(this.Help_Click);
+            // 
+            // skinPictureBox1
+            // 
+            this.skinPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.skinPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("skinPictureBox1.Image")));
+            this.skinPictureBox1.Location = new System.Drawing.Point(491, 212);
+            this.skinPictureBox1.Name = "skinPictureBox1";
+            this.skinPictureBox1.Size = new System.Drawing.Size(383, 303);
+            this.skinPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.skinPictureBox1.TabIndex = 7;
+            this.skinPictureBox1.TabStop = false;
+            this.skinPictureBox1.Click += new System.EventHandler(this.skinPictureBox1_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -157,10 +196,11 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
-            this.Controls.Add(this.skinButton2);
-            this.Controls.Add(this.HelpBtn);
-            this.Controls.Add(this.CleanButton);
+            this.Controls.Add(this.skinPictureBox1);
+            this.Controls.Add(this.Help);
+            this.Controls.Add(this.RecordButton);
             this.Controls.Add(this.CheckButton);
+            this.Controls.Add(this.CleanButton);
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);
             this.MaximizeBox = false;
@@ -173,20 +213,21 @@
             this.Text = "";
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private CCWin.SkinControl.SkinButton CheckButton;
-        private CCWin.SkinControl.SkinButton HelpBtn;
-        private CCWin.SkinControl.SkinButton CleanButton;
-        private CCWin.SkinControl.SkinButton skinButton2;
         private CCWin.SkinControl.SkinLabel DataLabel;
         private System.Windows.Forms.Timer RTC;
         private CCWin.SkinControl.SkinLabel TimeLabel;
+        private CCWin.SkinControl.SkinButton CleanButton;
+        private CCWin.SkinControl.SkinButton CheckButton;
+        private CCWin.SkinControl.SkinButton RecordButton;
+        private CCWin.SkinControl.SkinButton Help;
+        private CCWin.SkinControl.SkinPictureBox skinPictureBox1;
     }
 }
 

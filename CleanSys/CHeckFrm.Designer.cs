@@ -33,14 +33,18 @@
             this.TermalCheck = new CCWin.SkinControl.SkinProgressBar();
             this.LoadCarCheck = new CCWin.SkinControl.SkinProgressBar();
             this.RailCleanCarCheck = new CCWin.SkinControl.SkinProgressBar();
-            this.Check = new CCWin.SkinControl.SkinButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Home = new CCWin.SkinControl.SkinButton();
-            this.BackBtn = new CCWin.SkinControl.SkinButton();
-            this.Front = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
             this.RTC = new System.Windows.Forms.Timer(this.components);
+            this.CkeckBtn = new CCWin.SkinControl.SkinButton();
+            this.skinPictureBox1 = new CCWin.SkinControl.SkinPictureBox();
+            this.HomeBtn = new CCWin.SkinControl.SkinButton();
+            this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
+            this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
+            this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
+            this.rightBtn = new CCWin.SkinControl.SkinButton();
+            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TermalCheck
@@ -48,13 +52,21 @@
             this.TermalCheck.Back = null;
             this.TermalCheck.BackColor = System.Drawing.Color.Transparent;
             this.TermalCheck.BarBack = null;
-            this.TermalCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.TermalCheck.ForeColor = System.Drawing.Color.Red;
-            this.TermalCheck.Location = new System.Drawing.Point(386, 93);
+            this.TermalCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.None;
+            this.TermalCheck.Border = System.Drawing.Color.Transparent;
+            this.TermalCheck.Enabled = false;
+            this.TermalCheck.ForeColor = System.Drawing.Color.Transparent;
+            this.TermalCheck.Glass = false;
+            this.TermalCheck.InnerBorder = System.Drawing.Color.Transparent;
+            this.TermalCheck.Location = new System.Drawing.Point(556, 203);
             this.TermalCheck.Name = "TermalCheck";
             this.TermalCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.TermalCheck.Size = new System.Drawing.Size(241, 23);
+            this.TermalCheck.Size = new System.Drawing.Size(323, 30);
             this.TermalCheck.TabIndex = 0;
+            this.TermalCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.Proportion;
+            this.TermalCheck.TrackBack = System.Drawing.Color.Black;
+            this.TermalCheck.TrackFore = System.Drawing.Color.Silver;
+
             // 
             // LoadCarCheck
             // 
@@ -62,91 +74,40 @@
             this.LoadCarCheck.BackColor = System.Drawing.Color.Transparent;
             this.LoadCarCheck.BarBack = null;
             this.LoadCarCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.LoadCarCheck.ForeColor = System.Drawing.Color.Red;
-            this.LoadCarCheck.Location = new System.Drawing.Point(386, 165);
+            this.LoadCarCheck.Border = System.Drawing.Color.Transparent;
+            this.LoadCarCheck.ForeColor = System.Drawing.Color.Transparent;
+            this.LoadCarCheck.Glass = false;
+            this.LoadCarCheck.InnerBorder = System.Drawing.Color.Transparent;
+            this.LoadCarCheck.Location = new System.Drawing.Point(556, 285);
             this.LoadCarCheck.Name = "LoadCarCheck";
             this.LoadCarCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.LoadCarCheck.Size = new System.Drawing.Size(241, 23);
+            this.LoadCarCheck.Size = new System.Drawing.Size(323, 30);
             this.LoadCarCheck.TabIndex = 0;
+            this.LoadCarCheck.TrackBack = System.Drawing.Color.Black;
+            this.LoadCarCheck.TrackFore = System.Drawing.Color.Silver;
             // 
             // RailCleanCarCheck
             // 
             this.RailCleanCarCheck.Back = null;
             this.RailCleanCarCheck.BackColor = System.Drawing.Color.Transparent;
             this.RailCleanCarCheck.BarBack = null;
-            this.RailCleanCarCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.RailCleanCarCheck.ForeColor = System.Drawing.Color.Red;
-            this.RailCleanCarCheck.Location = new System.Drawing.Point(386, 225);
+            this.RailCleanCarCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.None;
+            this.RailCleanCarCheck.Border = System.Drawing.Color.Transparent;
+            this.RailCleanCarCheck.ForeColor = System.Drawing.Color.Transparent;
+            this.RailCleanCarCheck.Glass = false;
+            this.RailCleanCarCheck.InnerBorder = System.Drawing.Color.Transparent;
+            this.RailCleanCarCheck.Location = new System.Drawing.Point(556, 360);
             this.RailCleanCarCheck.Name = "RailCleanCarCheck";
             this.RailCleanCarCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.RailCleanCarCheck.Size = new System.Drawing.Size(241, 23);
+            this.RailCleanCarCheck.Size = new System.Drawing.Size(323, 30);
             this.RailCleanCarCheck.TabIndex = 0;
-            // 
-            // Check
-            // 
-            this.Check.BackColor = System.Drawing.Color.Transparent;
-            this.Check.BaseColor = System.Drawing.Color.Black;
-            this.Check.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.Check.DownBack = null;
-            this.Check.ForeColor = System.Drawing.Color.White;
-            this.Check.Location = new System.Drawing.Point(90, 79);
-            this.Check.MouseBack = null;
-            this.Check.Name = "Check";
-            this.Check.NormlBack = null;
-            this.Check.Size = new System.Drawing.Size(83, 74);
-            this.Check.TabIndex = 1;
-            this.Check.Text = "check\r\n自检";
-            this.Check.UseVisualStyleBackColor = false;
-            this.Check.Click += new System.EventHandler(this.Check_Click);
+            this.RailCleanCarCheck.TrackBack = System.Drawing.Color.Black;
+            this.RailCleanCarCheck.TrackFore = System.Drawing.Color.Silver;
             // 
             // timer1
             // 
             this.timer1.Interval = 300;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Home
-            // 
-            this.Home.BackColor = System.Drawing.Color.Transparent;
-            this.Home.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.Home.DownBack = null;
-            this.Home.Location = new System.Drawing.Point(100, 353);
-            this.Home.MouseBack = null;
-            this.Home.Name = "Home";
-            this.Home.NormlBack = null;
-            this.Home.Size = new System.Drawing.Size(52, 44);
-            this.Home.TabIndex = 2;
-            this.Home.Text = "Home";
-            this.Home.UseVisualStyleBackColor = false;
-            this.Home.Click += new System.EventHandler(this.Home_Click);
-            // 
-            // Back
-            // 
-            this.BackBtn.BackColor = System.Drawing.Color.Transparent;
-            this.BackBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.BackBtn.DownBack = null;
-            this.BackBtn.Location = new System.Drawing.Point(465, 365);
-            this.BackBtn.MouseBack = null;
-            this.BackBtn.Name = "Back";
-            this.BackBtn.NormlBack = null;
-            this.BackBtn.Size = new System.Drawing.Size(38, 31);
-            this.BackBtn.TabIndex = 3;
-            this.BackBtn.Text = "Back";
-            this.BackBtn.UseVisualStyleBackColor = false;
-            this.BackBtn.Click += new System.EventHandler(this.Back_Click);
-            // 
-            // Front
-            // 
-            this.Front.BackColor = System.Drawing.Color.Transparent;
-            this.Front.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.Front.DownBack = null;
-            this.Front.Location = new System.Drawing.Point(587, 365);
-            this.Front.MouseBack = null;
-            this.Front.Name = "Front";
-            this.Front.NormlBack = null;
-            this.Front.Size = new System.Drawing.Size(40, 32);
-            this.Front.TabIndex = 4;
-            this.Front.Text = "Front";
-            this.Front.UseVisualStyleBackColor = false;
             // 
             // DataLabel
             // 
@@ -182,6 +143,122 @@
             this.RTC.Interval = 1000;
             this.RTC.Tick += new System.EventHandler(this.RTC_Tick);
             // 
+            // CkeckBtn
+            // 
+            this.CkeckBtn.BackColor = System.Drawing.Color.Transparent;
+            this.CkeckBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CkeckBtn.BackgroundImage")));
+            this.CkeckBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CkeckBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.CkeckBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.CkeckBtn.DownBack = null;
+            this.CkeckBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.CkeckBtn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CkeckBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.CkeckBtn.Image = ((System.Drawing.Image)(resources.GetObject("CkeckBtn.Image")));
+            this.CkeckBtn.IsDrawBorder = false;
+            this.CkeckBtn.IsDrawGlass = false;
+            this.CkeckBtn.Location = new System.Drawing.Point(152, 242);
+            this.CkeckBtn.MouseBack = null;
+            this.CkeckBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.CkeckBtn.Name = "CkeckBtn";
+            this.CkeckBtn.NormlBack = null;
+            this.CkeckBtn.Size = new System.Drawing.Size(104, 104);
+            this.CkeckBtn.TabIndex = 5;
+            this.CkeckBtn.Text = "Check\r\n 自 检";
+            this.CkeckBtn.UseVisualStyleBackColor = false;
+            this.CkeckBtn.Click += new System.EventHandler(this.CkeckBtn_Click);
+            // 
+            // skinPictureBox1
+            // 
+            this.skinPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.skinPictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("skinPictureBox1.BackgroundImage")));
+            this.skinPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.skinPictureBox1.Location = new System.Drawing.Point(42, 71);
+            this.skinPictureBox1.Name = "skinPictureBox1";
+            this.skinPictureBox1.Size = new System.Drawing.Size(171, 172);
+            this.skinPictureBox1.TabIndex = 104;
+            this.skinPictureBox1.TabStop = false;
+            // 
+            // HomeBtn
+            // 
+            this.HomeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.HomeBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("HomeBtn.BackgroundImage")));
+            this.HomeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.HomeBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.HomeBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.HomeBtn.DownBack = null;
+            this.HomeBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.HomeBtn.IsDrawBorder = false;
+            this.HomeBtn.IsDrawGlass = false;
+            this.HomeBtn.Location = new System.Drawing.Point(72, 625);
+            this.HomeBtn.MouseBack = null;
+            this.HomeBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.NormlBack = null;
+            this.HomeBtn.Size = new System.Drawing.Size(60, 60);
+            this.HomeBtn.TabIndex = 105;
+            this.HomeBtn.UseVisualStyleBackColor = false;
+            this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
+            // 
+            // skinLabel1
+            // 
+            this.skinLabel1.AutoSize = true;
+            this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel1.BorderColor = System.Drawing.Color.Black;
+            this.skinLabel1.BorderSize = 0;
+            this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel1.Location = new System.Drawing.Point(916, 204);
+            this.skinLabel1.Name = "skinLabel1";
+            this.skinLabel1.Size = new System.Drawing.Size(88, 25);
+            this.skinLabel1.TabIndex = 106;
+            this.skinLabel1.Text = "终端自检";
+            // 
+            // skinLabel2
+            // 
+            this.skinLabel2.AutoSize = true;
+            this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel2.BorderColor = System.Drawing.Color.Black;
+            this.skinLabel2.BorderSize = 0;
+            this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel2.Location = new System.Drawing.Point(916, 285);
+            this.skinLabel2.Name = "skinLabel2";
+            this.skinLabel2.Size = new System.Drawing.Size(107, 25);
+            this.skinLabel2.TabIndex = 107;
+            this.skinLabel2.Text = "装载车自检";
+            // 
+            // skinLabel3
+            // 
+            this.skinLabel3.AutoSize = true;
+            this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel3.BorderColor = System.Drawing.Color.Black;
+            this.skinLabel3.BorderSize = 0;
+            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.Location = new System.Drawing.Point(916, 360);
+            this.skinLabel3.Name = "skinLabel3";
+            this.skinLabel3.Size = new System.Drawing.Size(145, 25);
+            this.skinLabel3.TabIndex = 108;
+            this.skinLabel3.Text = "轨道清理车自检";
+            // 
+            // rightBtn
+            // 
+            this.rightBtn.BackColor = System.Drawing.Color.Transparent;
+            this.rightBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rightBtn.BackgroundImage")));
+            this.rightBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rightBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.rightBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.rightBtn.DownBack = null;
+            this.rightBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.rightBtn.IsDrawBorder = false;
+            this.rightBtn.IsDrawGlass = false;
+            this.rightBtn.Location = new System.Drawing.Point(1240, 625);
+            this.rightBtn.MouseBack = null;
+            this.rightBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.rightBtn.Name = "rightBtn";
+            this.rightBtn.NormlBack = null;
+            this.rightBtn.Size = new System.Drawing.Size(60, 60);
+            this.rightBtn.TabIndex = 109;
+            this.rightBtn.UseVisualStyleBackColor = false;
+            // 
             // CHeckFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -191,12 +268,15 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
+            this.Controls.Add(this.rightBtn);
+            this.Controls.Add(this.skinLabel3);
+            this.Controls.Add(this.skinLabel2);
+            this.Controls.Add(this.skinLabel1);
+            this.Controls.Add(this.HomeBtn);
+            this.Controls.Add(this.skinPictureBox1);
+            this.Controls.Add(this.CkeckBtn);
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);
-            this.Controls.Add(this.Front);
-            this.Controls.Add(this.BackBtn);
-            this.Controls.Add(this.Home);
-            this.Controls.Add(this.Check);
             this.Controls.Add(this.RailCleanCarCheck);
             this.Controls.Add(this.LoadCarCheck);
             this.Controls.Add(this.TermalCheck);
@@ -205,6 +285,7 @@
             this.Text = "";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClearnFrm_FormClosing);
             this.Load += new System.EventHandler(this.ClearnFrm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,13 +296,16 @@
         private CCWin.SkinControl.SkinProgressBar TermalCheck;
         private CCWin.SkinControl.SkinProgressBar LoadCarCheck;
         private CCWin.SkinControl.SkinProgressBar RailCleanCarCheck;
-        private CCWin.SkinControl.SkinButton Check;
         private System.Windows.Forms.Timer timer1;
-        private CCWin.SkinControl.SkinButton Home;
-        private CCWin.SkinControl.SkinButton BackBtn;
-        private CCWin.SkinControl.SkinButton Front;
         private CCWin.SkinControl.SkinLabel DataLabel;
         private CCWin.SkinControl.SkinLabel TimeLabel;
         private System.Windows.Forms.Timer RTC;
+        private CCWin.SkinControl.SkinButton CkeckBtn;
+        private CCWin.SkinControl.SkinPictureBox skinPictureBox1;
+        private CCWin.SkinControl.SkinButton HomeBtn;
+        private CCWin.SkinControl.SkinLabel skinLabel1;
+        private CCWin.SkinControl.SkinLabel skinLabel2;
+        private CCWin.SkinControl.SkinLabel skinLabel3;
+        private CCWin.SkinControl.SkinButton rightBtn;
     }
 }

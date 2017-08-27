@@ -22,6 +22,9 @@ namespace CleanSys
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
+            TermalCheck.Value = 0;
+            LoadCarCheck.Value = 0;
+            RailCleanCarCheck.Value = 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -77,5 +80,17 @@ namespace CleanSys
         {
 
         }
+
+        private void HomeBtn_Click(object sender, EventArgs e)
+        {
+            myData.mainFrm.Visible = true;
+            this.Close();
+        }
+
+        private void CkeckBtn_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+        }
+
     }
 }
