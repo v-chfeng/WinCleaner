@@ -156,5 +156,62 @@
   <ItemGroup>
     <None Include="Gif\1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyControl\MyControl.csproj">
+      <Project>{0ab5fde8-d6ce-41c5-b2df-6edf0d0befd6}</Project>
+      <Name>MyControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1Gray.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downLeft3Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downLeft3Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downLeft3Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downLeft3Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downRight4Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downRight4Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downRight4Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\downRight4Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upLeft2Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upLeft2Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upLeft2Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upLeft2Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upRight1Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upRight1Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upRight1Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upRight1Yellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,6 +13,11 @@ namespace CleanSys
 {
     public partial class AutoCleanFrm : CCSkinMain
     {
+        private string spendTimeTemplate = @"用时: {0}";
+        private DateTime startTime1;
+        private DateTime startTime2;
+        private DateTime startTime3;
+
         public AutoCleanFrm()
         {
             InitializeComponent();
@@ -33,6 +38,53 @@ namespace CleanSys
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
+            testProcess();
         }
+
+        private void testProcess()
+        {
+            this.process1.ProcessBar.Increment(90);// 环形进度条 增加百分比
+            this.process2.ProcessBar.Increment(90);// 环形进度条 增加百分比
+            this.process3.ProcessBar.Increment(90);// 环形进度条 增加百分比
+
+            this.spendTime1.Text = "用时";
+        }
+
+        private void process2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AutoClean_Click(object sender, EventArgs e)
+        {
+            // 发送 自动清理请求到 清理机器
+
+            //
+
+            // 进度条开始动
+
+            // 灯开始亮
+        }
+
+        private void stopBtn_Click(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private void HomeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            myData.mainFrm.Show();// show();
+            myData.frmStack.Clear();
+        }
+
+        private void rightBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form backFrm = myData.frmStack.Pop();
+            backFrm.Show();
+        }
+
+        //private void string 
     }
 }

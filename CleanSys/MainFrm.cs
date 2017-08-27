@@ -30,8 +30,8 @@ namespace CleanSys
             myData.myPossition = new Size(x, y);
             this.Location = (Point)myData.myPossition;         //窗体的起始位置为(x,y)
             myData.mainFrm = this;
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString() + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
         }
 
         private void CleanButton_Click(object sender, EventArgs e)
@@ -55,8 +55,8 @@ namespace CleanSys
         private void RTC_Tick(object sender, EventArgs e)
         {
 
-            DataLabel.Text = DateTime.Now.ToString("M月dd日") + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
         }
 
         private void skinButton2_Click(object sender, EventArgs e)

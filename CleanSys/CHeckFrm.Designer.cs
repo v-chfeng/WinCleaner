@@ -36,7 +36,7 @@
             this.Check = new CCWin.SkinControl.SkinButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Home = new CCWin.SkinControl.SkinButton();
-            this.Back = new CCWin.SkinControl.SkinButton();
+            this.BackBtn = new CCWin.SkinControl.SkinButton();
             this.Front = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
@@ -121,18 +121,18 @@
             // 
             // Back
             // 
-            this.Back.BackColor = System.Drawing.Color.Transparent;
-            this.Back.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.Back.DownBack = null;
-            this.Back.Location = new System.Drawing.Point(465, 365);
-            this.Back.MouseBack = null;
-            this.Back.Name = "Back";
-            this.Back.NormlBack = null;
-            this.Back.Size = new System.Drawing.Size(38, 31);
-            this.Back.TabIndex = 3;
-            this.Back.Text = "Back";
-            this.Back.UseVisualStyleBackColor = false;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
+            this.BackBtn.BackColor = System.Drawing.Color.Transparent;
+            this.BackBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.BackBtn.DownBack = null;
+            this.BackBtn.Location = new System.Drawing.Point(465, 365);
+            this.BackBtn.MouseBack = null;
+            this.BackBtn.Name = "Back";
+            this.BackBtn.NormlBack = null;
+            this.BackBtn.Size = new System.Drawing.Size(38, 31);
+            this.BackBtn.TabIndex = 3;
+            this.BackBtn.Text = "Back";
+            this.BackBtn.UseVisualStyleBackColor = false;
+            this.BackBtn.Click += new System.EventHandler(this.Back_Click);
             // 
             // Front
             // 
@@ -150,6 +150,7 @@
             // 
             // DataLabel
             // 
+            this.DataLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
@@ -163,6 +164,7 @@
             // 
             // TimeLabel
             // 
+            this.TimeLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
@@ -192,7 +194,7 @@
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.Front);
-            this.Controls.Add(this.Back);
+            this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.Home);
             this.Controls.Add(this.Check);
             this.Controls.Add(this.RailCleanCarCheck);
@@ -216,7 +218,7 @@
         private CCWin.SkinControl.SkinButton Check;
         private System.Windows.Forms.Timer timer1;
         private CCWin.SkinControl.SkinButton Home;
-        private CCWin.SkinControl.SkinButton Back;
+        private CCWin.SkinControl.SkinButton BackBtn;
         private CCWin.SkinControl.SkinButton Front;
         private CCWin.SkinControl.SkinLabel DataLabel;
         private CCWin.SkinControl.SkinLabel TimeLabel;

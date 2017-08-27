@@ -37,6 +37,7 @@
             // 
             // DataLabel
             // 
+            this.DataLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
@@ -56,6 +57,7 @@
             // 
             // TimeLabel
             // 
+            this.TimeLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
@@ -74,7 +76,7 @@
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1366, 727);//1366 * 768
+            this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);

@@ -34,9 +34,9 @@
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.TimeLabel = new CCWin.SkinControl.SkinLabel();
             this.RTC = new System.Windows.Forms.Timer(this.components);
-            this.b11 = new CCWin.SkinControl.SkinButton();
-            this.skinButton1 = new CCWin.SkinControl.SkinButton();
-            this.skinButton2 = new CCWin.SkinControl.SkinButton();
+            this.boxBtn = new CCWin.SkinControl.SkinButton();
+            this.autoBtn = new CCWin.SkinControl.SkinButton();
+            this.manualBtn = new CCWin.SkinControl.SkinButton();
             this.Home = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
@@ -58,6 +58,7 @@
             // 
             // DataLabel
             // 
+            this.DataLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
@@ -71,6 +72,7 @@
             // 
             // TimeLabel
             // 
+            this.TimeLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
@@ -88,57 +90,57 @@
             this.RTC.Interval = 1000;
             this.RTC.Tick += new System.EventHandler(this.RTC_Tick);
             // 
-            // b11
+            // boxBtn
             // 
-            this.b11.BackColor = System.Drawing.Color.Black;
-            this.b11.BaseColor = System.Drawing.Color.Black;
-            this.b11.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.b11.DownBack = null;
-            this.b11.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.b11.Location = new System.Drawing.Point(420, 147);
-            this.b11.MouseBack = null;
-            this.b11.MouseBaseColor = System.Drawing.Color.Black;
-            this.b11.Name = "b11";
-            this.b11.NormlBack = null;
-            this.b11.Size = new System.Drawing.Size(262, 34);
-            this.b11.TabIndex = 5;
-            this.b11.Text = "箱壁清理";
-            this.b11.UseVisualStyleBackColor = false;
+            this.boxBtn.BackColor = System.Drawing.Color.Black;
+            this.boxBtn.BaseColor = System.Drawing.Color.Black;
+            this.boxBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.boxBtn.DownBack = null;
+            this.boxBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.boxBtn.Location = new System.Drawing.Point(420, 147);
+            this.boxBtn.MouseBack = null;
+            this.boxBtn.MouseBaseColor = System.Drawing.Color.Black;
+            this.boxBtn.Name = "boxBtn";
+            this.boxBtn.NormlBack = null;
+            this.boxBtn.Size = new System.Drawing.Size(262, 34);
+            this.boxBtn.TabIndex = 5;
+            this.boxBtn.Text = "箱壁清理";
+            this.boxBtn.UseVisualStyleBackColor = false;
             // 
-            // skinButton1
+            // autoBtn
             // 
-            this.skinButton1.BackColor = System.Drawing.Color.Black;
-            this.skinButton1.BaseColor = System.Drawing.Color.Black;
-            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton1.DownBack = null;
-            this.skinButton1.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.skinButton1.Location = new System.Drawing.Point(420, 207);
-            this.skinButton1.MouseBack = null;
-            this.skinButton1.MouseBaseColor = System.Drawing.Color.Black;
-            this.skinButton1.Name = "skinButton1";
-            this.skinButton1.NormlBack = null;
-            this.skinButton1.Size = new System.Drawing.Size(262, 32);
-            this.skinButton1.TabIndex = 5;
-            this.skinButton1.Text = "自动清理";
-            this.skinButton1.UseVisualStyleBackColor = false;
-            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
+            this.autoBtn.BackColor = System.Drawing.Color.Black;
+            this.autoBtn.BaseColor = System.Drawing.Color.Black;
+            this.autoBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.autoBtn.DownBack = null;
+            this.autoBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.autoBtn.Location = new System.Drawing.Point(420, 207);
+            this.autoBtn.MouseBack = null;
+            this.autoBtn.MouseBaseColor = System.Drawing.Color.Black;
+            this.autoBtn.Name = "autoBtn";
+            this.autoBtn.NormlBack = null;
+            this.autoBtn.Size = new System.Drawing.Size(262, 32);
+            this.autoBtn.TabIndex = 5;
+            this.autoBtn.Text = "自动清理";
+            this.autoBtn.UseVisualStyleBackColor = false;
+            this.autoBtn.Click += new System.EventHandler(this.autoBtn_Click);
             // 
-            // skinButton2
+            // manualBtn
             // 
-            this.skinButton2.BackColor = System.Drawing.Color.Black;
-            this.skinButton2.BaseColor = System.Drawing.Color.Black;
-            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton2.DownBack = null;
-            this.skinButton2.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.skinButton2.Location = new System.Drawing.Point(420, 269);
-            this.skinButton2.MouseBack = null;
-            this.skinButton2.MouseBaseColor = System.Drawing.Color.Black;
-            this.skinButton2.Name = "skinButton2";
-            this.skinButton2.NormlBack = null;
-            this.skinButton2.Size = new System.Drawing.Size(262, 31);
-            this.skinButton2.TabIndex = 5;
-            this.skinButton2.Text = "手动清理";
-            this.skinButton2.UseVisualStyleBackColor = false;
+            this.manualBtn.BackColor = System.Drawing.Color.Black;
+            this.manualBtn.BaseColor = System.Drawing.Color.Black;
+            this.manualBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.manualBtn.DownBack = null;
+            this.manualBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.manualBtn.Location = new System.Drawing.Point(420, 269);
+            this.manualBtn.MouseBack = null;
+            this.manualBtn.MouseBaseColor = System.Drawing.Color.Black;
+            this.manualBtn.Name = "manualBtn";
+            this.manualBtn.NormlBack = null;
+            this.manualBtn.Size = new System.Drawing.Size(262, 31);
+            this.manualBtn.TabIndex = 5;
+            this.manualBtn.Text = "手动清理";
+            this.manualBtn.UseVisualStyleBackColor = false;
             // 
             // Home
             // 
@@ -165,9 +167,9 @@
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
             this.Controls.Add(this.Home);
-            this.Controls.Add(this.skinButton2);
-            this.Controls.Add(this.skinButton1);
-            this.Controls.Add(this.b11);
+            this.Controls.Add(this.manualBtn);
+            this.Controls.Add(this.autoBtn);
+            this.Controls.Add(this.boxBtn);
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.Clean);
@@ -187,9 +189,9 @@
         private CCWin.SkinControl.SkinLabel DataLabel;
         private CCWin.SkinControl.SkinLabel TimeLabel;
         private System.Windows.Forms.Timer RTC;
-        private CCWin.SkinControl.SkinButton b11;
-        private CCWin.SkinControl.SkinButton skinButton1;
-        private CCWin.SkinControl.SkinButton skinButton2;
+        private CCWin.SkinControl.SkinButton boxBtn;
+        private CCWin.SkinControl.SkinButton autoBtn;
+        private CCWin.SkinControl.SkinButton manualBtn;
         private CCWin.SkinControl.SkinButton Home;
     }
 }

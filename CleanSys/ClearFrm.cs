@@ -37,10 +37,11 @@ namespace CleanSys
             
         }
 
-        private void skinButton1_Click(object sender, EventArgs e)
+        private void autoBtn_Click(object sender, EventArgs e)
         {
             AutoCleanFrm clearFrm = new AutoCleanFrm();
             this.Hide();
+            myData.frmStack.Push(this);
             clearFrm.StartPosition = FormStartPosition.Manual;
             clearFrm.Location = this.Location;
             clearFrm.Show();

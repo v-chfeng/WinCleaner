@@ -37,6 +37,8 @@ namespace CleanSys
             newFrm.Show();
         }
 
+        public static Stack<Form> frmStack = new Stack<Form>();
+
         public static string MiddleTitle()
         {
             return DateTime.Now.ToString("M月dd日") + "  " + GetWeek();
@@ -44,7 +46,7 @@ namespace CleanSys
 
         public static string RightTime()
         {
-            return DateTime.Now.ToShortTimeString();
+            return DateTime.Now.ToString("hh:mm");
         }
 
          public static string GetWeek()

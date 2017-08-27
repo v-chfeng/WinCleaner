@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.CheckButton = new CCWin.SkinControl.SkinButton();
-            this.HelpButton = new CCWin.SkinControl.SkinButton();
+            this.HelpBtn = new CCWin.SkinControl.SkinButton();
             this.CleanButton = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
@@ -58,20 +58,20 @@
             // 
             // HelpButton
             // 
-            this.HelpButton.BackColor = System.Drawing.Color.Transparent;
-            this.HelpButton.BaseColor = System.Drawing.Color.Black;
-            this.HelpButton.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.HelpButton.DownBack = null;
-            this.HelpButton.ForeColor = System.Drawing.Color.White;
-            this.HelpButton.Location = new System.Drawing.Point(175, 303);
-            this.HelpButton.MouseBack = null;
-            this.HelpButton.Name = "HelpButton";
-            this.HelpButton.NormlBack = null;
-            this.HelpButton.Size = new System.Drawing.Size(83, 74);
-            this.HelpButton.TabIndex = 0;
-            this.HelpButton.Text = "帮助\r\nHelp";
-            this.HelpButton.UseVisualStyleBackColor = false;
-            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
+            this.HelpBtn.BackColor = System.Drawing.Color.Transparent;
+            this.HelpBtn.BaseColor = System.Drawing.Color.Black;
+            this.HelpBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.HelpBtn.DownBack = null;
+            this.HelpBtn.ForeColor = System.Drawing.Color.White;
+            this.HelpBtn.Location = new System.Drawing.Point(175, 303);
+            this.HelpBtn.MouseBack = null;
+            this.HelpBtn.Name = "HelpButton";
+            this.HelpBtn.NormlBack = null;
+            this.HelpBtn.Size = new System.Drawing.Size(83, 74);
+            this.HelpBtn.TabIndex = 0;
+            this.HelpBtn.Text = "帮助\r\nHelp";
+            this.HelpBtn.UseVisualStyleBackColor = false;
+            this.HelpBtn.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // CleanButton
             // 
@@ -116,9 +116,10 @@
             // 
             // DataLabel
             // 
+            this.DataLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DataLabel.BorderColor = System.Drawing.Color.White;
+            this.DataLabel.BorderColor = System.Drawing.Color.Transparent;
             this.DataLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.DataLabel.ForeColor = System.Drawing.Color.Black;
             this.DataLabel.Location = new System.Drawing.Point(616, 13);
@@ -135,6 +136,7 @@
             // 
             // TimeLabel
             // 
+            this.TimeLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
@@ -156,7 +158,7 @@
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
             this.Controls.Add(this.skinButton2);
-            this.Controls.Add(this.HelpButton);
+            this.Controls.Add(this.HelpBtn);
             this.Controls.Add(this.CleanButton);
             this.Controls.Add(this.CheckButton);
             this.Controls.Add(this.DataLabel);
@@ -179,7 +181,7 @@
         #endregion
 
         private CCWin.SkinControl.SkinButton CheckButton;
-        private CCWin.SkinControl.SkinButton HelpButton;
+        private CCWin.SkinControl.SkinButton HelpBtn;
         private CCWin.SkinControl.SkinButton CleanButton;
         private CCWin.SkinControl.SkinButton skinButton2;
         private CCWin.SkinControl.SkinLabel DataLabel;

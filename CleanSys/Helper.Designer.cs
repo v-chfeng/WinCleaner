@@ -39,6 +39,7 @@ namespace CleanSys
             // 
             // DataLabel
             // 
+            this.DataLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
@@ -58,6 +59,7 @@ namespace CleanSys
             // 
             // TimeLabel
             // 
+            this.TimeLabel.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;

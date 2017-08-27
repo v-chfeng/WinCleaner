@@ -22,8 +22,8 @@ namespace CleanSys
 
         private void RecordFrm_Load(object sender, EventArgs e)
         {
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString() + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
 
             myColor.checkButton[0, 0] = b11;
             myColor.checkButton[0, 1] = b12;
@@ -111,8 +111,8 @@ namespace CleanSys
 
         private void RTC_Tick(object sender, EventArgs e)
         {
-            DataLabel.Text = DateTime.Now.ToLongDateString().ToString() + "   " + DateTime.Now.DayOfWeek.ToString();
-            TimeLabel.Text = DateTime.Now.ToShortTimeString().ToString();
+            DataLabel.Text = myData.MiddleTitle();
+            TimeLabel.Text = myData.RightTime();
         }
 
         private void Record_Click(object sender, EventArgs e)
