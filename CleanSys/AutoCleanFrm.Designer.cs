@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.ComponentModel.ComponentResourceManager resources = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoCleanFrm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoCleanFrm));
             this.AutoClean = new CCWin.SkinControl.SkinButton();
             this.DataLabel = new CCWin.SkinControl.SkinLabel();
             this.RTC = new System.Windows.Forms.Timer(this.components);
@@ -58,6 +57,9 @@
             this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.upArrow = new CCWin.SkinControl.SkinPictureBox();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox3)).BeginInit();
@@ -427,6 +429,18 @@
             this.skinPanel1.Size = new System.Drawing.Size(30, 335);
             this.skinPanel1.TabIndex = 110;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            // 
+            // timer3
+            // 
+            this.timer3.Interval = 1000;
+            // 
             // AutoCleanFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -505,5 +519,8 @@
         private CCWin.SkinControl.SkinLabel skinLabel7;
         private CCWin.SkinControl.SkinPictureBox upArrow;
         private CCWin.SkinControl.SkinPanel skinPanel1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
     }
 }

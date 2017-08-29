@@ -214,5 +214,107 @@
   <ItemGroup>
     <None Include="icon\upRight1Yellow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\backGroud.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\blackBlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Circle1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\circleImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\eightAngle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayBorderBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayCircleLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayLightBorderBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\grayLightBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\greenRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\HomeBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Mainbackgrund.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rail1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rail2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rail3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rail4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\RecordPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\redCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\redCircleLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\redRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\shuLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\stopLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\upArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\verticalLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\yellowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\stepOne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\stepThree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\stepTwo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

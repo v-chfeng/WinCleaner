@@ -1,5 +1,6 @@
 ﻿using CCWin;
 using CCWin.SkinControl;
+using CleanSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +20,9 @@ namespace CleanSys
         private string spendTimeTemplate = @"用时: {0}:{1}";
 
         private string angleOne = "upRight1";
-        private string angleTwo = "upRight1";
-        private string angleThre = "upRight1";
-        private string angleFour = "upRight1";
+        private string angleTwo = "upLeft2";
+        private string angleThre = "downLeft3";
+        private string angleFour = "downRight4";
 
         private string stepZeroGray = "Gray";
         private string stepOneRed = "Red";
@@ -43,14 +44,18 @@ namespace CleanSys
         private List<WinTimer> _timerList;
         private List<DateTime> _startList;
         private List<SkinLabel> _spendTextList;
+        private List<Thread> _threadList;
 
         private bool isWorking;
 
-        private WinTimer timer1;
-        private WinTimer timer2;
-        private WinTimer timer3;
+        //private WinTimer timer1;
+        //private WinTimer timer2;
+        //private WinTimer timer3;
 
         private Thread thread;
+        private Thread timerThread1;
+        private Thread timerThread2;
+        private Thread timerThread3;
 
         public AutoCleanFrm()
         {
@@ -85,6 +90,17 @@ namespace CleanSys
             this.timer2.Tick += new EventHandler(Timer2_Tick);
             this.timer3.Tick += new EventHandler(Timer3_Tick);
 
+            this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+            this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+            this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+            this.timerThread1.IsBackground = true;
+            this.timerThread2.IsBackground = true;
+            this.timerThread3.IsBackground = true;
+
+            this.process1.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepOne"));
+            this.process2.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepTwo"));
+            this.process3.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepThree"));
+
             this.InitProcessBar();
         }
 
@@ -94,9 +110,46 @@ namespace CleanSys
             this.spendTime1.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
         }
 
+        private void Thread1_Tick(object start)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+
+            while (true)
+            {
+                TimeSpan span = DateTime.Now - (DateTime)start;
+                this.spendTime1.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void Thread2_Tick(object start)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+
+            while (true)
+            {
+                TimeSpan span = DateTime.Now - (DateTime)start;
+                this.spendTime2.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void Thread3_Tick(object start)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+
+            while (true)
+            {
+                TimeSpan span = DateTime.Now - (DateTime)start;
+                this.spendTime3.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                Thread.Sleep(1000);
+            }
+        }
+
         private void Timer2_Tick(object sender, EventArgs e)
         {
             TimeSpan span = DateTime.Now - this.startTime2;
+            MessageBox.Show(string.Format(spendTimeTemplate, span.Minutes, span.Seconds));
             this.spendTime2.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
         }
 
@@ -110,7 +163,7 @@ namespace CleanSys
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
-            testProcess();
+            //testProcess();
         }
 
         private void InitProcessBar()
@@ -123,7 +176,7 @@ namespace CleanSys
             this.process2.ProcessBar.Value = 0;
             this.process3.ProcessBar.Value = 0;
 
-            string defaultSpend = string.Format(this.spendTimeTemplate, "00:00");
+            string defaultSpend = string.Format(this.spendTimeTemplate, "00","00");
             this.spendTime1.Text = defaultSpend;
             this.spendTime2.Text = defaultSpend;
             this.spendTime3.Text = defaultSpend;
@@ -136,10 +189,10 @@ namespace CleanSys
             this.stepTwoProcess = 0;
             this.stepThreeProcess = 0;
 
-            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject(this.angleOne + this.stepZeroGray)));
-            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject(this.angleTwo + this.stepZeroGray)));
-            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(resources.GetObject(this.angleThre + this.stepZeroGray)));
-            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(resources.GetObject(this.angleFour + this.stepZeroGray)));
+            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
+            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
+            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
+            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
 
         private void testProcess()
@@ -159,6 +212,30 @@ namespace CleanSys
 
         }
 
+        private void RefreshThread(int num)
+        {
+            switch (num)
+            {
+                case 1:
+                    this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+                    this.timerThread1.IsBackground = true;
+                    break;
+                case 2:
+                    this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+                    this.timerThread2.IsBackground = true;
+                    break;
+                case 3:
+                    this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+                    this.timerThread3.IsBackground = true;
+                    break;
+            }
+
+            this._threadList.Clear();
+            this._threadList.Add(this.timerThread1);
+            this._threadList.Add(this.timerThread2);
+            this._threadList.Add(this.timerThread3);
+        }
+
         private void AutoClean_Click(object sender, EventArgs e)
         {
             if (this.isWorking == false)
@@ -173,9 +250,19 @@ namespace CleanSys
 
                     this.currentMachineNum = 1;
                     this.currentStepNum = 1;
+                    this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepOneRed)));
 
                     this.startTime1 = DateTime.Now;
-                    this.timer1.Enabled = true;
+                    //this.timer1.Enabled = true;
+
+                    this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+                    this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+                    this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+                    this.timerThread1.IsBackground = true;
+                    this.timerThread2.IsBackground = true;
+                    this.timerThread3.IsBackground = true;
+
+                    this.timerThread1.Start(DateTime.Now);
                     
                     DataGet getter = new DataGet();
                     getter.UpdateUIDelegate += this.Update;
@@ -193,21 +280,32 @@ namespace CleanSys
 
         private void stopBtn_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("确实终止清理", "确认", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
+            if (this.isWorking)
             {
-                bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Stop);
-                if (!isSuccess)
+                DialogResult result = MessageBox.Show("确实终止清理", "确认", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
                 {
-                    MessageBox.Show("终止清理失败!");
+                    bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Stop);
+                    if (!isSuccess)
+                    {
+                        MessageBox.Show("终止清理失败!");
+                    }
+                    else
+                    {
+                        this.thread.Abort();
+                        this.timerThread1.Abort();
+                        this.timerThread2.Abort();
+                        this.timerThread3.Abort();
+                        this.timer1.Enabled = false;
+                        this.timer2.Enabled = false;
+                        this.timer3.Enabled = false;
+                        this.isWorking = false;
+                    }
                 }
-                else
-                {
-                    this.thread.Abort();
-                    this.timer1.Enabled = false;
-                    this.timer2.Enabled = false;
-                    this.timer3.Enabled = false;
-                }
+            }
+            else
+            {
+                MessageBox.Show("清理没有进行，无需终止!");
             }
         }
 
@@ -227,6 +325,8 @@ namespace CleanSys
 
         private void UpdateProcessUI(MachineStatus status)
         {
+            CheckForIllegalCrossThreadCalls = false;
+
             if (InvokeRequired)
             {
                 this.Invoke(new AsynUpdateUI(this.Update), status);
@@ -245,6 +345,7 @@ namespace CleanSys
 
         private void Update(MachineStatus status)
         {
+            CheckForIllegalCrossThreadCalls = false;
 
             if (status.IsError)
             {
@@ -257,6 +358,9 @@ namespace CleanSys
                 this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
 
                 //停止计时
+                this.timerThread1.Abort();
+                this.timerThread2.Abort();
+                this.timerThread3.Abort();
                 this.timer1.Enabled = false;
                 this.timer2.Enabled = false;
                 this.timer3.Enabled = false;
@@ -278,9 +382,12 @@ namespace CleanSys
                     this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
 
                     //更新用时
-                    this.timer1.Enabled = false;
-                    this.timer2.Enabled = false;
-                    this.timer3.Enabled = false;
+                    this.timer1.Stop();
+                    this.timer2.Stop();
+                    this.timer3.Stop();
+                    this.timerThread1.Abort();
+                    this.timerThread2.Abort();
+                    this.timerThread3.Abort();
 
                     Thread.Sleep(1000);
 
@@ -297,7 +404,9 @@ namespace CleanSys
 
                     //重置用时
                     this.StartTimeList[status.stepNum - 1] = DateTime.Now;
-                    this.TimerList[status.stepNum - 1].Enabled = true;
+                    //this.TimerList[status.stepNum - 1].Start();
+                    this.RefreshThread(status.stepNum);
+                    this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
 
                     // 对于已经完成而没有统计的步骤，写一些假数据。
                     for (int i = 0; i < status.stepNum - 1; i++)
@@ -319,11 +428,14 @@ namespace CleanSys
                     for (int i = this.currentStepNum - 1; i < status.stepNum - 1; i++)
                     {
                         this.ProcessIncreaseTo(this.ProcessList[i].ProcessBar, 100);
-                        this.TimerList[i].Enabled = false;
+                        this.TimerList[i].Stop();
+                        this.ThreadList[i].Abort();
                     }
 
                     this.StartTimeList[status.stepNum - 1] = DateTime.Now;
-                    this.TimerList[status.stepNum - 1].Enabled = true;
+                    //this.TimerList[status.stepNum - 1].Start();
+                    this.RefreshThread(status.stepNum);
+                    this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
 
                     this.UpdateAngleMachine(status.machineNum, status.stepNum);
 
@@ -344,6 +456,8 @@ namespace CleanSys
 
         private void UpdateUpArrowLocation(int num, int step)
         {
+            CheckForIllegalCrossThreadCalls = false;
+
             int left = -2;
             int top = 301;
 
@@ -369,14 +483,14 @@ namespace CleanSys
             {
                 for (int i = 0; i < num - 1; i++)
                 {
-                    imgStr = this.GetImgBackGround(i, 3);
-                    this.eightAngle1.ImgList[i].BackgroundImage = ((System.Drawing.Image)(resources.GetObject(imgStr)));
+                    imgStr = this.GetImgBackGround(i+1, 3);
+                    this.eightAngle1.ImgList[i].BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(imgStr)));
                 }
             }
 
             // 只更改当前轨道状态
             imgStr = this.GetImgBackGround(num, step);
-            this.eightAngle1.ImgList[num-1].BackgroundImage = ((System.Drawing.Image)(resources.GetObject(imgStr)));
+            this.eightAngle1.ImgList[num-1].BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(imgStr)));
         }
 
         private string GetImgBackGround(int num, int step)
@@ -420,10 +534,13 @@ namespace CleanSys
 
         private void ProcessIncreaseTo(CircularProgressBar.CircularProgressBar bar, int Num)
         {
-            int increase = Num = bar.Value;
+            CheckForIllegalCrossThreadCalls = false;
+
+            int increase = Num - bar.Value;
             if (increase > 0)
             {
                 bar.Increment(increase);
+                bar.Text = Num.ToString() + "%";
             }
         }
 
@@ -491,6 +608,22 @@ namespace CleanSys
                 return this._spendTextList;
             }
         }
+
+        public List<Thread> ThreadList
+        {
+            get
+            {
+                if (this._threadList == null)
+                {
+                    this._threadList = new List<Thread>();
+                    this._threadList.Add(this.timerThread1);
+                    this._threadList.Add(this.timerThread2);
+                    this._threadList.Add(this.timerThread3);
+                }
+
+                return this._threadList;
+            }
+        }
     }
 
     public class DataGet
@@ -511,8 +644,6 @@ namespace CleanSys
                 Thread.Sleep(1000); 
             }
             while (!status.AllDone);
-
-            this.UpdateUIDelegate(status);
 
             this.TaskCallBack();
         }

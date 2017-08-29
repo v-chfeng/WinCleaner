@@ -184,7 +184,7 @@ namespace CleanSys
         private const int MachineCount = 4;
 
         // 清理速率 1% / 1s
-        private int rate = 1;
+        private int rate = 10;
 
         private int currentStepNum;
         private const int StepCount = 3;
@@ -263,7 +263,7 @@ namespace CleanSys
             else
             {
                 this.startTime = DateTime.Now;
-                this.currentProcess = this.currentProcess + spanProcess - 100;
+                this.currentProcess = this.currentProcess + spanProcess;
             }
         }
     }

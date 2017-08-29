@@ -26,7 +26,7 @@ namespace MyControl
             {
                 if (this.list == null)
                 {
-                    List<CCWin.SkinControl.SkinPictureBox> list = new List<CCWin.SkinControl.SkinPictureBox>();
+                    this.list = new List<CCWin.SkinControl.SkinPictureBox>();
                     list.Add(img1);
                     list.Add(img2);
                     list.Add(img3);

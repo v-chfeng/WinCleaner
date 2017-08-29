@@ -121,4 +121,154 @@
   <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gif\1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="backGroud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\backGroud.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\blackBlock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Block" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\Block.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Circle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\Circle1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circleImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\circleImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downLeft3Gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downLeft3Gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downLeft3Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downLeft3Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downLeft3Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downLeft3Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downLeft3Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downLeft3Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downRight4Gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downRight4Gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downRight4Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downRight4Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downRight4Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downRight4Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downRight4Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\downRight4Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eightAngle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\eightAngle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayBorderBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayBorderBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayCircle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayCircle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayCircleLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayCircleLight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayLightBorderBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayLightBorderBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grayLightBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\grayLightBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greenRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\greenRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\HomeBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="leftArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\leftArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mainbackgrund" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\Mainbackgrund.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rail1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\rail1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rail2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\rail2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rail3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\rail3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rail4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\rail4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RecordPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\RecordPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redCircle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\redCircle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redCircleLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\redCircleLight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\redRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rightArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\rightArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shuLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\shuLine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stepOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\stepOne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stepThree" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\stepThree.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stepTwo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\stepTwo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stopLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\stopLight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upLeft2Gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upLeft2Gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upLeft2Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upLeft2Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upLeft2Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upLeft2Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upLeft2Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upLeft2Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upRight1Gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upRight1Gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upRight1Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upRight1Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upRight1Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upRight1Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upRight1Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\upRight1Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="verticalLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\verticalLine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yellowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\yellowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
