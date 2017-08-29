@@ -1,4 +1,5 @@
 ﻿using CCWin;
+using CleanSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace CleanSys
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
+
+            this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
         }
 
         private void RTC_Tick(object sender, EventArgs e)

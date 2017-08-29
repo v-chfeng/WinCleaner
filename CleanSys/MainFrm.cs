@@ -1,4 +1,5 @@
 ﻿using CCWin;
+using CleanSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,8 @@ namespace CleanSys
             //CleanButton.Location = (Point)new Size((x + System.Windows.Forms.SystemInformation.WorkingArea.Width - CleanButton.Size.Width) / 7*5,( y + System.Windows.Forms.SystemInformation.WorkingArea.Height - CleanButton.Size.Height )/ 7*2);
            // RecordButton.Location= (Point)new Size((x + System.Windows.Forms.SystemInformation.WorkingArea.Width - RecordButton.Size.Width) / 7*5, (y + System.Windows.Forms.SystemInformation.WorkingArea.Height - RecordButton.Size.Height )/ 7*5);
             skinPictureBox1.Location = (Point)new Size((this.Size.Width - skinPictureBox1.Size.Width)/2, (this.Size.Height -skinPictureBox1.Size.Height)/2 );
+
+            this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
         }
 
         private void CleanButton_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using CCWin;
 using CCWin.SkinControl;
+using CleanSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace CleanSys
 
         private void RecordFrm_Load(object sender, EventArgs e)
         {
+            this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
+
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
 

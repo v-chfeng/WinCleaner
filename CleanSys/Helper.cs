@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using CleanSys.Properties;
 
 namespace CleanSys
 {
@@ -27,6 +28,8 @@ namespace CleanSys
             this.Location = (Point)myData.myPossition;         //窗体的起始位置为(x,y)
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
+
+            this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
         }
 
         private void RTC_Tick(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using CCWin;
+using CleanSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace CleanSys
             TermalCheck.Value = 0;
             LoadCarCheck.Value = 0;
             RailCleanCarCheck.Value = 0;
+
+            this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
         }
 
         private void timer1_Tick(object sender, EventArgs e)
