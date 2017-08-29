@@ -37,8 +37,8 @@
             this.process1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.process1.AnimationSpeed = 500;
             this.process1.BackColor = System.Drawing.Color.Transparent;
-            this.process1.Font = new System.Drawing.Font("宋体", 72F, System.Drawing.FontStyle.Bold);
-            this.process1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.process1.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.process1.ForeColor = System.Drawing.Color.White;
             this.process1.InnerColor = System.Drawing.Color.Transparent;
             this.process1.InnerMargin = 2;
             this.process1.InnerWidth = -1;
@@ -54,14 +54,16 @@
             this.process1.SecondaryFont = new System.Drawing.Font("宋体", 36F);
             this.process1.Size = new System.Drawing.Size(100, 100);
             this.process1.StartAngle = -90;
+            this.process1.Step = 1;
             this.process1.SubscriptColor = System.Drawing.Color.Gray;
             this.process1.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.process1.SubscriptText = ".23";
+            this.process1.SubscriptText = "";
             this.process1.SuperscriptColor = System.Drawing.Color.Gray;
             this.process1.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.process1.SuperscriptText = "°C";
+            this.process1.SuperscriptText = "";
             this.process1.TabIndex = 100;
-            this.process1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.process1.Text = "40%";
+            this.process1.TextMargin = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.process1.Value = 68;
             // 
             // myProcesser

@@ -41,7 +41,7 @@ namespace MyControl
             }
         }
 
-        private CCWin.SkinControl.SkinPictureBox ImgFour
+        public CCWin.SkinControl.SkinPictureBox ImgFour
         {
             get
             {
