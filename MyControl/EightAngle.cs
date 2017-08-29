@@ -12,9 +12,29 @@ namespace MyControl
 {
     public partial class EightAngle : UserControl
     {
+        private List<CCWin.SkinControl.SkinPictureBox> list;
+
         public EightAngle()
         {
+            this.list = null;
             InitializeComponent();
+        }
+
+        public List<CCWin.SkinControl.SkinPictureBox> ImgList
+        {
+            get
+            {
+                if (this.list == null)
+                {
+                    List<CCWin.SkinControl.SkinPictureBox> list = new List<CCWin.SkinControl.SkinPictureBox>();
+                    list.Add(img1);
+                    list.Add(img2);
+                    list.Add(img3);
+                    list.Add(img4);
+                }
+
+                return this.list;
+            }
         }
 
         public CCWin.SkinControl.SkinPictureBox ImgOne
