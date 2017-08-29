@@ -142,6 +142,8 @@ namespace CleanSys
 
     public class MachineStatus
     {
+        private List<int> _stepsList;
+
         public int machineNum { get; set; }
 
         public int stepNum { get; set; }
@@ -160,6 +162,20 @@ namespace CleanSys
 
         // 涂润滑油
         public int stepThreeProcess { get; set; }
+
+        // 进度list
+        public List<int> StepsList
+        {
+            get
+            {
+                this._stepsList = new List<int>();
+                this._stepsList.Add(stepOneProcess);
+                this._stepsList.Add(stepTwoProcess);
+                this._stepsList.Add(stepThreeProcess);
+
+                return this._stepsList;
+            }
+        }
     }
 
     public class MockMachineReceiver

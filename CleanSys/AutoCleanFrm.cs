@@ -37,9 +37,12 @@ namespace CleanSys
         private int stepTwoProcess;
         private int stepThreeProcess;
 
+        private List<myProcesser> _processList;
+
         public AutoCleanFrm()
         {
             InitializeComponent();
+            this._processList = null;
         }
 
         private void AutoCleanFrm_Load(object sender, EventArgs e)
@@ -145,14 +148,11 @@ namespace CleanSys
         {
             if (InvokeRequired)
             {
-                this.Invoke(new AsynUpdateUI(delegate (MachineStatus para)
-                {
-                    ;
-                }), status);
+                this.Invoke(new AsynUpdateUI(this.Update), status);
             }
             else
             {
-                ;
+                this.Update(status);
             }
         }
 
@@ -165,11 +165,14 @@ namespace CleanSys
             }
             else
             {
+                // 如果当前轨道已经完成
                 if (status.machineNum > this.currentMachineNum)
                 {
                     this.ProcessIncreaseTo(this.process1.ProcessBar, 100);
                     this.ProcessIncreaseTo(this.process2.ProcessBar, 100);
                     this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
+
+                    //更新用时
 
                     Thread.Sleep(1000);
 
@@ -177,17 +180,27 @@ namespace CleanSys
                     this.process2.ProcessBar.Value = 0;
                     this.process3.ProcessBar.Value = 0;
 
+                    //重置用时
                     this.ProcessIncreaseTo(this.process1.ProcessBar, status.stepOneProcess);
                     this.ProcessIncreaseTo(this.process2.ProcessBar, status.stepTwoProcess);
                     this.ProcessIncreaseTo(this.process3.ProcessBar, status.stepThreeProcess);
-                }
+
+                    this.UpdateAngleMachine(status.machineNum, status.stepNum, true);
+                }// 如果当前轨道的当前步骤完成
                 else if (status.stepNum > this.currentStepNum)
                 {
+                    for (int i = 0; i < status.stepNum - 1; i++)
+                    {
+                        this.ProcessIncreaseTo(this.ProcessList[i].ProcessBar, 100);
+                    }
 
+                    this.UpdateAngleMachine(status.machineNum, status.stepNum);
+
+                    this.ProcessIncreaseTo(this.ProcessList[status.stepNum - 1].ProcessBar, status.StepsList[status.stepNum - 1]);
                 }
                 else
                 {
-
+                    this.ProcessIncreaseTo(this.ProcessList[status.stepNum - 1].ProcessBar, status.StepsList[status.stepNum - 1]);
                 }
             }
         }
@@ -200,28 +213,59 @@ namespace CleanSys
         /// <param name="isAll">ture,更新比num小的所有轨道，标记全完成为步骤三-绿色,</param>
         private void UpdateAngleMachine(int num, int step, bool isAll = false)
         {
+            string imgStr = null;
+
             if (isAll)
             {
-                this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("")));
+                for (int i = 0; i < num - 1; i++)
+                {
+                    imgStr = this.GetImgBackGround(i, 3);
+                    this.eightAngle1.ImgList[i].BackgroundImage = ((System.Drawing.Image)(resources.GetObject(imgStr)));
+                }
             }
-            else
+
+            // 只更改当前轨道状态
+            imgStr = this.GetImgBackGround(num, step);
+            this.eightAngle1.ImgList[num-1].BackgroundImage = ((System.Drawing.Image)(resources.GetObject(imgStr)));
+        }
+
+        private string GetImgBackGround(int num, int step)
+        {
+            string imgStr = string.Empty;
+
+            switch (num)
             {
-                // 只更改当前轨道状态
-                string imgStr;
-
-                switch (num)
-                {
-
-                    ;
-                }
-
-                switch (step)
-                {
-                    case 0:
-                        //imgStr += 
-                }
+                case 1:
+                    imgStr += this.angleOne;
+                    break;
+                case 2:
+                    imgStr += this.angleTwo;
+                    break;
+                case 3:
+                    imgStr += this.angleThre;
+                    break;
+                case 4:
+                    imgStr += this.angleFour;
+                    break;
             }
-            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("")));
+
+            switch (step)
+            {
+                case 0:
+                    imgStr += this.stepZeroGray;
+                    break;
+                case 1:
+                    imgStr += this.stepOneRed;
+                    break;
+                case 2:
+                    imgStr += this.stepTwoYellow;
+                    break;
+                case 3:
+                    imgStr += this.stepThreeGreen;
+                    break;
+            }
+
+            return imgStr;
         }
 
         private void ProcessIncreaseTo(CircularProgressBar.CircularProgressBar bar, int Num)
@@ -232,9 +276,23 @@ namespace CleanSys
                 bar.Increment(increase);
             }
         }
+
+        public List<myProcesser> ProcessList
+        {
+            get
+            {
+                if (this._processList == null)
+                {
+                    this._processList = new List<myProcesser>();
+                    this._processList.Add(this.process1);
+                    this._processList.Add(this.process2);
+                    this._processList.Add(this.process3);
+                }
+
+                return this._processList;
+            }
+        }
     }
-
-
 
     public class DataGet
     {
