@@ -85,6 +85,11 @@ namespace CleanSys
         public static void SaveRecord(string content)
         {            
             string fileName = string.Format("record_{0}.log", DateTime.Now.ToString("yyyyMMdd"));
+
+            if (!Directory.Exists(@".\log"))
+            {
+                Directory.CreateDirectory(@".\log");
+            }
             string filePath = @".\log\" + fileName;
             string title = "箱编号\t操作员\t清理状态\t清理时间\t轨道1\t轨道2\t轨道3\t轨道4\n";
 
