@@ -96,6 +96,12 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManualCleanFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualCleanFrm.Designer.cs">
+      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumberkeyBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualCleanFrm.resx">
+      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NumberkeyBoard.resx">
       <DependentUpon>NumberkeyBoard.cs</DependentUpon>
