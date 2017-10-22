@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
+using NPOI.HPSF;  
+using NPOI.HSSF.UserModel;  
+using NPOI.SS.UserModel;
+
 
 namespace CleanSys
 {

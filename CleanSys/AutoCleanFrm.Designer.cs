@@ -40,14 +40,10 @@
             this.spendTime1 = new CCWin.SkinControl.SkinLabel();
             this.spendTime2 = new CCWin.SkinControl.SkinLabel();
             this.spendTime3 = new CCWin.SkinControl.SkinLabel();
-            this.process1 = new CleanSys.myProcesser();
-            this.process2 = new CleanSys.myProcesser();
-            this.process3 = new CleanSys.myProcesser();
             this.skinPictureBox1 = new CCWin.SkinControl.SkinPictureBox();
             this.skinPictureBox2 = new CCWin.SkinControl.SkinPictureBox();
             this.skinPictureBox3 = new CCWin.SkinControl.SkinPictureBox();
             this.skinPictureBox4 = new CCWin.SkinControl.SkinPictureBox();
-            this.eightAngle1 = new MyControl.EightAngle();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
@@ -60,6 +56,10 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.eightAngle1 = new MyControl.EightAngle();
+            this.process3 = new CleanSys.myProcesser();
+            this.process2 = new CleanSys.myProcesser();
+            this.process1 = new CleanSys.myProcesser();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox3)).BeginInit();
@@ -228,36 +228,6 @@
             this.spendTime3.TabIndex = 100;
             this.spendTime3.Text = "用时: 00:00";
             // 
-            // process1
-            // 
-            this.process1.BackColor = System.Drawing.Color.Transparent;
-            this.process1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process1.BackgroundImage")));
-            this.process1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process1.Location = new System.Drawing.Point(458, 365);
-            this.process1.Name = "process1";
-            this.process1.Size = new System.Drawing.Size(100, 100);
-            this.process1.TabIndex = 101;
-            // 
-            // process2
-            // 
-            this.process2.BackColor = System.Drawing.Color.Transparent;
-            this.process2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process2.BackgroundImage")));
-            this.process2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process2.Location = new System.Drawing.Point(711, 365);
-            this.process2.Name = "process2";
-            this.process2.Size = new System.Drawing.Size(100, 100);
-            this.process2.TabIndex = 101;
-            // 
-            // process3
-            // 
-            this.process3.BackColor = System.Drawing.Color.Transparent;
-            this.process3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process3.BackgroundImage")));
-            this.process3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process3.Location = new System.Drawing.Point(953, 365);
-            this.process3.Name = "process3";
-            this.process3.Size = new System.Drawing.Size(100, 100);
-            this.process3.TabIndex = 101;
-            // 
             // skinPictureBox1
             // 
             this.skinPictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -301,16 +271,6 @@
             this.skinPictureBox4.Size = new System.Drawing.Size(50, 50);
             this.skinPictureBox4.TabIndex = 104;
             this.skinPictureBox4.TabStop = false;
-            // 
-            // eightAngle1
-            // 
-            this.eightAngle1.BackColor = System.Drawing.Color.Transparent;
-            this.eightAngle1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("eightAngle1.BackgroundImage")));
-            this.eightAngle1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.eightAngle1.Location = new System.Drawing.Point(648, 56);
-            this.eightAngle1.Name = "eightAngle1";
-            this.eightAngle1.Size = new System.Drawing.Size(214, 214);
-            this.eightAngle1.TabIndex = 106;
             // 
             // skinLabel1
             // 
@@ -440,6 +400,46 @@
             // timer3
             // 
             this.timer3.Interval = 1000;
+            // 
+            // eightAngle1
+            // 
+            this.eightAngle1.BackColor = System.Drawing.Color.Transparent;
+            this.eightAngle1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("eightAngle1.BackgroundImage")));
+            this.eightAngle1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.eightAngle1.Location = new System.Drawing.Point(648, 56);
+            this.eightAngle1.Name = "eightAngle1";
+            this.eightAngle1.Size = new System.Drawing.Size(214, 214);
+            this.eightAngle1.TabIndex = 106;
+            // 
+            // process3
+            // 
+            this.process3.BackColor = System.Drawing.Color.Transparent;
+            this.process3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process3.BackgroundImage")));
+            this.process3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.process3.Location = new System.Drawing.Point(953, 365);
+            this.process3.Name = "process3";
+            this.process3.Size = new System.Drawing.Size(100, 100);
+            this.process3.TabIndex = 101;
+            // 
+            // process2
+            // 
+            this.process2.BackColor = System.Drawing.Color.Transparent;
+            this.process2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process2.BackgroundImage")));
+            this.process2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.process2.Location = new System.Drawing.Point(711, 365);
+            this.process2.Name = "process2";
+            this.process2.Size = new System.Drawing.Size(100, 100);
+            this.process2.TabIndex = 101;
+            // 
+            // process1
+            // 
+            this.process1.BackColor = System.Drawing.Color.Transparent;
+            this.process1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process1.BackgroundImage")));
+            this.process1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.process1.Location = new System.Drawing.Point(458, 365);
+            this.process1.Name = "process1";
+            this.process1.Size = new System.Drawing.Size(100, 100);
+            this.process1.TabIndex = 101;
             // 
             // AutoCleanFrm
             // 

@@ -80,9 +80,10 @@
             // 
             this.boxBtn.BackColor = System.Drawing.Color.Black;
             this.boxBtn.BaseColor = System.Drawing.Color.Black;
+            this.boxBtn.BorderColor = System.Drawing.Color.Black;
             this.boxBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.boxBtn.DownBack = null;
-            this.boxBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.boxBtn.DownBaseColor = System.Drawing.Color.Black;
             this.boxBtn.Location = new System.Drawing.Point(513, 195);
             this.boxBtn.MouseBack = null;
             this.boxBtn.MouseBaseColor = System.Drawing.Color.Black;
@@ -97,10 +98,11 @@
             // 
             this.autoBtn.BackColor = System.Drawing.Color.Black;
             this.autoBtn.BaseColor = System.Drawing.Color.Black;
+            this.autoBtn.BorderColor = System.Drawing.Color.Black;
             this.autoBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.autoBtn.DownBack = null;
-            this.autoBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
-            this.autoBtn.Location = new System.Drawing.Point(513, 312);
+            this.autoBtn.DownBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.autoBtn.Location = new System.Drawing.Point(513, 305);
             this.autoBtn.MouseBack = null;
             this.autoBtn.MouseBaseColor = System.Drawing.Color.Black;
             this.autoBtn.Name = "autoBtn";
@@ -115,9 +117,10 @@
             // 
             this.manualBtn.BackColor = System.Drawing.Color.Black;
             this.manualBtn.BaseColor = System.Drawing.Color.Black;
+            this.manualBtn.BorderColor = System.Drawing.Color.Black;
             this.manualBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.manualBtn.DownBack = null;
-            this.manualBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.manualBtn.DownBaseColor = System.Drawing.Color.Black;
             this.manualBtn.Location = new System.Drawing.Point(513, 415);
             this.manualBtn.MouseBack = null;
             this.manualBtn.MouseBaseColor = System.Drawing.Color.Black;

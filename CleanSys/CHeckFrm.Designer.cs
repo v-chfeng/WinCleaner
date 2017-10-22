@@ -50,23 +50,25 @@
             // TermalCheck
             // 
             this.TermalCheck.Back = null;
-            this.TermalCheck.BackColor = System.Drawing.Color.Transparent;
+            this.TermalCheck.BackColor = System.Drawing.Color.Black;
             this.TermalCheck.BarBack = null;
+            this.TermalCheck.BarGlass = false;
             this.TermalCheck.BarRadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            this.TermalCheck.Border = System.Drawing.Color.Transparent;
+            this.TermalCheck.Border = System.Drawing.Color.Black;
             this.TermalCheck.Enabled = false;
-            this.TermalCheck.ForeColor = System.Drawing.Color.Transparent;
+            this.TermalCheck.ForeColor = System.Drawing.Color.Black;
             this.TermalCheck.Glass = false;
-            this.TermalCheck.InnerBorder = System.Drawing.Color.Transparent;
-            this.TermalCheck.Location = new System.Drawing.Point(556, 203);
+            this.TermalCheck.InnerBorder = System.Drawing.Color.Black;
+            this.TermalCheck.Location = new System.Drawing.Point(556, 200);
+            this.TermalCheck.MarqueeAnimationSpeed = 1;
             this.TermalCheck.Name = "TermalCheck";
+            this.TermalCheck.Radius = 1;
             this.TermalCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.TermalCheck.Size = new System.Drawing.Size(323, 30);
             this.TermalCheck.TabIndex = 0;
-            this.TermalCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.Proportion;
+            this.TermalCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.None;
             this.TermalCheck.TrackBack = System.Drawing.Color.Black;
             this.TermalCheck.TrackFore = System.Drawing.Color.Silver;
-
             // 
             // LoadCarCheck
             // 
@@ -80,9 +82,11 @@
             this.LoadCarCheck.InnerBorder = System.Drawing.Color.Transparent;
             this.LoadCarCheck.Location = new System.Drawing.Point(556, 285);
             this.LoadCarCheck.Name = "LoadCarCheck";
+            this.LoadCarCheck.Radius = 1;
             this.LoadCarCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.LoadCarCheck.Size = new System.Drawing.Size(323, 30);
             this.LoadCarCheck.TabIndex = 0;
+            this.LoadCarCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.None;
             this.LoadCarCheck.TrackBack = System.Drawing.Color.Black;
             this.LoadCarCheck.TrackFore = System.Drawing.Color.Silver;
             // 
@@ -96,11 +100,13 @@
             this.RailCleanCarCheck.ForeColor = System.Drawing.Color.Transparent;
             this.RailCleanCarCheck.Glass = false;
             this.RailCleanCarCheck.InnerBorder = System.Drawing.Color.Transparent;
-            this.RailCleanCarCheck.Location = new System.Drawing.Point(556, 360);
+            this.RailCleanCarCheck.Location = new System.Drawing.Point(556, 370);
             this.RailCleanCarCheck.Name = "RailCleanCarCheck";
+            this.RailCleanCarCheck.Radius = 1;
             this.RailCleanCarCheck.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.RailCleanCarCheck.Size = new System.Drawing.Size(323, 30);
             this.RailCleanCarCheck.TabIndex = 0;
+            this.RailCleanCarCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.None;
             this.RailCleanCarCheck.TrackBack = System.Drawing.Color.Black;
             this.RailCleanCarCheck.TrackFore = System.Drawing.Color.Silver;
             // 
@@ -207,7 +213,7 @@
             this.skinLabel1.BorderColor = System.Drawing.Color.Black;
             this.skinLabel1.BorderSize = 0;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(916, 204);
+            this.skinLabel1.Location = new System.Drawing.Point(916, 201);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(88, 25);
             this.skinLabel1.TabIndex = 106;
@@ -220,7 +226,7 @@
             this.skinLabel2.BorderColor = System.Drawing.Color.Black;
             this.skinLabel2.BorderSize = 0;
             this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel2.Location = new System.Drawing.Point(916, 285);
+            this.skinLabel2.Location = new System.Drawing.Point(916, 284);
             this.skinLabel2.Name = "skinLabel2";
             this.skinLabel2.Size = new System.Drawing.Size(107, 25);
             this.skinLabel2.TabIndex = 107;
@@ -233,7 +239,7 @@
             this.skinLabel3.BorderColor = System.Drawing.Color.Black;
             this.skinLabel3.BorderSize = 0;
             this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel3.Location = new System.Drawing.Point(916, 360);
+            this.skinLabel3.Location = new System.Drawing.Point(916, 373);
             this.skinLabel3.Name = "skinLabel3";
             this.skinLabel3.Size = new System.Drawing.Size(145, 25);
             this.skinLabel3.TabIndex = 108;
@@ -292,8 +298,6 @@
         }
 
         #endregion
-
-        private CCWin.SkinControl.SkinProgressBar TermalCheck;
         private CCWin.SkinControl.SkinProgressBar LoadCarCheck;
         private CCWin.SkinControl.SkinProgressBar RailCleanCarCheck;
         private System.Windows.Forms.Timer timer1;
@@ -307,5 +311,6 @@
         private CCWin.SkinControl.SkinLabel skinLabel2;
         private CCWin.SkinControl.SkinLabel skinLabel3;
         private CCWin.SkinControl.SkinButton rightBtn;
+        private CCWin.SkinControl.SkinProgressBar TermalCheck;
     }
 }

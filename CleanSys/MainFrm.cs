@@ -85,7 +85,6 @@ namespace CleanSys
         private void CleanButton_Click_1(object sender, EventArgs e)
         {
             
-
             ClearFrm clearFrm = new ClearFrm();
             clearFrm.StartPosition = FormStartPosition.Manual;
             clearFrm.Location = this.Location;

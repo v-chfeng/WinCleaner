@@ -43,11 +43,11 @@ namespace CleanSys
         private void autoBtn_Click(object sender, EventArgs e)
         {
             AutoCleanFrm clearFrm = new AutoCleanFrm();
-            this.Hide();
+          //  clearFrm.StartPosition = FormStartPosition.Manual;
+          //   clearFrm.Location = this.Location;
             myData.frmStack.Push(this);
-            clearFrm.StartPosition = FormStartPosition.Manual;
-            clearFrm.Location = this.Location;
             clearFrm.Show();
+            this.Hide();
         }
 
         private void HomeBtn_Click(object sender, EventArgs e)

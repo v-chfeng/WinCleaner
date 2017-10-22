@@ -313,9 +313,10 @@ namespace CleanSys
 
         private void HomeBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             myData.mainFrm.Show();// show();
             myData.frmStack.Clear();
+            this.Close();
         }
 
         private void rightBtn_Click(object sender, EventArgs e)
@@ -626,6 +627,8 @@ namespace CleanSys
                 return this._threadList;
             }
         }
+
+  
     }
 
     public class DataGet

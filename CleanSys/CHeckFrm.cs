@@ -23,9 +23,12 @@ namespace CleanSys
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
-            TermalCheck.Value = 0;
-            LoadCarCheck.Value = 0;
-            RailCleanCarCheck.Value = 0;
+            //TermalCheck.Maximum = 100;
+            //LoadCarCheck.Minimum = 100;
+            //RailCleanCarCheck.Minimum = 100;
+     //       TermalCheck.Value = 0;
+     //     LoadCarCheck.Value = 0;
+     //    RailCleanCarCheck.Value = 0;
 
             this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
         }
