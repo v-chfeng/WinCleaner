@@ -13,3 +13,4 @@ C:\Users\v-chf\Downloads\CleanSys\MyControl\obj\Debug\MyControl.pdb
 C:\Users\v-chf\Downloads\CleanSys\MyControl\obj\Debug\MyControl.EightAngle.resources
 C:\Users\v-chf\Downloads\CleanSys\MyControl\obj\Debug\MyControl.Properties.Resources.resources
 C:\Users\v-chf\Downloads\CleanSys\MyControl\bin\Debug\CSkin.dll
+C:\Users\v-chf\Downloads\CleanSys\MyControl\obj\Debug\MyControl.ArrowLine.resources

@@ -25,7 +25,6 @@ C:\Users\Administrator\Desktop\CleanSys\CleanSys\obj\Debug\CleanSys.CHeckFrm.res
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\CleanSys.exe.config
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\CleanSys.exe
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\CleanSys.pdb
-C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.csprojResolveAssemblyReference.cache
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.AutoCleanFrm.resources
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.ClearFrm.resources
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.CHeckFrm.resources
@@ -40,3 +39,8 @@ C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\CircularProgressBar.dll
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\WinFormAnimation.dll
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\CircularProgressBar.xml
 C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\WinFormAnimation.xml
+C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.formTemplate.resources
+C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.Test.resources
+C:\Users\v-chf\Downloads\CleanSys\CleanSys\obj\Debug\CleanSys.csprojResolveAssemblyReference.cache
+C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\MyControl.dll
+C:\Users\v-chf\Downloads\CleanSys\CleanSys\bin\Debug\MyControl.pdb

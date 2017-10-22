@@ -274,4 +274,52 @@
   <data name="yellowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon\yellowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_1CheckedGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\1CheckedGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1CheckedGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\1CheckedGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1CheckedRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\1CheckedRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1CheckedYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\1CheckedYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2CheckedGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\2CheckedGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2CheckedGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\2CheckedGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2CheckedRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\2CheckedRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2CheckedYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\2CheckedYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3CheckedGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\3CheckedGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3CheckedGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\3CheckedGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3CheckedRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\3CheckedRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3CheckedYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\3CheckedYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4CheckedGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\4CheckedGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4CheckedGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\4CheckedGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4CheckedRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\4CheckedRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4CheckedYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\4CheckedYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

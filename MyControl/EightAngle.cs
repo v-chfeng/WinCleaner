@@ -68,5 +68,10 @@ namespace MyControl
                 return this.img4;
             }
         }
+
+        private void img1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
