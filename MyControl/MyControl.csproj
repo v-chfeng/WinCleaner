@@ -30,10 +30,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CircularProgressBar">
-      <HintPath>..\CleanSys\bin\Debug\CircularProgressBar.dll</HintPath>
+      <HintPath>..\Refrences\CircularProgressBar.dll</HintPath>
     </Reference>
     <Reference Include="CSkin">
-      <HintPath>..\CleanSys\bin\Debug\CSkin.dll</HintPath>
+      <HintPath>..\Refrences\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
