@@ -1,6 +1,8 @@
 ﻿using CCWin;
 using CCWin.SkinControl;
+using CleanSys.Mode;
 using CleanSys.Properties;
+using CleanSys.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -243,7 +245,7 @@ namespace CleanSys
             if (this.isWorking == false)
             {
                 // 发送 自动清理请求 到 清理机器
-                bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Start);
+                bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Start);
                 if (isSuccess)
                 {
                     this.isWorking = true;
@@ -287,7 +289,7 @@ namespace CleanSys
                 DialogResult result = MessageBox.Show("确实终止清理", "确认", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Stop);
+                    bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Stop);
                     if (!isSuccess)
                     {
                         MessageBox.Show("终止清理失败!");
@@ -641,7 +643,7 @@ namespace CleanSys
         {
             do
             {
-                status = MachineControler.GetStatus();
+                status = MachineSender.GetStatus();
                 this.UpdateUIDelegate(status);
                 Thread.Sleep(1000); 
             }

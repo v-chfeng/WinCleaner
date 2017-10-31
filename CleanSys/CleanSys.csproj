@@ -78,6 +78,7 @@
     <Compile Include="CHeckFrm.Designer.cs">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enum\CleanCommand.cs" />
     <Compile Include="formTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +117,13 @@
     <Compile Include="RecordFrm.Designer.cs">
       <DependentUpon>RecordFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\MachinePortal.cs" />
+    <Compile Include="Mode\MachineStatusMode.cs" />
+    <Compile Include="Util\MachineSender.cs" />
+    <Compile Include="Util\MockMachineReceiver.cs" />
+    <Compile Include="Util\MyData.cs" />
+    <Compile Include="Util\RailControler.cs" />
+    <Compile Include="Enum\RailID.cs" />
     <Compile Include="XSSFWorkbook.cs" />
     <EmbeddedResource Include="AutoCleanFrm.resx">
       <DependentUpon>AutoCleanFrm.cs</DependentUpon>
@@ -332,6 +340,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\backgroud2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\1Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\2Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\3Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\4Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon\1CheckedGray.png" />
+    <Content Include="icon\1CheckedGreen.png" />
+    <Content Include="icon\1CheckedRed.png" />
+    <Content Include="icon\1CheckedYellow.png" />
+    <Content Include="icon\2CheckedGray.png" />
+    <Content Include="icon\2CheckedGreen.png" />
+    <Content Include="icon\2CheckedRed.png" />
+    <Content Include="icon\2CheckedYellow.png" />
+    <Content Include="icon\3CheckedGray.png" />
+    <Content Include="icon\3CheckedGreen.png" />
+    <Content Include="icon\3CheckedRed.png" />
+    <Content Include="icon\3CheckedYellow.png" />
+    <Content Include="icon\4CheckedGray.png" />
+    <Content Include="icon\4CheckedGreen.png" />
+    <Content Include="icon\4CheckedRed.png" />
+    <Content Include="icon\4CheckedYellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

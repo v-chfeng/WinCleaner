@@ -113,6 +113,16 @@ namespace CleanSys.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _1Gray {
+            get {
+                object obj = ResourceManager.GetObject("_1Gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap _2CheckedGray {
             get {
                 object obj = ResourceManager.GetObject("_2CheckedGray", resourceCulture);
@@ -146,6 +156,16 @@ namespace CleanSys.Properties {
         internal static System.Drawing.Bitmap _2CheckedYellow {
             get {
                 object obj = ResourceManager.GetObject("_2CheckedYellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _2Gray {
+            get {
+                object obj = ResourceManager.GetObject("_2Gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +213,16 @@ namespace CleanSys.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _3Gray {
+            get {
+                object obj = ResourceManager.GetObject("_3Gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap _4CheckedGray {
             get {
                 object obj = ResourceManager.GetObject("_4CheckedGray", resourceCulture);
@@ -226,6 +256,16 @@ namespace CleanSys.Properties {
         internal static System.Drawing.Bitmap _4CheckedYellow {
             get {
                 object obj = ResourceManager.GetObject("_4CheckedYellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _4Gray {
+            get {
+                object obj = ResourceManager.GetObject("_4Gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
