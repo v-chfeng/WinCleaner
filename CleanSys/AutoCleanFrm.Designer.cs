@@ -53,9 +53,6 @@
             this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.upArrow = new CCWin.SkinControl.SkinPictureBox();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.eightAngle1 = new MyControl.EightAngle();
             this.process3 = new CleanSys.myProcesser();
             this.process2 = new CleanSys.myProcesser();
@@ -389,18 +386,6 @@
             this.skinPanel1.Size = new System.Drawing.Size(30, 335);
             this.skinPanel1.TabIndex = 110;
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 1000;
-            // 
-            // timer3
-            // 
-            this.timer3.Interval = 1000;
-            // 
             // eightAngle1
             // 
             this.eightAngle1.BackColor = System.Drawing.Color.Transparent;
@@ -519,8 +504,5 @@
         private CCWin.SkinControl.SkinLabel skinLabel7;
         private CCWin.SkinControl.SkinPictureBox upArrow;
         private CCWin.SkinControl.SkinPanel skinPanel1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Timer timer3;
     }
 }

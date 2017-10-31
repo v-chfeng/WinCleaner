@@ -17,6 +17,13 @@ using CleanSys.Mode;
 
 namespace CleanSys
 {
+    public enum AutoCleanStatus
+    { 
+        Ready,
+        Running,
+        Pause,
+    }
+
     public partial class AutoCleanFrm : CCSkinMain
     {
         private string spendTimeTemplate = @"用时: {0}:{1}";
@@ -31,9 +38,6 @@ namespace CleanSys
         private string stepTwoYellow = "Yellow";
         private string stepThreeGreen = "Green";
 
-        private DateTime startTime1;
-        private DateTime startTime2;
-        private DateTime startTime3;
         private delegate void AsynUpdateUI(MachineStatus status);
 
         private int currentMachineNum;
@@ -43,12 +47,12 @@ namespace CleanSys
         private int stepThreeProcess;
 
         private List<myProcesser> _processList;
-        private List<WinTimer> _timerList;
-        private List<DateTime> _startList;
         private List<SkinLabel> _spendTextList;
         private List<Thread> _threadList;
 
         private bool isWorking;
+
+        private AutoCleanStatus CleanStatus;
 
         //private WinTimer timer1;
         //private WinTimer timer2;
@@ -78,22 +82,6 @@ namespace CleanSys
             TimeLabel.Text = myData.RightTime();
             this.isWorking = false;
 
-            this.timer1 = new WinTimer();
-            this.timer2 = new WinTimer();
-            this.timer3 = new WinTimer();
-
-            this.timer1.Interval = 1000;
-            this.timer2.Interval = 1000;
-            this.timer3.Interval = 1000;
-
-            this.timer1.Enabled = false;
-            this.timer2.Enabled = false;
-            this.timer3.Enabled = false;
-
-            this.timer1.Tick += new EventHandler(Timer1_Tick);
-            this.timer2.Tick += new EventHandler(Timer2_Tick);
-            this.timer3.Tick += new EventHandler(Timer3_Tick);
-
             this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
             this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
             this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
@@ -107,15 +95,11 @@ namespace CleanSys
 
             this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
 
-            this.InitProcessBar();
 
             this.railsControler = new RailControler(this.eightAngle1.ImgList);
-        }
+            this.CleanStatus = AutoCleanStatus.Ready;
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime1;
-            this.spendTime1.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+            this.InitProcessBar();
         }
 
         private void Thread1_Tick(object start)
@@ -152,19 +136,6 @@ namespace CleanSys
                 this.spendTime3.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
                 Thread.Sleep(1000);
             }
-        }
-
-        private void Timer2_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime2;
-            MessageBox.Show(string.Format(spendTimeTemplate, span.Minutes, span.Seconds));
-            this.spendTime2.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
-        }
-
-        private void Timer3_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime3;
-            this.spendTime3.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
         }
 
         protected void RTC_Tick(object sender, EventArgs e)
@@ -244,7 +215,81 @@ namespace CleanSys
             this._threadList.Add(this.timerThread3);
         }
 
-        private void AutoClean_Click(object sender, EventArgs e)
+        private void StartPause_Click(object sender, EventArgs e)
+        {
+            //如果有轨道被选中，
+            bool isSelectedRail = false;
+
+            if (!isSelectedRail)
+            {
+                MessageBox.Show("请先选择要清理的轨道！");
+                return;
+            }
+
+            switch (this.CleanStatus)
+            {
+                case AutoCleanStatus.Ready:
+                    this.StartClean();
+                    break;
+                case AutoCleanStatus.Running:
+                    this.PauseClean();
+                    break;
+                case AutoCleanStatus.Pause:
+                    this.ContinueClean();
+                    break;
+            }
+
+            /// 更改 button 图片
+            throw new NotImplementedException();
+        }
+
+        private void StartClean()
+        {
+            bool isSuccess = false;
+
+            if (isSuccess)
+            {
+                ;
+            }
+            else
+            {
+                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
+            }
+        }
+
+        private void ContinueClean()
+        {
+            bool isSuccess = false;
+
+            // send continue cmd;
+
+            if (isSuccess)
+            {
+                ;
+            }
+            else
+            {
+                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
+            }
+        }
+
+
+        private void PauseClean()
+        {
+            // send pause cmd;
+            bool isSuccess = false;
+
+            if (isSuccess)
+            {
+                //保存 当前状态
+            }
+            else
+            {
+                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
+            }
+        }
+
+        private void StartCleanOld()
         {
             if (this.isWorking == false)
             {
@@ -260,9 +305,6 @@ namespace CleanSys
                     this.currentStepNum = 1;
                     this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepOneRed)));
 
-                    this.startTime1 = DateTime.Now;
-                    //this.timer1.Enabled = true;
-
                     this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
                     this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
                     this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
@@ -271,7 +313,7 @@ namespace CleanSys
                     this.timerThread3.IsBackground = true;
 
                     this.timerThread1.Start(DateTime.Now);
-                    
+
                     DataGet getter = new DataGet();
                     getter.UpdateUIDelegate += this.Update;
                     getter.TaskCallBack += this.DoneClean;
@@ -284,6 +326,14 @@ namespace CleanSys
             {
                 MessageBox.Show("正在清理，请稍后再试");
             }
+        }
+
+        /// <summary>
+        /// 新需求中有一个开始 button。所以这个button不可用。
+        /// </summary>
+        private void AutoClean_Click(object sender, EventArgs e)
+        {
+            this.StartCleanOld();
         }
 
         private void stopBtn_Click(object sender, EventArgs e)
@@ -304,9 +354,6 @@ namespace CleanSys
                         this.timerThread1.Abort();
                         this.timerThread2.Abort();
                         this.timerThread3.Abort();
-                        this.timer1.Enabled = false;
-                        this.timer2.Enabled = false;
-                        this.timer3.Enabled = false;
                         this.isWorking = false;
                     }
                 }
@@ -370,9 +417,6 @@ namespace CleanSys
                 this.timerThread1.Abort();
                 this.timerThread2.Abort();
                 this.timerThread3.Abort();
-                this.timer1.Enabled = false;
-                this.timer2.Enabled = false;
-                this.timer3.Enabled = false;
 
                 this.UpdateAngleMachine(4, 3, true);
 
@@ -391,9 +435,6 @@ namespace CleanSys
                     this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
 
                     //更新用时
-                    this.timer1.Stop();
-                    this.timer2.Stop();
-                    this.timer3.Stop();
                     this.timerThread1.Abort();
                     this.timerThread2.Abort();
                     this.timerThread3.Abort();
@@ -412,7 +453,6 @@ namespace CleanSys
                     this.ProcessIncreaseTo(this.process3.ProcessBar, status.stepThreeProcess);
 
                     //重置用时
-                    this.StartTimeList[status.stepNum - 1] = DateTime.Now;
                     //this.TimerList[status.stepNum - 1].Start();
                     this.RefreshThread(status.stepNum);
                     this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
@@ -437,11 +477,9 @@ namespace CleanSys
                     for (int i = this.currentStepNum - 1; i < status.stepNum - 1; i++)
                     {
                         this.ProcessIncreaseTo(this.ProcessList[i].ProcessBar, 100);
-                        this.TimerList[i].Stop();
                         this.ThreadList[i].Abort();
                     }
-
-                    this.StartTimeList[status.stepNum - 1] = DateTime.Now;
+                    
                     //this.TimerList[status.stepNum - 1].Start();
                     this.RefreshThread(status.stepNum);
                     this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
@@ -566,39 +604,6 @@ namespace CleanSys
                 }
 
                 return this._processList;
-            }
-        }
-
-        public List<WinTimer> TimerList
-        {
-            get
-            {
-                if (this._timerList == null)
-                {
-                    this._timerList = new List<WinTimer>();
-                    this._timerList.Add(this.timer1);
-                    this._timerList.Add(this.timer2);
-                    this._timerList.Add(this.timer3);
-                }
-
-                return this._timerList;
-            }
-        }
-
-        public List<DateTime> StartTimeList
-        {
-            get
-            {
-                if (this._startList == null)
-                {
-                    this._startList = new List<DateTime>();
-                    this._startList.Add(this.startTime1);
-                    this._startList.Add(this.startTime2);
-                    this._startList.Add(this.startTime3);
-                }
-
-                //this.sp
-                return this._startList;
             }
         }
 
