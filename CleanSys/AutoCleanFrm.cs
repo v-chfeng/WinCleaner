@@ -42,9 +42,6 @@ namespace CleanSys
 
         private int currentMachineNum;
         private int currentStepNum;
-        private int stepOneProcess;
-        private int stepTwoProcess;
-        private int stepThreeProcess;
 
         private List<myProcesser> _processList;
         private List<SkinLabel> _spendTextList;
@@ -164,9 +161,6 @@ namespace CleanSys
 
             this.currentMachineNum = 0;
             this.currentStepNum = 0;
-            this.stepOneProcess = 0;
-            this.stepTwoProcess = 0;
-            this.stepThreeProcess = 0;
 
             this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
             this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
