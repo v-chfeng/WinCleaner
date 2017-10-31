@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using CleanSys.Util;
 using WinTimer = System.Windows.Forms.Timer;
 using CleanSys.Mode;
+using CleanSys.SelfEnum;
 
 namespace CleanSys
 {
@@ -50,10 +51,6 @@ namespace CleanSys
         private bool isWorking;
 
         private AutoCleanStatus CleanStatus;
-
-        //private WinTimer timer1;
-        //private WinTimer timer2;
-        //private WinTimer timer3;
 
         private Thread thread;
         private Thread timerThread1;
@@ -168,18 +165,6 @@ namespace CleanSys
             this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
 
-        private void testProcess()
-        {
-            this.process1.ProcessBar.Increment(90);// 环形进度条 增加百分比
-            this.process2.ProcessBar.Increment(90);// 环形进度条 增加百分比
-            this.process3.ProcessBar.Increment(90);// 环形进度条 增加百分比
-
-            //this.process1.ProcessBar.t
-
-
-            this.spendTime1.Text = "用时";
-        }
-
         private void process2_Click(object sender, EventArgs e)
         {
 
@@ -212,7 +197,7 @@ namespace CleanSys
         private void StartPause_Click(object sender, EventArgs e)
         {
             //如果有轨道被选中，
-            bool isSelectedRail = false;
+            bool isSelectedRail = this.railsControler.IsSelected;
 
             if (!isSelectedRail)
             {
@@ -220,29 +205,39 @@ namespace CleanSys
                 return;
             }
 
+            //获得当前轨道
+            RailID selectedID = this.railsControler.SelectedRail;
+
             switch (this.CleanStatus)
             {
                 case AutoCleanStatus.Ready:
-                    this.StartClean();
+                    this.StartClean(selectedID);
                     break;
                 case AutoCleanStatus.Running:
-                    this.PauseClean();
+                    this.PauseClean(selectedID);
                     break;
                 case AutoCleanStatus.Pause:
-                    this.ContinueClean();
+                    this.ContinueClean(selectedID);
                     break;
             }
-
-            /// 更改 button 图片
-            throw new NotImplementedException();
         }
 
-        private void StartClean()
+        private void StartClean(RailID selectedID)
         {
-            bool isSuccess = false;
+            bool isSuccess = MachinePortal.StartAutoClean(selectedID);
 
             if (isSuccess)
             {
+                //更新清理状态
+                this.CleanStatus = AutoCleanStatus.Running;
+
+                // 更新开始按钮图片
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
+
+                //更新八角形UI
+                this.railsControler.Start();
+                
+                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
                 ;
             }
             else
@@ -251,14 +246,22 @@ namespace CleanSys
             }
         }
 
-        private void ContinueClean()
+        private void ContinueClean(RailID selectedID)
         {
-            bool isSuccess = false;
-
-            // send continue cmd;
+            bool isSuccess = MachinePortal.ContinueAutoClean(selectedID);
 
             if (isSuccess)
             {
+                //更新清理状态
+                this.CleanStatus = AutoCleanStatus.Running;
+
+                // 更新开始按钮图片
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
+
+                //更新八角形UI
+                this.railsControler.Continue();
+
+                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
                 ;
             }
             else
@@ -268,14 +271,26 @@ namespace CleanSys
         }
 
 
-        private void PauseClean()
+        private void PauseClean(RailID selectedID)
         {
             // send pause cmd;
-            bool isSuccess = false;
+            bool isSuccess = MachinePortal.PauseAutoClean(selectedID);
 
             if (isSuccess)
             {
                 //保存 当前状态
+
+                //更新清理状态
+                this.CleanStatus = AutoCleanStatus.Pause;
+
+                // 更新开始按钮图片
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+
+                //更新八角形UI
+                this.railsControler.Pause();
+
+                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
+                ;
             }
             else
             {
@@ -308,7 +323,7 @@ namespace CleanSys
 
                     this.timerThread1.Start(DateTime.Now);
 
-                    DataGet getter = new DataGet();
+                    DataStatusSyncer getter = new DataStatusSyncer();
                     getter.UpdateUIDelegate += this.Update;
                     getter.TaskCallBack += this.DoneClean;
                     this.thread = new Thread(getter.GetStatus);
@@ -368,9 +383,9 @@ namespace CleanSys
 
         private void rightBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
             Form backFrm = myData.frmStack.Pop();
             backFrm.Show();
+            this.Close();
         }
 
         private void UpdateProcessUI(MachineStatus status)
@@ -631,32 +646,6 @@ namespace CleanSys
 
                 return this._threadList;
             }
-        }
-
-  
-    }
-
-    public class DataGet
-    {
-        public delegate void UpdateUI(MachineStatus status);
-        public UpdateUI UpdateUIDelegate;
-
-        public delegate void AccomplishTask();
-        public AccomplishTask TaskCallBack;
-        private MachineStatus status;
-
-        public void GetStatus()
-        {
-            do
-            {
-                status = MachinePortal
-                        .GetStatus();
-                this.UpdateUIDelegate(status);
-                Thread.Sleep(1000); 
-            }
-            while (!status.AllDone);
-
-            this.TaskCallBack();
         }
     }
 }

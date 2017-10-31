@@ -117,6 +117,7 @@
     <Compile Include="RecordFrm.Designer.cs">
       <DependentUpon>RecordFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\DataStatusSyncer.cs" />
     <Compile Include="Util\MachinePortal.cs" />
     <Compile Include="Mode\MachineStatusMode.cs" />
     <Compile Include="Util\MachineSender.cs" />
@@ -370,6 +371,9 @@
     <Content Include="icon\4CheckedGreen.png" />
     <Content Include="icon\4CheckedRed.png" />
     <Content Include="icon\4CheckedYellow.png" />
+    <None Include="icon\StopBtn.png" />
+    <None Include="icon\StartBtn.png" />
+    <None Include="icon\PauseBtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanSys.Enum
+namespace CleanSys.SelfEnum
 {
     public enum CleanCommand
     {
         StartAutoClean,
         PauseAutoClean,
+        ContinueClean,
         StopAutoClean,
 
         Forward,

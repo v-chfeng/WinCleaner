@@ -228,8 +228,8 @@ namespace CleanSys
                     this.timerThread3.IsBackground = true;
 
                     this.timerThread1.Start(DateTime.Now);
-                    
-                    DataGet getter = new DataGet();
+
+                    DataStatusSyncer getter = new DataStatusSyncer();
                     getter.UpdateUIDelegate += this.Update;
                     getter.TaskCallBack += this.DoneClean;
                     this.thread = new Thread(getter.GetStatus);
@@ -567,29 +567,6 @@ namespace CleanSys
 
                 return this._threadList;
             }
-        }
-    }
-
-    public class ManualDataGet
-    {
-        public delegate void UpdateUI(MachineStatus status);
-        public UpdateUI UpdateUIDelegate;
-
-        public delegate void AccomplishTask();
-        public AccomplishTask TaskCallBack;
-        private MachineStatus status;
-
-        public void GetStatus()
-        {
-            do
-            {
-                status = MachineSender.GetStatus();
-                this.UpdateUIDelegate(status);
-                Thread.Sleep(1000); 
-            }
-            while (!status.AllDone);
-
-            this.TaskCallBack();
         }
     }
 }

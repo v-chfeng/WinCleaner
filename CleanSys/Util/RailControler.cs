@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CCWin.SkinControl;
 using CleanSys.Properties;
 using System.Windows.Forms;
+using CleanSys.SelfEnum;
 
 namespace CleanSys.Util
 {
@@ -15,7 +16,7 @@ namespace CleanSys.Util
     /// </summary>
     public class RailControler
     {
-        // 因为空间中没有封装状态，只能在这里写上了。以后可以把所有状态及操作都封装到控件中去。
+        // 因为控件中没有封装状态，只能在这里写上了。以后可以把所有状态及操作都封装到控件中去。
         /// <summary>
         /// RailWrapper
         ///     ID
@@ -244,6 +245,11 @@ namespace CleanSys.Util
             return railNum;
         }
 
+        public int Continue()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 对应暂停按钮
         /// </summary>
@@ -317,6 +323,26 @@ namespace CleanSys.Util
 
             return railNum;
         }
+
+        public RailID SelectedRail
+        {
+            get
+            {
+                RailID railID;
+                int railNum = this.GetSelectedRail();
+                if (railNum == -1)
+                {
+                    railID = RailID.UnSupported;
+                }
+                else
+                {
+                    railID = (RailID)Enum.ToObject(typeof(RailID), railNum);
+                }
+
+                return railID;
+            }
+        }
+
 
         private int GetSelectedRail()
         {

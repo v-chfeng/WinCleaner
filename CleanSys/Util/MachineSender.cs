@@ -1,4 +1,4 @@
-﻿using CleanSys.Enum;
+﻿using CleanSys.SelfEnum;
 using CleanSys.Mode;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using CleanSys.Enum;
+﻿using CleanSys.SelfEnum;
 using CleanSys.Mode;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,11 @@ namespace CleanSys.Util
         public static bool PauseAutoClean(RailID railID)
         {
             return MachineSender.SendCMD(railID, CleanCommand.PauseAutoClean);
+        }
+
+        public static bool ContinueAutoClean(RailID railID)
+        {
+            return MachineSender.SendCMD(railID, CleanCommand.ContinueClean);
         }
 
         public static bool StopAutoClean(RailID railID)
