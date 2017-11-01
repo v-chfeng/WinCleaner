@@ -18,15 +18,16 @@ using CleanSys.SelfEnum;
 
 namespace CleanSys
 {
-    public enum AutoCleanStatus
-    { 
-        Ready,
-        Running,
-        Pause,
-    }
 
     public partial class AutoCleanFrm : CCSkinMain
     {
+        /// <summary>
+        /// 模拟轨道属性值
+        /// </summary>
+        private const int UpArrowTop = 301;
+        private const int UpArrowLeft = -2;
+        private const int RailLength = 12;
+
         private string spendTimeTemplate = @"用时: {0}:{1}";
 
         private string angleOne = "upRight1";
@@ -43,6 +44,8 @@ namespace CleanSys
 
         private int currentMachineNum;
         private int currentStepNum;
+
+        private CleanSteps CurrentCleanStep;
 
         private List<myProcesser> _processList;
         private List<SkinLabel> _spendTextList;
@@ -97,6 +100,62 @@ namespace CleanSys
             this.InitProcessBar();
         }
 
+        /// <summary>
+        /// 清理的距离长度
+        /// 用于控制小车的位置
+        /// </summary>
+        public float CleanDistance
+        {
+            set
+            {
+                this.UpdateUpArrowLocation(value);
+            }
+        }
+
+        #region 清理轨道， 涂润滑油， 滴定无水乙醇 三个步骤的进度控制
+        public float CleanRailStepRate
+        {
+            get
+            {
+                return this.process1.ProcessBar.Value;
+            }
+            set
+            {
+                this.process1.ProcessBar.Value = Convert.ToInt32(value);
+                this.process1.ProcessBar.Text = Convert.ToInt32(value) + "%";
+            }
+        }
+
+        public float CoveredWithGreaseStepRate
+        {
+            get
+            {
+                return this.process2.ProcessBar.Value;
+            }
+            set
+            {
+                this.process2.ProcessBar.Value = Convert.ToInt32(value);
+                this.process2.ProcessBar.Text = Convert.ToInt32(value) + "%";
+            }
+        }
+
+        public float DropAlcoholStepRate
+        {
+            get
+            {
+                return this.process3.ProcessBar.Value;
+            }
+            set
+            {
+                this.process3.ProcessBar.Value = Convert.ToInt32(value);
+                this.process3.ProcessBar.Text = Convert.ToInt32(value) + "%";
+            }
+        }
+
+        #endregion
+
+        #region 清理步骤计时器 线程方法
+
         private void Thread1_Tick(object start)
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -133,6 +192,13 @@ namespace CleanSys
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// 标题更新 计时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void RTC_Tick(object sender, EventArgs e)
         {
             DataLabel.Text = myData.MiddleTitle();
@@ -140,25 +206,27 @@ namespace CleanSys
             //testProcess();
         }
 
+        /// <summary>
+        /// 变量初始化器
+        /// </summary>
         private void InitProcessBar()
         {
-            this.process1.ProcessBar.Text = "0%";
-            this.process2.ProcessBar.Text = "0%";
-            this.process3.ProcessBar.Text = "0%";
+            ///三个步骤进度初始化
+            this.CleanRailStepRate = 0;
+            this.CoveredWithGreaseStepRate = 0;
+            this.DropAlcoholStepRate = 0;
 
-            this.process1.ProcessBar.Value = 0;
-            this.process2.ProcessBar.Value = 0;
-            this.process3.ProcessBar.Value = 0;
-
+            /// 三个步骤用时初始化
             string defaultSpend = string.Format(this.spendTimeTemplate, "00","00");
             this.spendTime1.Text = defaultSpend;
             this.spendTime2.Text = defaultSpend;
             this.spendTime3.Text = defaultSpend;
 
-            this.upArrow.Location = new Point(-2, 301);
+            this.upArrow.Location = new Point(AutoCleanFrm.UpArrowLeft, AutoCleanFrm.UpArrowTop);
 
             this.currentMachineNum = 0;
             this.currentStepNum = 0;
+            this.CurrentCleanStep = CleanSteps.UnSupported;
 
             this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
             this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
@@ -195,51 +263,56 @@ namespace CleanSys
             this._threadList.Add(this.timerThread3);
         }
 
+        /// <summary>
+        /// 开始 暂停 单击响应方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartPause_Click(object sender, EventArgs e)
         {
-            //如果有轨道被选中，
-            bool isSelectedRail = this.railsControler.IsSelected;
+            RailID selectedID = RailID.UnSupported;
+            AutoCleanStatus currentStatus = this.railsControler.CurrnetStatus;
 
-            if (!isSelectedRail)
-            {
-                MessageBox.Show("请先选择要清理的轨道！");
-                return;
-            }
-
-            //获得当前轨道
-            RailID selectedID = this.railsControler.SelectedRailNum;
-
-            switch (this.CleanStatus)
+            switch (currentStatus)
             {
                 case AutoCleanStatus.Ready:
+                    selectedID = this.railsControler.SelectedRailNum;
                     this.StartClean(selectedID);
                     break;
                 case AutoCleanStatus.Running:
+                    selectedID = this.railsControler.RunningNum;
                     this.PauseClean(selectedID);
                     break;
                 case AutoCleanStatus.Pause:
+                    selectedID = this.railsControler.PauseNum;
                     this.ContinueClean(selectedID);
+                    break;
+                case AutoCleanStatus.WaitSelect:
+                    MessageBox.Show("请先选择要清理的轨道！");
                     break;
             }
         }
 
+        /// <summary>
+        /// 开始 清理
+        /// </summary>
+        /// <param name="selectedID"></param>
         private void StartClean(RailID selectedID)
         {
             bool isSuccess = MachinePortal.StartAutoClean(selectedID);
 
             if (isSuccess)
             {
-                //更新清理状态
-                this.CleanStatus = AutoCleanStatus.Running;
-
                 // 更新开始按钮图片
                 this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
 
-                //更新八角形UI
+                //更新八角形UI：轨道颜色
                 this.railsControler.Start();
 
-                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
-
+                // 启动界面更新线程，更新进度百分比，更新模拟小车,
+                this.CleanDistance = 0;
+                this.InitProcessBar();
+                //88888888888888888888888888888888888888
                 // 重置三个计时器
                 this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
                 this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
@@ -560,6 +633,33 @@ namespace CleanSys
                 }
             }
         }
+
+        /// <summary>
+        /// 更新小车位置
+        /// 默认轨道长度12米
+        /// </summary>
+        /// <param name="">小车距离初始点的距离</param>
+        private void UpdateUpArrowLocation(float distance)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            int currentTop = this.upArrow.Location.Y;
+            int newTop = AutoCleanFrm.UpArrowTop - 25 * (int)(distance / AutoCleanFrm.RailLength);
+
+            // 向下走，改变小车箭头方向
+            if (newTop > currentTop)
+            {
+                ;
+            }
+            else
+            {
+                ;
+            }
+
+            System.Drawing.Point newLocation = new Point(AutoCleanFrm.UpArrowLeft, newTop);
+            this.upArrow.Location = newLocation;
+        }
+
+
 
         private void UpdateUpArrowLocation(int num, int step)
         {

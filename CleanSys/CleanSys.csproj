@@ -79,6 +79,7 @@
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mode\RailMode.cs" />
+    <Compile Include="SelfEnum\AutoCleanStatus.cs" />
     <Compile Include="SelfEnum\CleanCommand.cs" />
     <Compile Include="SelfEnum\CleanSteps.cs" />
     <Compile Include="formTemplate.cs">

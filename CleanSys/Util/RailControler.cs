@@ -138,6 +138,38 @@ namespace CleanSys.Util
             }
         }
 
+        public RailID PauseNum
+        {
+            get
+            {
+                RailMode rail = this.GetPauseRail();
+                return rail != null ? rail.ID : RailID.UnSupported;
+            }
+        }
+
+        public AutoCleanStatus CurrnetStatus
+        {
+            get
+            {
+                if (this.IsSelected)
+                {
+                    return AutoCleanStatus.Ready;
+                }
+                else if (this.IsPause)
+                {
+                    return AutoCleanStatus.Pause;
+                }
+                else if (this.IsRunning)
+                {
+                    return AutoCleanStatus.Running;
+                }
+                else
+                {
+                    return AutoCleanStatus.WaitSelect;
+                }
+            }
+        }
+
         #endregion
 
         #region 轨道控制方法API - Start, Pause, Continue, Stop, Finish(完成轨道清理)
