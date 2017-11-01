@@ -7,6 +7,7 @@ using CCWin.SkinControl;
 using CleanSys.Properties;
 using System.Windows.Forms;
 using CleanSys.SelfEnum;
+using CleanSys.Mode;
 
 namespace CleanSys.Util
 {
@@ -16,115 +17,24 @@ namespace CleanSys.Util
     /// </summary>
     public class RailControler
     {
-        // 因为控件中没有封装状态，只能在这里写上了。以后可以把所有状态及操作都封装到控件中去。
+        private Dictionary<RailID, RailMode> RailDic;
+
         /// <summary>
-        /// RailWrapper
-        ///     ID
-        ///     RailEntity
-        ///     Status
-        ///     Progress
-        /// 
-        /// Dictionary<string, RailWrapper> RailDic
+        /// 禁用无参构造方法
         /// </summary>
-
-        // 把这些状态放到一个list里边。
-        private RailStatus FirstRailStatus;
-        private RailStatus SecondRailStatus;
-        private RailStatus ThirdRailStatus;
-        private RailStatus ForthRailStatus;
-
-        private RailProgress _firstRailProgress;
-        private RailProgress _secondRailProgress;
-        private RailProgress _thirdRailProgress;
-        private RailProgress _forthRailProgress;
-
-        private List<SkinPictureBox> railList;
+        private RailControler()
+        { }
 
         public RailControler(List<SkinPictureBox> rails)
         {
-            this.FirstRailStatus = RailStatus.Ready;
-            this.SecondRailStatus = RailStatus.Ready;
-            this.ThirdRailStatus = RailStatus.Ready;
-            this.ForthRailStatus = RailStatus.Ready;
-
-            this.FirstRailProgress = RailProgress.UnSelected;
-            this.SecondRailProgress = RailProgress.UnSelected;
-            this.ThirdRailProgress = RailProgress.UnSelected;
-            this.ForthRailProgress = RailProgress.UnSelected;
-
-            this.railList = rails;
-
-            this.BindClickEvent();
+            this.RailDic = new Dictionary<RailID, RailMode>();
+            this.InitRails(rails);
         }
 
-        public RailProgress FirstRailProgress
-        {
-            get
-            {
-                return this._firstRailProgress;
-            }
-            set
-            {
-                if (value != this._firstRailProgress)
-                {
-                    this._firstRailProgress = value;
-
-                    //此处相当于加了一个属性的 监听事件（NotifyPropertyChanged），有改动就触发UI更新。
-                    this.ChangeImage(railList[0], value);
-                }
-            }
-        }
-
-        public RailProgress SecondRailProgress
-        {
-            get
-            {
-                return this._secondRailProgress;
-            }
-            set
-            {
-                if (value != this._secondRailProgress)
-                {
-                    this._secondRailProgress = value;
-                    this.ChangeImage(railList[1], value);
-                }
-            }
-        }
-
-        public RailProgress ThirdRailProgress
-        {
-            get
-            {
-                return this._thirdRailProgress;
-            }
-            set
-            {
-                if (value != this._thirdRailProgress)
-                {
-                    this._thirdRailProgress = value;
-                    this.ChangeImage(railList[1], value);
-                }
-            }
-        }
-
-        public RailProgress ForthRailProgress
-        {
-            get
-            {
-                return this._forthRailProgress;
-            }
-            set
-            {
-                if (value != this._forthRailProgress)
-                {
-                    this._forthRailProgress = value;
-                    this.ChangeImage(railList[1], value);
-                }
-            }
-        }
+        #region 外部属性API - IsAllStoped, IsSelected, IsRunning, IsWorking, IsPause
 
         /// <summary>
-        /// 所有 轨道 都为 ready 状态，才 为 false
+        /// 所有轨道都为 ready 状态，才为 true
         /// </summary>
         public bool IsAllStoped
         {
@@ -132,24 +42,12 @@ namespace CleanSys.Util
             {
                 bool allStopped = true;
 
-                if (FirstRailStatus != RailStatus.Ready)
+                foreach (var item in this.RailDic)
                 {
-                    allStopped = false;
-                }
-
-                if (SecondRailStatus != RailStatus.Ready)
-                {
-                    allStopped = false;
-                }
-
-                if (ThirdRailStatus != RailStatus.Ready)
-                {
-                    allStopped = false;
-                }
-
-                if (ForthRailStatus != RailStatus.Ready)
-                {
-                    allStopped = false;
+                    if (item.Value.Status != RailStatus.Ready)
+                    {
+                        allStopped = false;
+                    }
                 }
 
                 return allStopped;
@@ -158,6 +56,7 @@ namespace CleanSys.Util
 
         /// <summary>
         ///  返回是否有一个轨道被选中
+        ///  未被选中，且该轨道已经清理完毕。
         /// </summary>
         public bool IsSelected
         {
@@ -165,312 +64,282 @@ namespace CleanSys.Util
             {
                 bool isSelected = false;
 
-                if (this.FirstRailProgress != RailProgress.UnSelected
-                    && this.FirstRailProgress != RailProgress.Done)
+                if (this.GetSelectedRail() != null)
                 {
-                    return true;
-                }
-
-                if (this.SecondRailProgress != RailProgress.UnSelected
-                    && this.SecondRailProgress != RailProgress.Done)
-                {
-                    return true;
-                }
-
-                if (this.ThirdRailProgress != RailProgress.UnSelected
-                    && this.ThirdRailProgress != RailProgress.Done)
-                {
-                    return true;
-                }
-
-                if (this.ForthRailProgress != RailProgress.UnSelected
-                    && this.ForthRailProgress != RailProgress.Done)
-                {
-                    return true;
+                    isSelected = true;
                 }
 
                 return isSelected;
             }
         }
 
+        /// <summary>
+        /// 返回被选中的轨道编号
+        /// </summary>
+        public RailID SelectedRailNum
+        {
+            get
+            {
+                RailMode rail = this.GetSelectedRail();
+                return rail != null ? rail.ID : RailID.UnSupported;
+            }
+        }
+
+        /// <summary>
+        /// 返回是否有轨道在running
+        /// running 是正在清理状态
+        /// </summary>
         public bool IsRunning
         {
             get
             {
-                bool isRunning = false;
-
-                if (this.FirstRailStatus == RailStatus.Running || this.SecondRailStatus == RailStatus.Running
-                    || this.ThirdRailStatus == RailStatus.Running || this.ForthRailStatus == RailStatus.Running)
-                {
-                    isRunning = true;
-                }
-
-                return isRunning;
+                RailMode rail = this.GetRunningRail();
+                return rail != null ? true : false;
             }
         }
 
+        public RailID RunningNum
+        {
+            get
+            {
+                RailMode rail = this.GetRunningRail();
+                return rail != null ? rail.ID : RailID.UnSupported;
+            }
+        }
+
+        /// <summary>
+        /// 返回是否有轨道在working状态
+        /// 包括running，pause状态
+        /// </summary>
         public bool IsWorking
         {
             get
             {
-                bool isWorking = false;
-
-                if (this.FirstRailStatus != RailStatus.Ready || this.SecondRailStatus != RailStatus.Ready
-                    || this.ThirdRailStatus != RailStatus.Ready || this.ForthRailStatus != RailStatus.Ready)
-                {
-                    isWorking = true;
-                }
-
-                return isWorking;
+                RailMode rail = this.GetWorkingRail();
+                return rail != null ? true : false;
             }
         }
 
+        public RailID WorkingNum
+        {
+            get
+            {
+                RailMode rail = this.GetWorkingRail();
+                return rail != null ? rail.ID : RailID.UnSupported;
+            }
+        }
+
+        public bool IsPause
+        {
+            get
+            {
+                RailMode rail = this.GetPauseRail();
+                return rail != null ? true : false;
+            }
+        }
+
+        #endregion
+
+        #region 轨道控制方法API - Start, Pause, Continue, Stop, Finish(完成轨道清理)
         /// <summary>
         /// 1.对应开始按钮, 当启动开始时，改变轨道的清理状态，并且返回轨道号
         /// 2.如果没有选定轨道， 返回 -1, UI 弹窗显示未选中
         /// 3.对于没有
         /// </summary>
         /// <returns>返回 当前工作的 轨道号</returns>
-        public int Start()
+        public bool Start()
         {
-            int railNum = -1;
+            RailMode rail = this.GetSelectedRail();
 
-            if (this.IsSelected)
+            if (rail != null)
             {
-                //throw new NotImplementedException();
-                railNum = this.GetSelectedRail();
-                this.StartRail(railNum);
+                rail.Progress = RailProgress.CleanRail;
+                rail.Status = RailStatus.Running;
+                return true;
             }
 
-            return railNum;
+            return false;
         }
 
-        public int Continue()
+        public bool Continue()
         {
-            throw new NotImplementedException();
+            RailMode rail = this.GetPauseRail();
+
+            if (rail != null)
+            {
+                rail.Status = RailStatus.Running;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
-        /// 对应暂停按钮
+        /// 对应暂停按钮, 改变轨道状态为暂停。
         /// </summary>
-        public int Pause()
+        public bool Pause()
         {
-            int railNum = -1;
+            RailMode rail = this.GetRunningRail();
 
-            if (this.IsRunning)
+            if (rail != null)
             {
-                railNum = this.GetRunningRail();
-                this.PauseRail(railNum);
+                rail.Status = RailStatus.Pause;
+                return true;
             }
 
-            return railNum;
+            return false;
         }
 
         /// <summary>
         /// 对应停止按钮， 如果返回-1：说明当前没有工作的轨道，弹窗提示用户。
         /// </summary>
-        public int Stop()
+        public bool Stop()
         {
-            int railNum = -1;
+            RailMode rail = this.GetWorkingRail();
 
-            if (this.IsWorking ||!this.IsAllStoped)
+            if (rail != null)
             {
-                railNum = this.InvokeStop();
+                rail.Progress = RailProgress.Stop;
+                rail.Status = RailStatus.Ready;
+                return true;
             }
 
-            return railNum;
-        }
-
-        private void PauseRail(int num)
-        {
-            switch (num)
-            {
-                case 1:
-                    this.FirstRailStatus = RailStatus.Pause;
-                    break;
-                case 2:
-                    this.SecondRailStatus = RailStatus.Pause;
-                    break;
-                case 3:
-                    this.ThirdRailStatus = RailStatus.Pause;
-                    break;
-                case 4:
-                    this.ForthRailStatus = RailStatus.Pause;
-                    break;
-            }
-        }
-
-        private int GetRunningRail()
-        {
-            int railNum = -1;
-
-            if (this.FirstRailStatus == RailStatus.Running)
-            {
-                railNum = 1;
-            }
-            else if (this.SecondRailStatus == RailStatus.Running)
-            {
-                railNum = 2;
-            }
-            else if (this.ThirdRailStatus == RailStatus.Running)
-            {
-                railNum = 3;
-            }
-            else if (this.ForthRailStatus == RailStatus.Running)
-            {
-                railNum = 4;
-            }
-
-            return railNum;
-        }
-
-        public RailID SelectedRail
-        {
-            get
-            {
-                RailID railID;
-                int railNum = this.GetSelectedRail();
-                if (railNum == -1)
-                {
-                    railID = RailID.UnSupported;
-                }
-                else
-                {
-                    railID = (RailID)Enum.ToObject(typeof(RailID), railNum);
-                }
-
-                return railID;
-            }
-        }
-
-
-        private int GetSelectedRail()
-        {
-            int railNum = -1;
-
-            if (this.FirstRailProgress == RailProgress.Selected)
-            {
-                railNum = 1;
-            }
-            else if (this.SecondRailProgress == RailProgress.Selected)
-            {
-                railNum = 2;
-            }
-            else if (this.ThirdRailProgress == RailProgress.Selected)
-            {
-                railNum = 3;
-            }
-            else if (this.ForthRailProgress == RailProgress.Selected)
-            {
-                railNum = 4;
-            }
-
-            return railNum;
-        }
-
-        private void StartRail(int num)
-        {
-            switch (num)
-            {
-                case 1:
-                    this.FirstRailProgress = RailProgress.CleanRail;
-                    this.FirstRailStatus = RailStatus.Running;
-                    break;
-                case 2:
-                    this.SecondRailProgress = RailProgress.CleanRail;
-                    this.SecondRailStatus = RailStatus.Running;
-                    break;
-                case 3:
-                    this.ThirdRailProgress = RailProgress.CleanRail;
-                    this.ThirdRailStatus = RailStatus.Running;
-                    break;
-                case 4:
-                    this.ForthRailProgress = RailProgress.CleanRail;
-                    this.ForthRailStatus = RailStatus.Running;
-                    break;
-            }
+            return false;
         }
 
         /// <summary>
-        ///  调整在运行轨道的状态
+        /// 完成轨道清理
         /// </summary>
         /// <returns></returns>
-        private int InvokeStop()
+        public bool FinishClean()
         {
-            int railNum = -1;
+            RailMode rail = this.GetRunningRail();
 
-            int workingNum = this.GetWorkingRail();
-            this.StopRail(workingNum);
+            if (rail != null)
+            {
+                rail.Progress = RailProgress.Done;
+                rail.Status = RailStatus.Ready;
+                return true;
+            }
 
-            return railNum;
+            return false;
         }
+
+        #endregion
+
+        #region 轨道进度控制方法API - SetRailProgress(设置轨道当前的进度)
 
         /// <summary>
-        /// 停止操作，更新轨道状态。
+        /// 设置当前工作轨道的清理进度
         /// </summary>
-        /// <param name="num"></param>
-        private void StopRail(int num)
+        /// <param name="step"></param>
+        public bool SetRailProgress(CleanSteps step)
         {
-            switch (num)
+            RailMode mode = GetWorkingRail();
+
+            if (mode == null)
+                return false;
+
+            switch (step)
             {
-                case 1:
-                    this.FirstRailProgress = RailProgress.Done;
-                    this.FirstRailStatus = RailStatus.Ready;
+                case CleanSteps.CleanRail:
+                    mode.Progress = RailProgress.CleanRail;
                     break;
-                case 2:
-                    this.SecondRailProgress = RailProgress.Done;
-                    this.SecondRailStatus = RailStatus.Ready;
+                case CleanSteps.DropAlcohol:
+                    mode.Progress = RailProgress.DropAlcohol;
                     break;
-                case 3:
-                    this.ThirdRailProgress = RailProgress.Done;
-                    this.ThirdRailStatus = RailStatus.Ready;
+                case CleanSteps.CoveredWithGrease:
+                    mode.Progress = RailProgress.DropAlcohol;
                     break;
-                case 4:
-                    this.ForthRailProgress = RailProgress.Done;
-                    this.ForthRailStatus = RailStatus.Ready;
+                case CleanSteps.Done:
+                    mode.Progress = RailProgress.Done;
+                    mode.Status = RailStatus.Ready;
                     break;
             }
+
+            return true;
         }
 
-        private int GetWorkingRail()
+        #endregion
+
+
+        #region 内部方法
+
+        private void InitRails(List<SkinPictureBox> rails)
         {
-            int railNum = -1;
-
-            if (this.FirstRailStatus != RailStatus.Ready)
+            if (rails != null && rails.Count > 0)
             {
-                railNum = 1;
-            }
-            else if (this.SecondRailStatus != RailStatus.Ready)
-            {
-                railNum = 2;
-            }
-            else if (this.ThirdRailStatus != RailStatus.Ready)
-            {
-                railNum = 3;
-            }
-            else if (this.ForthRailStatus != RailStatus.Ready)
-            {
-                railNum = 4;
-            }
-            
-
-            return railNum;
-        }
-
-        /// <summary>
-        /// 给所有 轨道 控件绑定Click事件
-        /// </summary>
-        private void BindClickEvent()
-        {
-            if (this.railList != null && this.railList.Count > 0)
-            {
-                foreach (var item in this.railList)
+                foreach (var item in rails)
                 {
                     item.Click += this.img_Click;
+                    RailID id = this.ConvertNameToID(item.Name);
+                    RailMode mode = new RailMode { ID = id };
+                    mode.ImageBox = item;
+                    mode.Status = RailStatus.Ready;
+                    mode.Progress = RailProgress.UnSelected;
+                    this.RailDic.Add(id, mode);
                 }
             }
         }
 
+        private RailMode GetRunningRail()
+        {
+            foreach (var item in this.RailDic)
+            {
+                if (item.Value.Status == RailStatus.Running)
+                {
+                    return item.Value;
+                }
+            }
+
+            return null;
+        }
+        
+        /// <summary>
+        /// 获取当前被选中的轨道
+        /// </summary>
+        /// <returns></returns>
+        private RailMode GetSelectedRail()
+        {
+            foreach (var item in this.RailDic)
+            {
+                if (item.Value.Progress == RailProgress.Selected)
+                {
+                    return item.Value;
+                }
+            }
+
+            return null;
+        }
+
+        private RailMode GetPauseRail()
+        {
+            foreach (var item in this.RailDic)
+            {
+                if (item.Value.Status == RailStatus.Pause)
+                {
+                    return item.Value;
+                }
+            }
+
+            return null;
+        }
+        
+        private RailMode GetWorkingRail()
+        {
+            RailMode mode = null;
+
+            foreach (var item in this.RailDic)
+            {
+                if (item.Value.Status != RailStatus.Ready)
+                {
+                    mode = item.Value;
+                }
+            }
+
+            return mode;
+        }
+        
         /// <summary>
         /// img click 事件接受器
         /// </summary>
@@ -479,242 +348,75 @@ namespace CleanSys.Util
         private void img_Click(object sender, EventArgs e)
         {
             SkinPictureBox img = sender as SkinPictureBox;
+            RailID id = this.ConvertNameToID(img.Name);
+            RailMode rail = this.RailDic[id];
 
-            // 获取当前控件的状态
-            RailStatus currentStatus;
-            RailProgress currentProgress;
-            this.BackfillRailStatus(img, out currentStatus, out currentProgress);
-
-            // 如果符合条件才会对 click事件 作处理
-            // 如果所有的 轨道 都没有被选中，则直接选中
-            // 如果 其他轨道 被选中，并且所有 轨道 都没有在工作， 则特定 轨道 被选中，其他都清除状态
-            if (this.IsAllStoped && currentProgress == RailProgress.UnSelected)
+            if (this.IsAllStoped)
             {
-                //首先清除其他选中的轨道
-                this.ClearOtherRail(img);
+                switch (rail.Progress)
+                {
+                    // 如果 其他轨道 被选中，并且所有 轨道 都没有在工作， 则特定 轨道 被选中，其他都清除状态
+                    // 如果所有的 轨道 都没有被选中，则直接选中
+                    case RailProgress.UnSelected:
+                        this.ClearOtherRail(id);
+                        rail.Progress = RailProgress.Selected;
+                        break;
 
-                this.ChangeImage(img, RailProgress.Selected);
-            }
-            // 如果刚好 特定 轨道 被选中，再次单击 取消选中
-            else if (this.IsAllStoped && currentProgress == RailProgress.Selected)
-            {
-                this.ChangeImage(img, RailProgress.UnSelected);
-            }
-            // 如果有 轨道 在工作(status: running, pause), 则 忽略 click 事件，或者弹窗。
-            else if (!this.IsAllStoped)
-            {
-                MessageBox.Show("请等待清理结束，或者停止当前清理后，重试!");
-            }
+                    // 再次单击已选中轨道，取消选中
+                    case RailProgress.Selected:
+                        rail.Progress = RailProgress.UnSelected;
+                        break;
 
-        }
+                    // 单击已经清理过的轨道， 弹窗提示
+                    case RailProgress.Done:
+                        DialogResult result = MessageBox.Show("该轨道已经清理过，是否确认重新清理?","确认对话框", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            rail.Progress = RailProgress.Selected;
+                        }
+                        break;
+                }
 
-        /// <summary>
-        /// 获取 某一轨道 状态
-        /// </summary>
-        /// <param name="rail">轨道</param>
-        /// <param name="status">清理状态</param>
-        /// <param name="progress">清理进度</param>
-        private void BackfillRailStatus(SkinPictureBox rail, out RailStatus status, out RailProgress progress)
-        {
-            string railNum = this.GetRailNum(rail.Name);
-
-            switch (railNum)
-            {
-                case "1":
-                    status = this.FirstRailStatus;
-                    progress = this.FirstRailProgress;
-                    break;
-                case "2":
-                    status = this.SecondRailStatus;
-                    progress = this.SecondRailProgress;
-                    break;
-                case "3":
-                    status = this.ThirdRailStatus;
-                    progress = this.ThirdRailProgress;
-                    break;
-                case "4":
-                    status = this.ForthRailStatus;
-                    progress = this.ForthRailProgress;
-                    break;
-                default:
-                    status = RailStatus.Ready;
-                    progress = RailProgress.UnSelected;
-                    break;
             }
         }
 
         /// <summary>
-        /// 清除所有轨道的状态
+        /// 清除所有轨道的进度状态
         /// </summary>
         private void ClearAllRail()
         {
-            if (this.railList != null && this.railList.Count > 0)
+            foreach (var item in this.RailDic)
             {
-                foreach (var rail in this.railList)
-                {
-                    this.ChangeImage(rail, RailProgress.UnSelected);
-                }
+                item.Value.Progress = RailProgress.UnSelected;
             }
         }
 
         /// <summary>
-        /// 清除 除了给定轨道之外， 其他轨道的状态。
+        /// 清除 除了给定轨道之外， 其他轨道的进度状态--选中状态。
         /// </summary>
         /// <param name="specificRail">特定的轨道</param>
-        private void ClearOtherRail(SkinPictureBox specificRail)
+        private void ClearOtherRail(RailID id)
         {
-            if (this.railList != null && this.railList.Count > 0)
+            foreach (var item in this.RailDic)
             {
-                foreach (var rail in this.railList)
+                RailMode rail = item.Value;
+                if (rail.ID != id && rail.Progress == RailProgress.Selected)
                 {
-                    if (rail.Name == specificRail.Name)
-                    {
-                        continue;
-                    }
-
-                    this.ChangeImage(rail, RailProgress.UnSelected);
+                    rail.Progress = RailProgress.UnSelected;
                 }
             }
-        }
+        }        
 
         /// <summary>
-        /// 根据当前轨道的进度，改变轨道控件的图片样式
+        /// 把图片控件的name转换成 railID.
         /// </summary>
-        /// <param name="img">轨道控件</param>
-        /// <param name="progress">当前进度</param>
-        private void ChangeImage(SkinPictureBox img, RailProgress progress)
+        /// <returns></returns>
+        private RailID ConvertNameToID(string name)
         {
-            string color = this.ConvertToColor(progress);
-
-            //代表哪个轨道：1,2,3,4
-            string railNum = this.GetRailNum(img.Name);
-            string imgName = string.Format("_{0}{1}.png", railNum, color);
-            img.BackgroundImage = (System.Drawing.Image)(Resources.ResourceManager.GetObject(imgName));
-
-            this.SetRailProgress(img, progress);
+            int num = int.Parse(name.Replace("img", ""));
+            return (RailID)Enum.ToObject(typeof(RailID), num);
         }
 
-        private void SetRailProgress(SkinPictureBox rail, RailProgress progress)
-        {
-            string railNum = this.GetRailNum(rail.Name);
-
-            switch (railNum)
-            {
-                case "1":
-                    this.FirstRailProgress = progress;
-                    break;
-                case "2":
-                    this.SecondRailProgress = progress;
-                    break;
-                case "3":
-                    this.ThirdRailProgress = progress;
-                    break;
-                case "4":
-                    this.ForthRailProgress = progress;
-                    break;
-            }
-        }
-
-        private string GetRailNum(string name)
-        {
-            string num = string.Empty;
-            num = name.Replace("img", "");
-            return num;
-        }
-
-        /// <summary>
-        /// Convert rail progress to color string.
-        /// </summary>
-        /// <param name="progress">Current progress</param>
-        /// <returns>color:string</returns>
-        private string ConvertToColor(RailProgress progress)
-        {
-            string color = string.Empty;
-
-            switch (progress)
-            {
-                case RailProgress.UnSelected:
-                    color = "Gray";
-                    break;
-                case RailProgress.Selected:
-                    color = "CheckedGray";
-                    break;
-                case RailProgress.CleanRail:
-                    color = "CheckedRed";
-                    break;
-                case RailProgress.CoveredWithGrease:
-                    color = "CheckedYellow";
-                    break;
-                case RailProgress.DropAlcohol:
-                case RailProgress.Done:
-                    color = "CheckedGreen";
-                    break;
-                    
-            }
-
-            return color;
-        }
-    }
-
-    /// <summary>
-    /// 轨道清理进度
-    /// </summary>
-    public enum RailProgress
-    {
-        /// <summary>
-        /// 轨道未选中
-        /// </summary>
-        UnSelected,
-
-        /// <summary>
-        /// 轨道被选中
-        /// </summary>
-        Selected,
-
-        /// <summary>
-        /// step one: 清理轨道
-        /// </summary>
-        CleanRail,//StepOne,
-
-        /// <summary>
-        /// step two: 涂润滑油
-        /// </summary>
-        CoveredWithGrease,
-
-        /// <summary>
-        /// step three: 滴定无水乙醇
-        /// </summary>
-        DropAlcohol,
-
-        /// <summary>
-        /// 完成，但不改变轨道 图标状态
-        /// </summary>
-        Done,
-    }
-
-    /// <summary>
-    /// 清理机器的状态
-    /// </summary>
-    public enum RailStatus
-    {
-        /// <summary>
-        /// 未开始运行
-        /// </summary>
-        Ready,
-
-        /// <summary>
-        /// 正在清理，工作状态
-        /// </summary>
-        Running,
-
-        /// <summary>
-        /// 暂停状态
-        /// </summary>
-        Pause,
-
-        /// <summary>
-        /// 不应该有停止状态，ready就代表了停止。
-        /// </summary>
-        Stop,
+        #endregion
     }
 }

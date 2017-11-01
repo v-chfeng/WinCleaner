@@ -53,6 +53,7 @@ namespace CleanSys
         private AutoCleanStatus CleanStatus;
 
         private Thread thread;
+        private Thread updateUiThread;
         private Thread timerThread1;
         private Thread timerThread2;
         private Thread timerThread3;
@@ -206,7 +207,7 @@ namespace CleanSys
             }
 
             //获得当前轨道
-            RailID selectedID = this.railsControler.SelectedRail;
+            RailID selectedID = this.railsControler.SelectedRailNum;
 
             switch (this.CleanStatus)
             {
@@ -236,9 +237,26 @@ namespace CleanSys
 
                 //更新八角形UI
                 this.railsControler.Start();
-                
+
                 // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
-                ;
+
+                // 重置三个计时器
+                this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+                this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+                this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+                this.timerThread1.IsBackground = true;
+                this.timerThread2.IsBackground = true;
+                this.timerThread3.IsBackground = true;
+
+                this.timerThread1.Start(DateTime.Now);
+
+                // 重置更新UI 线程
+                DataStatusSyncer getter = new DataStatusSyncer();
+                getter.UpdateUIDelegate += this.Update;
+                getter.TaskCallBack += this.DoneClean;
+                this.updateUiThread = new Thread(getter.GetStatus);
+                this.updateUiThread.IsBackground = true;
+                this.updateUiThread.Start();
             }
             else
             {
@@ -290,6 +308,7 @@ namespace CleanSys
                 this.railsControler.Pause();
 
                 // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
+                
                 ;
             }
             else
@@ -406,6 +425,38 @@ namespace CleanSys
         private void DoneClean()
         {
             this.isWorking = false;
+        }
+
+        private void Update(SyncStatusMode status)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+
+            if (status.IsError)
+            {
+                MessageBox.Show(status.ErrorMsg);
+            }
+            else if (status.CleanSteps == CleanSteps.Done)
+            {
+                this.ProcessIncreaseTo(this.process1.ProcessBar, 100);
+                this.ProcessIncreaseTo(this.process2.ProcessBar, 100);
+                this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
+
+                //停止计时
+                this.timerThread1.Abort();
+                this.timerThread2.Abort();
+                this.timerThread3.Abort();
+
+                this.railsControler.FinishClean();
+
+                // 更新upArrow位置
+                this.UpdateUpArrowLocation(4, 3);
+
+                MessageBox.Show("清理完成");
+            }
+            else
+            {
+
+            }
         }
 
         private void Update(MachineStatus status)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanSys.SelfEnum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,5 +43,19 @@ namespace CleanSys.Mode
                 return this._stepsList;
             }
         }
+    }
+
+    public class SyncStatusMode
+    {
+        public RailID CurrentRailID;
+        public CleanSteps CleanSteps;
+
+        /// <summary>
+        /// 有可能是回传的小车的轨道距离
+        /// </summary>
+        public float ProgressRate;
+
+        public bool IsError;
+        public string ErrorMsg;
     }
 }

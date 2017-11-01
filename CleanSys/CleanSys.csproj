@@ -78,7 +78,9 @@
     <Compile Include="CHeckFrm.Designer.cs">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enum\CleanCommand.cs" />
+    <Compile Include="Mode\RailMode.cs" />
+    <Compile Include="SelfEnum\CleanCommand.cs" />
+    <Compile Include="SelfEnum\CleanSteps.cs" />
     <Compile Include="formTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +119,8 @@
     <Compile Include="RecordFrm.Designer.cs">
       <DependentUpon>RecordFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelfEnum\RailProgress.cs" />
+    <Compile Include="SelfEnum\RailStatus.cs" />
     <Compile Include="Util\DataStatusSyncer.cs" />
     <Compile Include="Util\MachinePortal.cs" />
     <Compile Include="Mode\MachineStatusMode.cs" />
@@ -124,7 +128,7 @@
     <Compile Include="Util\MockMachineReceiver.cs" />
     <Compile Include="Util\MyData.cs" />
     <Compile Include="Util\RailControler.cs" />
-    <Compile Include="Enum\RailID.cs" />
+    <Compile Include="SelfEnum\RailID.cs" />
     <Compile Include="XSSFWorkbook.cs" />
     <EmbeddedResource Include="AutoCleanFrm.resx">
       <DependentUpon>AutoCleanFrm.cs</DependentUpon>
