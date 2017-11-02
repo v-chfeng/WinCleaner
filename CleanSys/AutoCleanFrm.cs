@@ -28,7 +28,7 @@ namespace CleanSys
         private const int UpArrowLeft = -2;
         private const int RailLength = 12;
 
-        private string spendTimeTemplate = @"用时: {0}:{1}";
+        private string spendTimeTemplate = @"用时: {0:00}:{1:00}";
 
         private string angleOne = "upRight1";
         private string angleTwo = "upLeft2";
@@ -36,37 +36,27 @@ namespace CleanSys
         private string angleFour = "downRight4";
 
         private string stepZeroGray = "Gray";
-        private string stepOneRed = "Red";
-        private string stepTwoYellow = "Yellow";
-        private string stepThreeGreen = "Green";
 
-        private delegate void AsynUpdateUI(MachineStatus status);
-
-        private int currentMachineNum;
-        private int currentStepNum;
-
+        private delegate void AsynUpdateUI(SyncStatusMode status);
+        
         private CleanSteps CurrentCleanStep;
-
-        private List<myProcesser> _processList;
-        private List<SkinLabel> _spendTextList;
-        private List<Thread> _threadList;
-
-        private bool isWorking;
-
-        private AutoCleanStatus CleanStatus;
-
-        private Thread thread;
+        
         private Thread updateUiThread;
         private Thread timerThread1;
         private Thread timerThread2;
         private Thread timerThread3;
 
         private RailControler railsControler;
+        private Dictionary<CleanSteps, TimeSpan> saveSpendTimeDic;
+        private DataStatusSyncer getter;
 
         public AutoCleanFrm()
         {
             InitializeComponent();
-            this._processList = null;
+            this.saveSpendTimeDic = new Dictionary<CleanSteps, TimeSpan>();
+            getter = new DataStatusSyncer();
+            getter.UpdateUIDelegate += this.UpdateProcessUI;
+            getter.TaskCallBack += this.DoneClean;
         }
 
         private void AutoCleanFrm_Load(object sender, EventArgs e)
@@ -78,7 +68,6 @@ namespace CleanSys
             this.Location = (Point)myData.myPossition;         //窗体的起始位置为(x,y)
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
-            this.isWorking = false;
 
             this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
             this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
@@ -95,7 +84,6 @@ namespace CleanSys
 
 
             this.railsControler = new RailControler(this.eightAngle1.ImgList);
-            this.CleanStatus = AutoCleanStatus.Ready;
 
             this.InitProcessBar();
         }
@@ -126,6 +114,34 @@ namespace CleanSys
             }
         }
 
+        public string ConvertSpanToString(TimeSpan span)
+        {
+            return string.Format(this.spendTimeTemplate, span.Minutes, span.Seconds);
+        }
+
+        public TimeSpan ConvertStringToSpan(string str)
+        {
+            string[] strArr = str.Split(':');
+            int mins = int.Parse(strArr[0]);
+            int seconds = int.Parse(strArr[1]);
+            return new TimeSpan(0, mins, seconds);
+        }
+
+        /// <summary>
+        /// 清理轨道计时器时间
+        /// </summary>
+        public TimeSpan CleanRailSpan
+        {
+            get
+            {
+                return this.ConvertStringToSpan(this.spendTime1.Text);
+            }
+            set
+            {
+                this.spendTime1.Text = this.ConvertSpanToString(value);
+            }
+        }
+
         public float CoveredWithGreaseStepRate
         {
             get
@@ -139,6 +155,18 @@ namespace CleanSys
             }
         }
 
+        public TimeSpan CoveredWithGreaseSpan
+        {
+            get
+            {
+                return this.ConvertStringToSpan(this.spendTime2.Text);
+            }
+            set
+            {
+                this.spendTime2.Text = this.ConvertSpanToString(value);
+            }
+        }
+        
         public float DropAlcoholStepRate
         {
             get
@@ -152,18 +180,51 @@ namespace CleanSys
             }
         }
 
+        public TimeSpan DropAlcoholSpan
+        {
+            get
+            {
+                return this.ConvertStringToSpan(this.spendTime3.Text);
+            }
+            set
+            {
+                this.spendTime3.Text = this.ConvertSpanToString(value);
+            }
+        }
         #endregion
 
         #region 清理步骤计时器 线程方法
+
+        private void RenewTimer(bool isReset)
+        {
+            this.saveSpendTimeDic.Clear();
+            this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+            this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+            this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+            this.timerThread1.IsBackground = true;
+            this.timerThread2.IsBackground = true;
+            this.timerThread3.IsBackground = true;
+
+            if (isReset)
+            {
+                this.CleanRailSpan = new TimeSpan(0, 0, 0);
+                this.CoveredWithGreaseSpan = new TimeSpan(0, 0, 0);
+                this.DropAlcoholSpan = new TimeSpan(0, 0, 0);
+            }
+        }
 
         private void Thread1_Tick(object start)
         {
             CheckForIllegalCrossThreadCalls = false;
 
+            TimeSpan startSpan = (TimeSpan)start;
+            DateTime startTime = DateTime.Now;
+
             while (true)
             {
-                TimeSpan span = DateTime.Now - (DateTime)start;
-                this.spendTime1.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                TimeSpan span = DateTime.Now - startTime;
+                TimeSpan totalSpan = span + startSpan;
+                this.CleanRailSpan = totalSpan;
                 Thread.Sleep(1000);
             }
         }
@@ -172,10 +233,14 @@ namespace CleanSys
         {
             CheckForIllegalCrossThreadCalls = false;
 
+            TimeSpan startSpan = (TimeSpan)start;
+            DateTime startTime = DateTime.Now;
+
             while (true)
             {
-                TimeSpan span = DateTime.Now - (DateTime)start;
-                this.spendTime2.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                TimeSpan span = DateTime.Now - startTime;
+                TimeSpan totalSpan = span + startSpan;
+                this.CoveredWithGreaseSpan = totalSpan;
                 Thread.Sleep(1000);
             }
         }
@@ -184,15 +249,21 @@ namespace CleanSys
         {
             CheckForIllegalCrossThreadCalls = false;
 
+            TimeSpan startSpan = (TimeSpan)start;
+            DateTime startTime = DateTime.Now;
+
             while (true)
             {
-                TimeSpan span = DateTime.Now - (DateTime)start;
-                this.spendTime3.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
+                TimeSpan span = DateTime.Now - startTime;
+                TimeSpan totalSpan = span + startSpan;
+                this.DropAlcoholSpan = totalSpan;
                 Thread.Sleep(1000);
             }
         }
 
         #endregion
+
+         
 
         /// <summary>
         /// 标题更新 计时器
@@ -223,44 +294,13 @@ namespace CleanSys
             this.spendTime3.Text = defaultSpend;
 
             this.upArrow.Location = new Point(AutoCleanFrm.UpArrowLeft, AutoCleanFrm.UpArrowTop);
-
-            this.currentMachineNum = 0;
-            this.currentStepNum = 0;
+            
             this.CurrentCleanStep = CleanSteps.UnSupported;
 
             this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
             this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
             this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
             this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
-        }
-
-        private void process2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RefreshThread(int num)
-        {
-            switch (num)
-            {
-                case 1:
-                    this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
-                    this.timerThread1.IsBackground = true;
-                    break;
-                case 2:
-                    this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
-                    this.timerThread2.IsBackground = true;
-                    break;
-                case 3:
-                    this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
-                    this.timerThread3.IsBackground = true;
-                    break;
-            }
-
-            this._threadList.Clear();
-            this._threadList.Add(this.timerThread1);
-            this._threadList.Add(this.timerThread2);
-            this._threadList.Add(this.timerThread3);
         }
 
         /// <summary>
@@ -305,6 +345,7 @@ namespace CleanSys
             {
                 // 更新开始按钮图片
                 this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
+                this.CurrentCleanStep = CleanSteps.CleanRail;
 
                 //更新八角形UI：轨道颜色
                 this.railsControler.Start();
@@ -312,22 +353,13 @@ namespace CleanSys
                 // 启动界面更新线程，更新进度百分比，更新模拟小车,
                 this.CleanDistance = 0;
                 this.InitProcessBar();
-                //88888888888888888888888888888888888888
+                
                 // 重置三个计时器
-                this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
-                this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
-                this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
-                this.timerThread1.IsBackground = true;
-                this.timerThread2.IsBackground = true;
-                this.timerThread3.IsBackground = true;
+                this.RenewTimer(true);
+                this.timerThread1.Start(new TimeSpan(0, 0, 0));
 
-                this.timerThread1.Start(DateTime.Now);
-
-                // 重置更新UI 线程
-                DataStatusSyncer getter = new DataStatusSyncer();
-                getter.UpdateUIDelegate += this.Update;
-                getter.TaskCallBack += this.DoneClean;
-                this.updateUiThread = new Thread(getter.GetStatus);
+                // 重置更新UI 线程               
+                this.updateUiThread = new Thread(this.getter.GetStatus);
                 this.updateUiThread.IsBackground = true;
                 this.updateUiThread.Start();
             }
@@ -343,24 +375,40 @@ namespace CleanSys
 
             if (isSuccess)
             {
-                //更新清理状态
-                this.CleanStatus = AutoCleanStatus.Running;
-
                 // 更新开始按钮图片
                 this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
 
                 //更新八角形UI
                 this.railsControler.Continue();
 
+                //继续计时器
+                TimeSpan span = this.saveSpendTimeDic[this.CurrentCleanStep];
+                switch (this.CurrentCleanStep)
+                {
+                    case CleanSteps.CleanRail:
+                        this.timerThread1.Start(span);
+                        break;
+                    case CleanSteps.CoveredWithGrease:
+                        this.timerThread2.Start(span);
+                        break;
+                    case CleanSteps.DropAlcohol:
+                        this.timerThread3.Start(span);
+                        break;
+                }
+
                 // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
-                ;
+                this.updateUiThread = new Thread(this.getter.GetStatus);
+                this.updateUiThread.IsBackground = true;
+                this.updateUiThread.Start();
+
+                //清除记录
+                this.saveSpendTimeDic.Clear();
             }
             else
             {
                 MessageBox.Show("发送“清理”请求失败，检查网络情况！");
             }
         }
-
 
         private void PauseClean(RailID selectedID)
         {
@@ -370,9 +418,18 @@ namespace CleanSys
             if (isSuccess)
             {
                 //保存 当前状态
-
-                //更新清理状态
-                this.CleanStatus = AutoCleanStatus.Pause;
+                switch (this.CurrentCleanStep)
+                {
+                    case CleanSteps.CleanRail:
+                        this.saveSpendTimeDic.Add(this.CurrentCleanStep, this.CleanRailSpan);
+                        break;
+                    case CleanSteps.CoveredWithGrease:
+                        this.saveSpendTimeDic.Add(this.CurrentCleanStep, this.CoveredWithGreaseSpan);
+                        break;
+                    case CleanSteps.DropAlcohol:
+                        this.saveSpendTimeDic.Add(this.CurrentCleanStep, this.DropAlcoholSpan);
+                        break;
+                }
 
                 // 更新开始按钮图片
                 this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
@@ -380,52 +437,15 @@ namespace CleanSys
                 //更新八角形UI
                 this.railsControler.Pause();
 
-                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
-                
-                ;
+                // 杀死界面更新程序
+                this.updateUiThread.Abort();
+                this.timerThread1.Abort();
+                this.timerThread2.Abort();
+                this.timerThread3.Abort();
             }
             else
             {
                 MessageBox.Show("发送“清理”请求失败，检查网络情况！");
-            }
-        }
-
-        private void StartCleanOld()
-        {
-            if (this.isWorking == false)
-            {
-                // 发送 自动清理请求 到 清理机器
-                bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Start);
-                if (isSuccess)
-                {
-                    this.isWorking = true;
-
-                    this.InitProcessBar();
-
-                    this.currentMachineNum = 1;
-                    this.currentStepNum = 1;
-                    this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepOneRed)));
-
-                    this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
-                    this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
-                    this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
-                    this.timerThread1.IsBackground = true;
-                    this.timerThread2.IsBackground = true;
-                    this.timerThread3.IsBackground = true;
-
-                    this.timerThread1.Start(DateTime.Now);
-
-                    DataStatusSyncer getter = new DataStatusSyncer();
-                    getter.UpdateUIDelegate += this.Update;
-                    getter.TaskCallBack += this.DoneClean;
-                    this.thread = new Thread(getter.GetStatus);
-                    this.thread.IsBackground = true;
-                    this.thread.Start();
-                }
-            }
-            else
-            {
-                MessageBox.Show("正在清理，请稍后再试");
             }
         }
 
@@ -434,28 +454,31 @@ namespace CleanSys
         /// </summary>
         private void AutoClean_Click(object sender, EventArgs e)
         {
-            this.StartCleanOld();
+            ;//this.StartCleanOld();
         }
 
         private void stopBtn_Click(object sender, EventArgs e)
         {
-            if (this.isWorking)
+            if (!this.railsControler.IsAllStoped)
             {
                 DialogResult result = MessageBox.Show("确实终止清理", "确认", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Stop);
+                    RailID id = this.railsControler.WorkingNum;
+                    bool isSuccess = MachinePortal.StopAutoClean(id);
                     if (!isSuccess)
                     {
                         MessageBox.Show("终止清理失败!");
                     }
                     else
                     {
-                        this.thread.Abort();
+                        this.railsControler.Stop();
+                        this.CurrentCleanStep = CleanSteps.UnSupported;
+                        this.saveSpendTimeDic.Clear();
+                        this.updateUiThread.Abort();
                         this.timerThread1.Abort();
                         this.timerThread2.Abort();
                         this.timerThread3.Abort();
-                        this.isWorking = false;
                     }
                 }
             }
@@ -467,7 +490,6 @@ namespace CleanSys
 
         private void HomeBtn_Click(object sender, EventArgs e)
         {
-            
             myData.mainFrm.Show();// show();
             myData.frmStack.Clear();
             this.Close();
@@ -480,7 +502,7 @@ namespace CleanSys
             this.Close();
         }
 
-        private void UpdateProcessUI(MachineStatus status)
+        private void UpdateProcessUI(SyncStatusMode status)
         {
             CheckForIllegalCrossThreadCalls = false;
 
@@ -497,7 +519,7 @@ namespace CleanSys
         // 重置上次清理痕迹
         private void DoneClean()
         {
-            this.isWorking = false;
+            ;
         }
 
         private void Update(SyncStatusMode status)
@@ -508,129 +530,43 @@ namespace CleanSys
             {
                 MessageBox.Show(status.ErrorMsg);
             }
-            else if (status.CleanSteps == CleanSteps.Done)
-            {
-                this.ProcessIncreaseTo(this.process1.ProcessBar, 100);
-                this.ProcessIncreaseTo(this.process2.ProcessBar, 100);
-                this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
-
-                //停止计时
-                this.timerThread1.Abort();
-                this.timerThread2.Abort();
-                this.timerThread3.Abort();
-
-                this.railsControler.FinishClean();
-
-                // 更新upArrow位置
-                this.UpdateUpArrowLocation(4, 3);
-
-                MessageBox.Show("清理完成");
-            }
             else
-            {
-
-            }
-        }
-
-        private void Update(MachineStatus status)
-        {
-            CheckForIllegalCrossThreadCalls = false;
-
-            if (status.IsError)
-            {
-                MessageBox.Show(status.ErrorMsg);
-            }
-            else if (status.AllDone)
-            {
-                this.ProcessIncreaseTo(this.process1.ProcessBar, 100);
-                this.ProcessIncreaseTo(this.process2.ProcessBar, 100);
-                this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
-
-                //停止计时
-                this.timerThread1.Abort();
-                this.timerThread2.Abort();
-                this.timerThread3.Abort();
-
-                this.UpdateAngleMachine(4, 3, true);
-
-                // 更新upArrow位置
-                this.UpdateUpArrowLocation(4, 3);
-
-                MessageBox.Show("清理完成");
-            }
-            else
-            {
-                // 如果当前轨道已经完成
-                if (status.machineNum > this.currentMachineNum)
+            { 
+                switch (status.CleanSteps)
                 {
-                    this.ProcessIncreaseTo(this.process1.ProcessBar, 100);
-                    this.ProcessIncreaseTo(this.process2.ProcessBar, 100);
-                    this.ProcessIncreaseTo(this.process3.ProcessBar, 100);
-
-                    //更新用时
-                    this.timerThread1.Abort();
-                    this.timerThread2.Abort();
-                    this.timerThread3.Abort();
-
-                    Thread.Sleep(1000);
-
-                    this.process1.ProcessBar.Value = 0;
-                    this.process2.ProcessBar.Value = 0;
-                    this.process3.ProcessBar.Value = 0;
-                    this.spendTime1.Text = string.Format(this.spendTimeTemplate, "00","00");
-                    this.spendTime2.Text = string.Format(this.spendTimeTemplate, "00","00");
-                    this.spendTime3.Text = string.Format(this.spendTimeTemplate, "00","00");
-
-                    this.ProcessIncreaseTo(this.process1.ProcessBar, status.stepOneProcess);
-                    this.ProcessIncreaseTo(this.process2.ProcessBar, status.stepTwoProcess);
-                    this.ProcessIncreaseTo(this.process3.ProcessBar, status.stepThreeProcess);
-
-                    //重置用时
-                    //this.TimerList[status.stepNum - 1].Start();
-                    this.RefreshThread(status.stepNum);
-                    this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
-
-                    // 对于已经完成而没有统计的步骤，写一些假数据。
-                    for (int i = 0; i < status.stepNum - 1; i++)
-                    {
-                        this.SpendTextList[i].Text = string.Format(this.spendTimeTemplate, "00", "30");
-                    }
-
-                    this.UpdateAngleMachine(status.machineNum, status.stepNum, true);
-
-                    // 更新upArrow位置
-                    this.UpdateUpArrowLocation(status.machineNum, status.stepNum);
-
-                    // 记录状态
-                    this.currentMachineNum = status.machineNum;
-                    this.currentStepNum = status.stepNum;
-                }// 如果当前轨道的当前步骤完成
-                else if (status.stepNum > this.currentStepNum)
-                {
-                    for (int i = this.currentStepNum - 1; i < status.stepNum - 1; i++)
-                    {
-                        this.ProcessIncreaseTo(this.ProcessList[i].ProcessBar, 100);
-                        this.ThreadList[i].Abort();
-                    }
-                    
-                    //this.TimerList[status.stepNum - 1].Start();
-                    this.RefreshThread(status.stepNum);
-                    this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
-
-                    this.UpdateAngleMachine(status.machineNum, status.stepNum);
-
-                    this.ProcessIncreaseTo(this.ProcessList[status.stepNum - 1].ProcessBar, status.StepsList[status.stepNum - 1]);
-
-                    // 更新upArrow位置
-                    this.UpdateUpArrowLocation(status.machineNum, status.stepNum);
-
-                    // 记录状态
-                    this.currentStepNum = status.stepNum;
+                    case CleanSteps.CleanRail:
+                        this.CleanRailStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.CurrentCleanStep = CleanSteps.CleanRail;
+                        break;
+                    case CleanSteps.CoveredWithGrease:
+                        this.CleanRailStepRate = 100;
+                        this.timerThread1.Abort();
+                        this.CoveredWithGreaseStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.CurrentCleanStep = CleanSteps.CoveredWithGrease;
+                        break;
+                    case CleanSteps.DropAlcohol:
+                        this.CleanRailStepRate = 100;
+                        this.timerThread1.Abort();
+                        this.CoveredWithGreaseStepRate = 100;
+                        this.timerThread2.Abort();
+                        this.DropAlcoholStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.CurrentCleanStep = CleanSteps.DropAlcohol;
+                        break;
+                    case CleanSteps.Done:
+                        this.CleanRailStepRate = 100;
+                        this.timerThread1.Abort();
+                        this.CoveredWithGreaseStepRate = 100;
+                        this.timerThread2.Abort();
+                        this.DropAlcoholStepRate = 100;
+                        this.timerThread3.Abort();
+                        this.CurrentCleanStep = CleanSteps.Done;
+                        int num = (int)this.railsControler.WorkingNum;
+                        MessageBox.Show($"轨道{num}清理完成!");
+                        break;
                 }
-                else
-                {
-                    this.ProcessIncreaseTo(this.ProcessList[status.stepNum - 1].ProcessBar, status.StepsList[status.stepNum - 1]);
-                }
+
+                this.UpdateUpArrowLocation(status.ProgressRate);
+                this.railsControler.SetRailProgress(status.CleanSteps);
             }
         }
 
@@ -658,86 +594,7 @@ namespace CleanSys
             System.Drawing.Point newLocation = new Point(AutoCleanFrm.UpArrowLeft, newTop);
             this.upArrow.Location = newLocation;
         }
-
-
-
-        private void UpdateUpArrowLocation(int num, int step)
-        {
-            CheckForIllegalCrossThreadCalls = false;
-
-            int left = -2;
-            int top = 301;
-
-            int increase = 25;
-            int rate = (num - 1) * 3 + step;
-            top -= increase * rate;
-
-            System.Drawing.Point newLocation = new Point(left, top);
-            this.upArrow.Location = newLocation;
-        }
-
-        /// <summary>
-        /// /
-        /// </summary>
-        /// <param name="num"></param>
-        /// <param name="step"></param>
-        /// <param name="isAll">ture,更新比num小的所有轨道，标记全完成为步骤三-绿色,</param>
-        private void UpdateAngleMachine(int num, int step, bool isAll = false)
-        {
-            string imgStr = null;
-
-            if (isAll)
-            {
-                for (int i = 0; i < num - 1; i++)
-                {
-                    imgStr = this.GetImgBackGround(i+1, 3);
-                    this.eightAngle1.ImgList[i].BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(imgStr)));
-                }
-            }
-
-            // 只更改当前轨道状态
-            imgStr = this.GetImgBackGround(num, step);
-            this.eightAngle1.ImgList[num-1].BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(imgStr)));
-        }
-
-        private string GetImgBackGround(int num, int step)
-        {
-            string imgStr = string.Empty;
-
-            switch (num)
-            {
-                case 1:
-                    imgStr += this.angleOne;
-                    break;
-                case 2:
-                    imgStr += this.angleTwo;
-                    break;
-                case 3:
-                    imgStr += this.angleThre;
-                    break;
-                case 4:
-                    imgStr += this.angleFour;
-                    break;
-            }
-
-            switch (step)
-            {
-                case 0:
-                    imgStr += this.stepZeroGray;
-                    break;
-                case 1:
-                    imgStr += this.stepOneRed;
-                    break;
-                case 2:
-                    imgStr += this.stepTwoYellow;
-                    break;
-                case 3:
-                    imgStr += this.stepThreeGreen;
-                    break;
-            }
-
-            return imgStr;
-        }
+        
 
         private void ProcessIncreaseTo(CircularProgressBar.CircularProgressBar bar, int Num)
         {
@@ -748,54 +605,6 @@ namespace CleanSys
             {
                 bar.Increment(increase);
                 bar.Text = Num.ToString() + "%";
-            }
-        }
-
-        public List<myProcesser> ProcessList
-        {
-            get
-            {
-                if (this._processList == null)
-                {
-                    this._processList = new List<myProcesser>();
-                    this._processList.Add(this.process1);
-                    this._processList.Add(this.process2);
-                    this._processList.Add(this.process3);
-                }
-
-                return this._processList;
-            }
-        }
-
-        public List<CCWin.SkinControl.SkinLabel> SpendTextList
-        {
-            get
-            {
-                if (this._spendTextList == null)
-                {
-                    this._spendTextList = new List<SkinLabel>();
-                    this._spendTextList.Add(this.spendTime1);
-                    this._spendTextList.Add(this.spendTime2);
-                    this._spendTextList.Add(this.spendTime3);
-                }
-
-                return this._spendTextList;
-            }
-        }
-
-        public List<Thread> ThreadList
-        {
-            get
-            {
-                if (this._threadList == null)
-                {
-                    this._threadList = new List<Thread>();
-                    this._threadList.Add(this.timerThread1);
-                    this._threadList.Add(this.timerThread2);
-                    this._threadList.Add(this.timerThread3);
-                }
-
-                return this._threadList;
             }
         }
     }

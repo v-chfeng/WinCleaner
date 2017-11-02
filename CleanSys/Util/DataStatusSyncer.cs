@@ -1,4 +1,5 @@
 ﻿using CleanSys.Mode;
+using CleanSys.SelfEnum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,22 @@ namespace CleanSys.Util
 {
     public class DataStatusSyncer
     {
-        public delegate void UpdateUI(MachineStatus status);
+        public delegate void UpdateUI(SyncStatusMode status);
         public UpdateUI UpdateUIDelegate;
 
         public delegate void AccomplishTask();
         public AccomplishTask TaskCallBack;
-        private MachineStatus status;
+        private SyncStatusMode status;
 
         public void GetStatus()
         {
             do
             {
-                status = MachinePortal
-                        .GetStatus();
+                status = MachinePortal.GetStatus();
                 this.UpdateUIDelegate(status);
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
-            while (!status.AllDone);
+            while (status.CleanSteps != CleanSteps.Done);
 
             this.TaskCallBack();
         }

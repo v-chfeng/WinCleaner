@@ -45,9 +45,9 @@ namespace CleanSys.Util
             return MachineSender.SendCMD(railID, CleanCommand.StopManualClean);
         }
 
-        public static MachineStatus GetStatus()
+        public static SyncStatusMode GetStatus()
         {
-            return MachineSender.GetStatus();
+            throw new NotImplementedException();//return new SyncStatusMode(); //return MachineSender.GetStatus();
         }
     }
 }
