@@ -17,6 +17,7 @@ namespace CleanSys.Util
         private static MockMachineReceiver receiver;
         private static string IP;
         private static string Port;
+        private static MockMachineReceiver mockReceiver = new MockMachineReceiver();
 
         public static bool SendCMD(string cmd)
         {
@@ -34,45 +35,47 @@ namespace CleanSys.Util
         }
 
         public static bool SendCMD(RailID railID, CleanCommand cmd)
-        {
-            return SendCMD("Start");
-
-            /*
+        {  
             switch (cmd)
             {
                 case CleanCommand.StartAutoClean:
-                    //SendCMD()
+                    mockReceiver.StartAutoClean(railID);
+                    break;
+                case CleanCommand.PauseAutoClean:
+                    mockReceiver.PauseAutoClean(railID);
+                    break;
+                case CleanCommand.ContinueClean:
+                    mockReceiver.ContinueClean(railID);
                     break;
                 case CleanCommand.StopAutoClean:
+                    mockReceiver.StopAutoClean(railID);
                     break;
                 case CleanCommand.Forward:
+                    mockReceiver.Forward(railID);
+                    break;
+                case CleanCommand.ContinueForward:
+                    mockReceiver.ContinueForward(railID);
                     break;
                 case CleanCommand.Backward:
+                    mockReceiver.Backward(railID);
+                    break;
+                case CleanCommand.ContinueBackword:
+                    mockReceiver.ContinueBackword(railID);
+                    break;
+                case CleanCommand.PauseManualClean:
+                    mockReceiver.PauseManualClean(railID);
                     break;
                 case CleanCommand.StopManualClean:
+                    mockReceiver.StopManualClean(railID);
                     break;
             }
 
             return true;
-            */
         }
 
-        public static MachineStatus GetStatus()
+        public static SyncStatusMode GetStatus()
         {
-            MachineStatus status;
-
-            if (receiver == null)
-            {
-                status = new MachineStatus();
-                status.IsError = true;
-                status.ErrorMsg = "请先启动清理机器";
-            }
-            else
-            {
-                status = receiver.SendStatus();
-            }
-
-            return status;
+            return mockReceiver.SendStatus();
         }
     }
 }

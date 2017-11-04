@@ -14,7 +14,10 @@ namespace CleanSys.SelfEnum
         StopAutoClean,
 
         Forward,
+        ContinueForward,
         Backward,
+        ContinueBackword,
+        PauseManualClean,//对应取消前进后退
         StopManualClean,
 
         GetStatus,

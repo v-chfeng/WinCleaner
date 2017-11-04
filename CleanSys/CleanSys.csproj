@@ -78,6 +78,12 @@
     <Compile Include="CHeckFrm.Designer.cs">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManualCleanFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualCleanFrm.Designer.cs">
+      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mode\RailMode.cs" />
     <Compile Include="SelfEnum\AutoCleanStatus.cs" />
     <Compile Include="SelfEnum\CleanCommand.cs" />
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualCleanFrm.resx">
+      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NumberkeyBoard.resx">
       <DependentUpon>NumberkeyBoard.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using CleanSys.Mode;
+using CleanSys.SelfEnum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,17 @@ namespace CleanSys.Util
 {
     public class MockMachineReceiver
     {
-        private int currentWorkingMachineNum;
-        private const int MachineCount = 4;
-
-        // 清理速率 1% / 1s
-        private int rate = 10;
-
-        private int currentStepNum;
-        private const int StepCount = 3;
+        private RailID id;
+        private int currentStep;//0：ready, 1:清理轨道， 2：涂润滑油，3：滴定无水乙醇
         private DateTime startTime;
-        private int currentProcess;
+        private int progress;
         private bool isDone;
+        private int rate;
+        private bool isSingleStep;
+        private bool isAuto;
+        private bool isForward;
+        private bool isPause;
+        
 
         public MockMachineReceiver()
         {
@@ -28,72 +29,166 @@ namespace CleanSys.Util
 
         public void Init()
         {
-            this.currentWorkingMachineNum = 1;
-            this.currentStepNum = 1;
+            this.currentStep = 0;
             this.startTime = DateTime.Now;
-            this.currentProcess = 0;
+            this.progress = 0;
             this.isDone = false;
+            this.rate = 10;
+            this.isSingleStep = false;
+            this.isAuto = false;
+            this.isForward = false;
+            this.isPause = true;
         }
 
-        public MachineStatus SendStatus()
+        public SyncStatusMode SendStatus()
         {
-            this.Clean();
-
-            MachineStatus currentStatus = new MachineStatus();
+            SyncStatusMode currentStatus = new SyncStatusMode();
 
             if (this.isDone)
             {
-                currentStatus.AllDone = true;
+                currentStatus.CleanSteps = CleanSteps.Done;
             }
             else
             {
-                currentStatus.machineNum = this.currentWorkingMachineNum;
-                currentStatus.stepNum = this.currentStepNum;
-                currentStatus.stepOneProcess = currentStepNum > 1 ? 100 : this.currentProcess;
-                currentStatus.stepTwoProcess = currentStepNum > 2 ? 100 : currentStepNum == 2 ? this.currentProcess : 0;
-                currentStatus.stepThreeProcess = currentStepNum != 3 ? 0 : this.currentProcess;
+                if (!this.isPause)
+                {
+                    if (this.isAuto)
+                    {
+                        this.Clean(this.isSingleStep);
+                    }
+                    else
+                    {
+                        this.ManualClean(this.isForward);
+                    }
+                }
+
                 currentStatus.IsError = false;
                 currentStatus.ErrorMsg = string.Empty;
+                currentStatus.CurrentRailID = this.id;
+                currentStatus.ProgressRate = this.progress;
             }
 
             return currentStatus;
         }
 
-        public void Clean()
+        public void StartAutoClean(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.isAuto = true;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void PauseAutoClean(RailID id)
+        {
+            this.id = id;
+            this.isPause = true;
+        }
+
+        public void ContinueClean(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void StopAutoClean(RailID id)
+        {
+            this.Init();
+            this.id = id;
+            this.isPause = true;
+        }
+
+        public void Forward(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.isAuto = false;
+            this.isForward = true;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void ContinueForward(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void Backward(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.isAuto = false;
+            this.isForward = false;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void ContinueBackword(RailID id)
+        {
+            this.startTime = DateTime.Now;
+            this.id = id;
+            this.isPause = false;
+        }
+
+        public void PauseManualClean(RailID id)
+        {
+            this.id = id;
+            this.isPause = true;
+        }
+
+        public void StopManualClean(RailID id)
+        {
+            this.Init();
+            this.id = id;
+            this.isPause = true;
+        }
+
+        private void Clean(bool isSingleStep = false)
         {
             TimeSpan span = DateTime.Now - this.startTime;
+            this.startTime = DateTime.Now;
             int spanProcess = (int)span.TotalSeconds * this.rate;
 
-            if (this.currentProcess + spanProcess > 100)
+            if (this.progress + spanProcess > 100)
             {
-                if (this.currentStepNum + 1 > MockMachineReceiver.StepCount)
+                this.currentStep++;
+                if (this.currentStep > 3 || isSingleStep)
                 {
-                    if (this.currentWorkingMachineNum + 1 > MockMachineReceiver.MachineCount)
-                    {
-                        this.isDone = true;
-                        //this.Init();
-                    }
-                    else
-                    {
-                        this.startTime = DateTime.Now;
-                        this.currentWorkingMachineNum++;
-                        this.currentStepNum = 1;
-                        this.currentProcess = this.currentProcess + spanProcess - 100;
-                    }
+                    this.isDone = true;
+                    this.currentStep = 0;
                 }
                 else
                 {
-                    this.startTime = DateTime.Now;
-                    this.currentStepNum++;
-                    this.currentProcess = this.currentProcess + spanProcess - 100;
+                    this.progress = this.progress + spanProcess - 100;
 
                 }
             }
             else
             {
-                this.startTime = DateTime.Now;
-                this.currentProcess = this.currentProcess + spanProcess;
+                this.progress += spanProcess;
             }
+        }
+
+        private void ManualClean(bool isForward)
+        {
+            TimeSpan span = DateTime.Now - this.startTime;
+            int spanProcess = (int)span.TotalSeconds * this.rate;
+            int tempProcess = isForward ? this.progress + spanProcess : this.progress - spanProcess;
+            if (tempProcess > 100)
+            {
+                this.isDone = true;
+                this.progress = 100;
+            }
+            else if (tempProcess < 0)
+            {
+                this.isDone = true;
+                this.progress = 0;
+            }
+            else
+            {
+                this.progress = tempProcess;
+            }            
         }
     }
 }
