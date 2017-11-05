@@ -99,36 +99,40 @@ namespace CleanSys.Util
             this.isPause = true;
         }
 
-        public void Forward(RailID id)
+        public void Forward(RailID id, CleanSteps step)
         {
             this.startTime = DateTime.Now;
             this.isAuto = false;
             this.isForward = true;
             this.id = id;
             this.isPause = false;
+            this.currentStep = (int)step;
         }
 
-        public void ContinueForward(RailID id)
+        public void ContinueForward(RailID id, CleanSteps step)
         {
             this.startTime = DateTime.Now;
             this.id = id;
             this.isPause = false;
+            this.currentStep = (int)step;
         }
 
-        public void Backward(RailID id)
+        public void Backward(RailID id, CleanSteps step)
         {
             this.startTime = DateTime.Now;
             this.isAuto = false;
             this.isForward = false;
             this.id = id;
             this.isPause = false;
+            this.currentStep = (int)step;
         }
 
-        public void ContinueBackword(RailID id)
+        public void ContinueBackword(RailID id, CleanSteps step)
         {
             this.startTime = DateTime.Now;
             this.id = id;
             this.isPause = false;
+            this.currentStep = (int)step;
         }
 
         public void PauseManualClean(RailID id)

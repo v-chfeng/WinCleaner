@@ -34,6 +34,33 @@ namespace CleanSys.Util
             return isSuccess;
         }
 
+        public static bool SendCMD(RailID railID, CleanCommand cmd, CleanSteps step)
+        {
+            switch (cmd)
+            {
+                case CleanCommand.Forward:
+                    mockReceiver.Forward(railID, step);
+                    break;
+                case CleanCommand.ContinueForward:
+                    mockReceiver.ContinueForward(railID, step);
+                    break;
+                case CleanCommand.Backward:
+                    mockReceiver.Backward(railID, step);
+                    break;
+                case CleanCommand.ContinueBackword:
+                    mockReceiver.ContinueBackword(railID, step);
+                    break;
+                case CleanCommand.PauseManualClean:
+                    mockReceiver.PauseManualClean(railID);
+                    break;
+                case CleanCommand.StopManualClean:
+                    mockReceiver.StopManualClean(railID);
+                    break;
+            }
+
+            return true;
+        }
+
         public static bool SendCMD(RailID railID, CleanCommand cmd)
         {  
             switch (cmd)
@@ -49,24 +76,6 @@ namespace CleanSys.Util
                     break;
                 case CleanCommand.StopAutoClean:
                     mockReceiver.StopAutoClean(railID);
-                    break;
-                case CleanCommand.Forward:
-                    mockReceiver.Forward(railID);
-                    break;
-                case CleanCommand.ContinueForward:
-                    mockReceiver.ContinueForward(railID);
-                    break;
-                case CleanCommand.Backward:
-                    mockReceiver.Backward(railID);
-                    break;
-                case CleanCommand.ContinueBackword:
-                    mockReceiver.ContinueBackword(railID);
-                    break;
-                case CleanCommand.PauseManualClean:
-                    mockReceiver.PauseManualClean(railID);
-                    break;
-                case CleanCommand.StopManualClean:
-                    mockReceiver.StopManualClean(railID);
                     break;
             }
 

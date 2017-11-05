@@ -30,14 +30,34 @@ namespace CleanSys.Util
             return MachineSender.SendCMD(railID, CleanCommand.StopManualClean);
         }
 
-        public static bool Forward(RailID railID)
+        public static bool Forward(RailID railID, CleanSteps steps)
         {
-            return MachineSender.SendCMD(railID, CleanCommand.Forward);
+            return MachineSender.SendCMD(railID, CleanCommand.Forward, steps);
         }
 
-        public static bool Backward(RailID railID)
+        public static bool PauseForward(RailID railID)
         {
-            return MachineSender.SendCMD(railID, CleanCommand.Backward);
+            return MachineSender.SendCMD(railID, CleanCommand.PauseManualClean);
+        }
+
+        public static bool ContinueForward(RailID railID)
+        {
+            return MachineSender.SendCMD(railID, CleanCommand.ContinueForward);
+        }
+
+        public static bool Backward(RailID railID, CleanSteps steps)
+        {
+            return MachineSender.SendCMD(railID, CleanCommand.Backward, steps);
+        }
+
+        public static bool PauseBackward(RailID railID)
+        {
+            return MachineSender.SendCMD(railID, CleanCommand.PauseManualClean);
+        }
+
+        public static bool ContinueBackward(RailID railID)
+        {
+            return MachineSender.SendCMD(railID, CleanCommand.ContinueBackword);
         }
 
         public static bool StopManualClean(RailID railID)

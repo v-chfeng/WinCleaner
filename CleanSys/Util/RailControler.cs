@@ -292,6 +292,24 @@ namespace CleanSys.Util
             return true;
         }
 
+        /// <summary>
+        /// 给手动清理设置轨道状态用的。因为手动清理轨道没有因为步骤变化图标
+        /// </summary>
+        /// <param name="railStatus"></param>
+        /// <returns></returns>
+        public bool SetRailStatus(RailStatus railStatus)
+        {
+            RailMode mode = GetWorkingRail();
+            if (mode == null)
+            {
+                return false;
+            }
+
+            mode.Status = railStatus;
+
+            return true;
+        }
+
         #endregion
 
 
