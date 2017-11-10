@@ -67,7 +67,7 @@ namespace CleanSys.Util
 
         public static SyncStatusMode GetStatus()
         {
-            throw new NotImplementedException();//return new SyncStatusMode(); //return MachineSender.GetStatus();
+            return MachineSender.GetStatus();
         }
     }
 }

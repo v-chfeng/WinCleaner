@@ -60,7 +60,7 @@ namespace CleanSys.Mode
 
             //代表哪个轨道：1,2,3,4
             int railNum = (int)this.ID;
-            string imgName = string.Format("_{0}{1}.png", railNum, color);
+            string imgName = string.Format("_{0}{1}", railNum, color);
             this.ImageBox.BackgroundImage = (System.Drawing.Image)(Resources.ResourceManager.GetObject(imgName));
         }
 

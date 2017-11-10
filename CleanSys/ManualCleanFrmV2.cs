@@ -61,7 +61,7 @@ namespace CleanSys
             this.cleanStep = CleanSteps.UnSupported;
         }
 
-        private void AutoCleanFrm_Load(object sender, EventArgs e)
+        private void ManualCleanFrm_Load(object sender, EventArgs e)
         {
             int x = (System.Windows.Forms.SystemInformation.WorkingArea.Width - this.Size.Width) / 2;
             int y = (System.Windows.Forms.SystemInformation.WorkingArea.Height - this.Size.Height) / 2;
@@ -124,128 +124,7 @@ namespace CleanSys
             this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
             this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
-
-        /// <summary>
-        /// 开始 暂停 单击响应方法
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void StartPause_Click(object sender, EventArgs e)
-        {
-            RailID selectedID = RailID.UnSupported;
-            AutoCleanStatus currentStatus = this.railsControler.CurrnetStatus;
-
-            switch (currentStatus)
-            {
-                case AutoCleanStatus.Ready:
-                    selectedID = this.railsControler.SelectedRailNum;
-                    this.StartClean(selectedID);
-                    break;
-                case AutoCleanStatus.Running:
-                    selectedID = this.railsControler.RunningNum;
-                    this.PauseClean(selectedID);
-                    break;
-                case AutoCleanStatus.Pause:
-                    selectedID = this.railsControler.PauseNum;
-                    this.ContinueClean(selectedID);
-                    break;
-                case AutoCleanStatus.WaitSelect:
-                    MessageBox.Show("请先选择要清理的轨道！");
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// 开始 清理
-        /// </summary>
-        /// <param name="selectedID"></param>
-        private void StartClean(RailID selectedID)
-        {
-            bool isSuccess = MachinePortal.StartAutoClean(selectedID);
-
-            if (isSuccess)
-            {
-                // 更新开始按钮图片
-                this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
-                this.CurrentCleanStep = CleanSteps.CleanRail;
-
-                //更新八角形UI：轨道颜色
-                this.railsControler.Start();
-
-                // 启动界面更新线程，更新进度百分比，更新模拟小车,
-                this.CleanDistance = 0;
-                this.InitProcessBar();
-
-                // 重置更新UI 线程               
-                this.updateUiThread = new Thread(this.getter.GetStatus);
-                this.updateUiThread.IsBackground = true;
-                this.updateUiThread.Start();
-            }
-            else
-            {
-                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
-            }
-        }
-
-        private void ContinueClean(RailID selectedID)
-        {
-            bool isSuccess = MachinePortal.ContinueAutoClean(selectedID);
-
-            if (isSuccess)
-            {
-                // 更新开始按钮图片
-                this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
-
-                //更新八角形UI
-                this.railsControler.Continue();
-
-                //继续计时器
-                TimeSpan span = this.saveSpendTimeDic[this.CurrentCleanStep];
-
-                // 启动界面更新线程，更新进度百分比，更新模拟小车, 更新轨道颜色。
-                this.updateUiThread = new Thread(this.getter.GetStatus);
-                this.updateUiThread.IsBackground = true;
-                this.updateUiThread.Start();
-
-                //清除记录
-                this.saveSpendTimeDic.Clear();
-            }
-            else
-            {
-                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
-            }
-        }
-
-        private void PauseClean(RailID selectedID)
-        {
-            // send pause cmd;
-            bool isSuccess = MachinePortal.PauseAutoClean(selectedID);
-
-            if (isSuccess)
-            {
-                // 更新开始按钮图片
-                this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
-
-                //更新八角形UI
-                this.railsControler.Pause();
-
-                // 杀死界面更新程序
-                this.updateUiThread.Abort();
-            }
-            else
-            {
-                MessageBox.Show("发送“清理”请求失败，检查网络情况！");
-            }
-        }
-
-        /// <summary>
-        /// 新需求中有一个开始 button。所以这个button不可用。
-        /// </summary>
-        private void AutoClean_Click(object sender, EventArgs e)
-        {
-            ;//this.StartCleanOld();
-        }
-
+        
         private void stopBtn_Click(object sender, EventArgs e)
         {
             if (!this.railsControler.IsAllStoped)

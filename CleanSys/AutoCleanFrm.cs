@@ -86,6 +86,11 @@ namespace CleanSys
             this.railsControler = new RailControler(this.eightAngle1.ImgList);
 
             this.InitProcessBar();
+
+            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
+            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
+            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
+            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
 
         /// <summary>
@@ -296,11 +301,6 @@ namespace CleanSys
             this.upArrow.Location = new Point(AutoCleanFrm.UpArrowLeft, AutoCleanFrm.UpArrowTop);
             
             this.CurrentCleanStep = CleanSteps.UnSupported;
-
-            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
-            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
-            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
-            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
 
         /// <summary>
@@ -479,6 +479,7 @@ namespace CleanSys
                         this.timerThread1.Abort();
                         this.timerThread2.Abort();
                         this.timerThread3.Abort();
+                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
                     }
                 }
             }
@@ -506,14 +507,14 @@ namespace CleanSys
         {
             CheckForIllegalCrossThreadCalls = false;
 
-            if (InvokeRequired)
-            {
-                this.Invoke(new AsynUpdateUI(this.Update), status);
-            }
-            else
-            {
-                this.Update(status);
-            }
+            //if (InvokeRequired)
+            //{
+            //    this.Invoke(new AsynUpdateUI(this.Update), status);
+            //}
+            //else
+            //{
+            this.Update(status);
+            //}
         }
 
         // 重置上次清理痕迹
@@ -531,17 +532,20 @@ namespace CleanSys
                 MessageBox.Show(status.ErrorMsg);
             }
             else
-            { 
+            {
+                //过滤掉非法数据
+                float progress = status.ProgressRate > 100 ? 100 : status.ProgressRate < 0 ? 0 : status.ProgressRate;
+
                 switch (status.CleanSteps)
                 {
                     case CleanSteps.CleanRail:
-                        this.CleanRailStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.CleanRailStepRate = progress / AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.CleanRail;
                         break;
                     case CleanSteps.CoveredWithGrease:
                         this.CleanRailStepRate = 100;
                         this.timerThread1.Abort();
-                        this.CoveredWithGreaseStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.CoveredWithGreaseStepRate = progress / AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.CoveredWithGrease;
                         break;
                     case CleanSteps.DropAlcohol:
@@ -549,7 +553,7 @@ namespace CleanSys
                         this.timerThread1.Abort();
                         this.CoveredWithGreaseStepRate = 100;
                         this.timerThread2.Abort();
-                        this.DropAlcoholStepRate = status.ProgressRate / AutoCleanFrm.RailLength;
+                        this.DropAlcoholStepRate = progress / AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.DropAlcohol;
                         break;
                     case CleanSteps.Done:
@@ -562,11 +566,12 @@ namespace CleanSys
                         this.CurrentCleanStep = CleanSteps.Done;
                         int num = (int)this.railsControler.WorkingNum;
                         string numZh = this.ConvertNumToChinese(num);
+                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
                         MessageBox.Show($"{numZh}轨道清理完毕!");
                         break;
                 }
 
-                this.UpdateUpArrowLocation(status.ProgressRate);
+                this.UpdateUpArrowLocation(progress);
                 this.railsControler.SetRailProgress(status.CleanSteps);
             }
         }
@@ -596,6 +601,8 @@ namespace CleanSys
         private void UpdateUpArrowLocation(float distance)
         {
             CheckForIllegalCrossThreadCalls = false;
+            distance = distance > 100 ? 100 : distance;
+            distance = distance < 0 ? 0 : distance;
             int currentTop = this.upArrow.Location.Y;
             int newTop = AutoCleanFrm.UpArrowTop - 25 * (int)(distance / AutoCleanFrm.RailLength);
 

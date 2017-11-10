@@ -66,6 +66,7 @@ namespace CleanSys.Util
                 currentStatus.ErrorMsg = string.Empty;
                 currentStatus.CurrentRailID = this.id;
                 currentStatus.ProgressRate = this.progress;
+                currentStatus.CleanSteps = (CleanSteps)this.currentStep;
             }
 
             return currentStatus;
@@ -164,8 +165,8 @@ namespace CleanSys.Util
                 }
                 else
                 {
-                    this.progress = this.progress + spanProcess - 100;
-
+                    this.progress = (this.progress + spanProcess) % 100;
+                    this.currentStep++;
                 }
             }
             else

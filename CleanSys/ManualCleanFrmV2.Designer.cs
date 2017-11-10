@@ -83,7 +83,6 @@ namespace CleanSys
             this.AutoClean.TabIndex = 2;
             this.AutoClean.Text = "手 动\r\n清 理";
             this.AutoClean.UseVisualStyleBackColor = false;
-            this.AutoClean.Click += new System.EventHandler(this.AutoClean_Click);
             // 
             // DataLabel
             // 
@@ -433,7 +432,7 @@ namespace CleanSys
             this.Name = "ManualCleanFrm";
             this.ShowDrawIcon = false;
             this.Text = "";
-            this.Load += new System.EventHandler(this.AutoCleanFrm_Load);
+            this.Load += new System.EventHandler(this.ManualCleanFrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upArrow)).EndInit();
             this.skinPanel1.ResumeLayout(false);

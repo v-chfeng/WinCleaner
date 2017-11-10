@@ -448,7 +448,7 @@
             this.startBtn.Size = new System.Drawing.Size(104, 104);
             this.startBtn.TabIndex = 2;
             this.startBtn.UseVisualStyleBackColor = false;
-            this.startBtn.Click += new System.EventHandler(this.AutoClean_Click);
+            this.startBtn.Click += new System.EventHandler(this.StartPause_Click);
             // 
             // AutoCleanFrm
             // 
