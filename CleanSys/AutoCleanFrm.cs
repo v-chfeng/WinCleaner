@@ -87,10 +87,22 @@ namespace CleanSys
 
             this.InitProcessBar();
 
+            this.CurrentCleanStep = CleanSteps.UnSupported;
+
             this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
             this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
             this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
             this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
+        }
+
+        private void ResetTimerThread()
+        {
+            this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
+            this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
+            this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
+            this.timerThread1.IsBackground = true;
+            this.timerThread2.IsBackground = true;
+            this.timerThread3.IsBackground = true;
         }
 
         /// <summary>
@@ -127,8 +139,8 @@ namespace CleanSys
         public TimeSpan ConvertStringToSpan(string str)
         {
             string[] strArr = str.Split(':');
-            int mins = int.Parse(strArr[0]);
-            int seconds = int.Parse(strArr[1]);
+            int mins = int.Parse(strArr[1]);
+            int seconds = int.Parse(strArr[2]);
             return new TimeSpan(0, mins, seconds);
         }
 
@@ -299,8 +311,6 @@ namespace CleanSys
             this.spendTime3.Text = defaultSpend;
 
             this.upArrow.Location = new Point(AutoCleanFrm.UpArrowLeft, AutoCleanFrm.UpArrowTop);
-            
-            this.CurrentCleanStep = CleanSteps.UnSupported;
         }
 
         /// <summary>
@@ -345,7 +355,6 @@ namespace CleanSys
             {
                 // 更新开始按钮图片
                 this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
-                this.CurrentCleanStep = CleanSteps.CleanRail;
 
                 //更新八角形UI：轨道颜色
                 this.railsControler.Start();
@@ -362,6 +371,8 @@ namespace CleanSys
                 this.updateUiThread = new Thread(this.getter.GetStatus);
                 this.updateUiThread.IsBackground = true;
                 this.updateUiThread.Start();
+
+                this.CurrentCleanStep = CleanSteps.CleanRail;
             }
             else
             {
@@ -380,6 +391,8 @@ namespace CleanSys
 
                 //更新八角形UI
                 this.railsControler.Continue();
+
+                this.RenewTimer(false);
 
                 //继续计时器
                 TimeSpan span = this.saveSpendTimeDic[this.CurrentCleanStep];
@@ -507,14 +520,14 @@ namespace CleanSys
         {
             CheckForIllegalCrossThreadCalls = false;
 
-            //if (InvokeRequired)
-            //{
-            //    this.Invoke(new AsynUpdateUI(this.Update), status);
-            //}
-            //else
-            //{
-            this.Update(status);
-            //}
+            if (InvokeRequired)
+            {
+                this.Invoke(new AsynUpdateUI(this.Update), status);
+            }
+            else
+            {
+                this.Update(status);
+            }
         }
 
         // 重置上次清理痕迹

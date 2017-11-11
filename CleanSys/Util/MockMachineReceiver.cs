@@ -75,9 +75,11 @@ namespace CleanSys.Util
         public void StartAutoClean(RailID id)
         {
             this.startTime = DateTime.Now;
+            this.currentStep = 1;
             this.isAuto = true;
             this.id = id;
             this.isPause = false;
+            this.isDone = false;
         }
 
         public void PauseAutoClean(RailID id)
