@@ -24,7 +24,7 @@ namespace CleanSys.Util
             {
                 status = MachinePortal.GetStatus();
                 this.UpdateUIDelegate(status);
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
             }
             while (status.CleanSteps != CleanSteps.Done);
 

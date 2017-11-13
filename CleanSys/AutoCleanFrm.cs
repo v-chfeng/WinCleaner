@@ -30,10 +30,10 @@ namespace CleanSys
 
         private string spendTimeTemplate = @"用时: {0:00}:{1:00}";
 
-        private string angleOne = "upRight1";
-        private string angleTwo = "upLeft2";
-        private string angleThre = "downLeft3";
-        private string angleFour = "downRight4";
+        private string angleOne = "_1";
+        private string angleTwo = "_2";
+        private string angleThre = "_3";
+        private string angleFour = "_4";
 
         private string stepZeroGray = "Gray";
 
@@ -113,6 +113,7 @@ namespace CleanSys
         {
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.UpdateUpArrowLocation(value);
             }
         }
@@ -122,10 +123,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.process1.ProcessBar.Value;
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.process1.ProcessBar.Value = Convert.ToInt32(value);
                 this.process1.ProcessBar.Text = Convert.ToInt32(value) + "%";
             }
@@ -133,11 +136,13 @@ namespace CleanSys
 
         public string ConvertSpanToString(TimeSpan span)
         {
+            CheckForIllegalCrossThreadCalls = false;
             return string.Format(this.spendTimeTemplate, span.Minutes, span.Seconds);
         }
 
         public TimeSpan ConvertStringToSpan(string str)
         {
+            CheckForIllegalCrossThreadCalls = false;
             string[] strArr = str.Split(':');
             int mins = int.Parse(strArr[1]);
             int seconds = int.Parse(strArr[2]);
@@ -151,10 +156,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.ConvertStringToSpan(this.spendTime1.Text);
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.spendTime1.Text = this.ConvertSpanToString(value);
             }
         }
@@ -163,10 +170,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.process2.ProcessBar.Value;
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.process2.ProcessBar.Value = Convert.ToInt32(value);
                 this.process2.ProcessBar.Text = Convert.ToInt32(value) + "%";
             }
@@ -176,10 +185,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.ConvertStringToSpan(this.spendTime2.Text);
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.spendTime2.Text = this.ConvertSpanToString(value);
             }
         }
@@ -188,10 +199,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.process3.ProcessBar.Value;
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.process3.ProcessBar.Value = Convert.ToInt32(value);
                 this.process3.ProcessBar.Text = Convert.ToInt32(value) + "%";
             }
@@ -201,10 +214,12 @@ namespace CleanSys
         {
             get
             {
+                CheckForIllegalCrossThreadCalls = false;
                 return this.ConvertStringToSpan(this.spendTime3.Text);
             }
             set
             {
+                CheckForIllegalCrossThreadCalls = false;
                 this.spendTime3.Text = this.ConvertSpanToString(value);
             }
         }
@@ -214,7 +229,8 @@ namespace CleanSys
 
         private void RenewTimer(bool isReset)
         {
-            this.saveSpendTimeDic.Clear();
+            CheckForIllegalCrossThreadCalls = false;
+
             this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
             this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
             this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
@@ -224,6 +240,7 @@ namespace CleanSys
 
             if (isReset)
             {
+                this.saveSpendTimeDic.Clear();
                 this.CleanRailSpan = new TimeSpan(0, 0, 0);
                 this.CoveredWithGreaseSpan = new TimeSpan(0, 0, 0);
                 this.DropAlcoholSpan = new TimeSpan(0, 0, 0);
@@ -287,7 +304,7 @@ namespace CleanSys
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void RTC_Tick(object sender, EventArgs e)
+        public void RTC_Tick(object sender, EventArgs e)
         {
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
@@ -297,12 +314,15 @@ namespace CleanSys
         /// <summary>
         /// 变量初始化器
         /// </summary>
-        private void InitProcessBar()
+        public void InitProcessBar()
         {
             ///三个步骤进度初始化
             this.CleanRailStepRate = 0;
             this.CoveredWithGreaseStepRate = 0;
             this.DropAlcoholStepRate = 0;
+
+            this.process1.ProcessBar.Value = Convert.ToInt32(0);
+            this.process1.ProcessBar.Text = Convert.ToInt32(0) + "%";
 
             /// 三个步骤用时初始化
             string defaultSpend = string.Format(this.spendTimeTemplate, "00","00");
@@ -337,7 +357,7 @@ namespace CleanSys
                     selectedID = this.railsControler.PauseNum;
                     this.ContinueClean(selectedID);
                     break;
-                case AutoCleanStatus.WaitSelect:
+                default:
                     MessageBox.Show("请先选择要清理的轨道！");
                     break;
             }
@@ -354,7 +374,7 @@ namespace CleanSys
             if (isSuccess)
             {
                 // 更新开始按钮图片
-                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewPauseBtn;
 
                 //更新八角形UI：轨道颜色
                 this.railsControler.Start();
@@ -387,7 +407,7 @@ namespace CleanSys
             if (isSuccess)
             {
                 // 更新开始按钮图片
-                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.PauseBtn;
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewPauseBtn;
 
                 //更新八角形UI
                 this.railsControler.Continue();
@@ -445,7 +465,7 @@ namespace CleanSys
                 }
 
                 // 更新开始按钮图片
-                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+                this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
 
                 //更新八角形UI
                 this.railsControler.Pause();
@@ -492,7 +512,9 @@ namespace CleanSys
                         this.timerThread1.Abort();
                         this.timerThread2.Abort();
                         this.timerThread3.Abort();
-                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
+                        this.InitProcessBar();
+                        this.RenewTimer(true);
                     }
                 }
             }
@@ -520,14 +542,14 @@ namespace CleanSys
         {
             CheckForIllegalCrossThreadCalls = false;
 
-            if (InvokeRequired)
-            {
-                this.Invoke(new AsynUpdateUI(this.Update), status);
-            }
-            else
-            {
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new AsynUpdateUI(this.Update), status);
+            //}
+            //else
+            //{
                 this.Update(status);
-            }
+            //}
         }
 
         // 重置上次清理痕迹
@@ -552,13 +574,17 @@ namespace CleanSys
                 switch (status.CleanSteps)
                 {
                     case CleanSteps.CleanRail:
-                        this.CleanRailStepRate = progress / AutoCleanFrm.RailLength;
+                        this.CleanRailStepRate = progress; // AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.CleanRail;
                         break;
                     case CleanSteps.CoveredWithGrease:
                         this.CleanRailStepRate = 100;
                         this.timerThread1.Abort();
-                        this.CoveredWithGreaseStepRate = progress / AutoCleanFrm.RailLength;
+                        if (this.CurrentCleanStep != CleanSteps.CoveredWithGrease)
+                        {
+                            this.timerThread2.Start(new TimeSpan(0, 0, 0));
+                        }
+                        this.CoveredWithGreaseStepRate = progress;// AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.CoveredWithGrease;
                         break;
                     case CleanSteps.DropAlcohol:
@@ -566,7 +592,11 @@ namespace CleanSys
                         this.timerThread1.Abort();
                         this.CoveredWithGreaseStepRate = 100;
                         this.timerThread2.Abort();
-                        this.DropAlcoholStepRate = progress / AutoCleanFrm.RailLength;
+                        if (this.CurrentCleanStep != CleanSteps.DropAlcohol)
+                        {
+                            this.timerThread3.Start(new TimeSpan(0, 0, 0));
+                        }
+                        this.DropAlcoholStepRate = progress; // AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.DropAlcohol;
                         break;
                     case CleanSteps.Done:
@@ -579,7 +609,7 @@ namespace CleanSys
                         this.CurrentCleanStep = CleanSteps.Done;
                         int num = (int)this.railsControler.WorkingNum;
                         string numZh = this.ConvertNumToChinese(num);
-                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+                        this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
                         MessageBox.Show($"{numZh}轨道清理完毕!");
                         break;
                 }
@@ -591,6 +621,8 @@ namespace CleanSys
 
         private string ConvertNumToChinese(int num)
         {
+            CheckForIllegalCrossThreadCalls = false;
+
             switch (num)
             {
                 case 1:
@@ -614,10 +646,11 @@ namespace CleanSys
         private void UpdateUpArrowLocation(float distance)
         {
             CheckForIllegalCrossThreadCalls = false;
+
             distance = distance > 100 ? 100 : distance;
             distance = distance < 0 ? 0 : distance;
             int currentTop = this.upArrow.Location.Y;
-            int newTop = AutoCleanFrm.UpArrowTop - 25 * (int)(distance / AutoCleanFrm.RailLength);
+            int newTop = AutoCleanFrm.UpArrowTop - 25 * (int)(distance /100 * AutoCleanFrm.RailLength);
 
             // 向下走，改变小车箭头方向
             if (newTop > currentTop)

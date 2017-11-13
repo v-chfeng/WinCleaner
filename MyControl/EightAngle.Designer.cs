@@ -44,9 +44,9 @@
             this.img1.BackColor = System.Drawing.Color.Transparent;
             this.img1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("img1.BackgroundImage")));
             this.img1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img1.Location = new System.Drawing.Point(29, 122);
+            this.img1.Location = new System.Drawing.Point(39, 107);
             this.img1.Name = "img1";
-            this.img1.Size = new System.Drawing.Size(62, 62);
+            this.img1.Size = new System.Drawing.Size(62, 67);
             this.img1.TabIndex = 0;
             this.img1.TabStop = false;
             this.img1.Click += new System.EventHandler(this.img1_Click);
@@ -56,9 +56,9 @@
             this.img2.BackColor = System.Drawing.Color.Transparent;
             this.img2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("img2.BackgroundImage")));
             this.img2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img2.Location = new System.Drawing.Point(124, 120);
+            this.img2.Location = new System.Drawing.Point(111, 107);
             this.img2.Name = "img2";
-            this.img2.Size = new System.Drawing.Size(61, 64);
+            this.img2.Size = new System.Drawing.Size(61, 69);
             this.img2.TabIndex = 1;
             this.img2.TabStop = false;
             // 
@@ -67,9 +67,9 @@
             this.img3.BackColor = System.Drawing.Color.Transparent;
             this.img3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("img3.BackgroundImage")));
             this.img3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img3.Location = new System.Drawing.Point(123, 27);
+            this.img3.Location = new System.Drawing.Point(111, 34);
             this.img3.Name = "img3";
-            this.img3.Size = new System.Drawing.Size(62, 64);
+            this.img3.Size = new System.Drawing.Size(62, 69);
             this.img3.TabIndex = 2;
             this.img3.TabStop = false;
             // 
@@ -78,15 +78,15 @@
             this.img4.BackColor = System.Drawing.Color.Transparent;
             this.img4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("img4.BackgroundImage")));
             this.img4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img4.Location = new System.Drawing.Point(29, 27);
+            this.img4.Location = new System.Drawing.Point(41, 33);
             this.img4.Name = "img4";
-            this.img4.Size = new System.Drawing.Size(62, 64);
+            this.img4.Size = new System.Drawing.Size(62, 69);
             this.img4.TabIndex = 3;
             this.img4.TabStop = false;
             // 
             // EightAngle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));

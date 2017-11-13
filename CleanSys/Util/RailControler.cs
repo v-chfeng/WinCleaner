@@ -408,6 +408,7 @@ namespace CleanSys.Util
                     // 如果 其他轨道 被选中，并且所有 轨道 都没有在工作， 则特定 轨道 被选中，其他都清除状态
                     // 如果所有的 轨道 都没有被选中，则直接选中
                     case RailProgress.UnSelected:
+                    case RailProgress.Stop:
                         this.ClearOtherRail(id);
                         rail.Progress = RailProgress.Selected;
                         break;
@@ -426,7 +427,6 @@ namespace CleanSys.Util
                         }
                         break;
                 }
-
             }
         }
 

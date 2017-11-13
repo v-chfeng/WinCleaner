@@ -80,6 +80,7 @@ namespace CleanSys.Util
             this.id = id;
             this.isPause = false;
             this.isDone = false;
+            this.progress = 0;
         }
 
         public void PauseAutoClean(RailID id)
@@ -164,11 +165,11 @@ namespace CleanSys.Util
                 {
                     this.isDone = true;
                     this.currentStep = 0;
+                    this.progress = 0;
                 }
                 else
                 {
                     this.progress = (this.progress + spanProcess) % 100;
-                    this.currentStep++;
                 }
             }
             else

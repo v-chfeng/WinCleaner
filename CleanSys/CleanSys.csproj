@@ -376,6 +376,12 @@
     <Content Include="icon\4CheckedGreen.png" />
     <Content Include="icon\4CheckedRed.png" />
     <Content Include="icon\4CheckedYellow.png" />
+    <None Include="icon\NewPauseBtn.png" />
+    <None Include="icon\NewStartBtn.png" />
+    <None Include="icon\NewStartBtn2.png" />
+    <None Include="icon\NewPasueBtnDown.png" />
+    <None Include="icon\NewPause2.png" />
+    <None Include="icon\NewStartBtnDown.png" />
     <None Include="icon\StopBtn.png" />
     <None Include="icon\StartBtn.png" />
     <None Include="icon\PauseBtn.png" />

@@ -430,7 +430,7 @@
             // startBtn
             // 
             this.startBtn.BackColor = System.Drawing.Color.Transparent;
-            this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+            this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
             this.startBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.startBtn.BaseColor = System.Drawing.Color.Transparent;
             this.startBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
