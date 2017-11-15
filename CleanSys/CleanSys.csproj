@@ -376,6 +376,13 @@
     <Content Include="icon\4CheckedGreen.png" />
     <Content Include="icon\4CheckedRed.png" />
     <Content Include="icon\4CheckedYellow.png" />
+    <None Include="icon\StepTwoDown.png" />
+    <None Include="icon\StepThreeDown.png" />
+    <None Include="icon\StepOneDown.png" />
+    <None Include="icon\forwardBtnDown.png" />
+    <None Include="icon\forwardBtn.png" />
+    <None Include="icon\backwardBtnDown.png" />
+    <None Include="icon\backwardBtn.png" />
     <None Include="icon\NewPauseBtn.png" />
     <None Include="icon\NewStartBtn.png" />
     <None Include="icon\NewStartBtn2.png" />

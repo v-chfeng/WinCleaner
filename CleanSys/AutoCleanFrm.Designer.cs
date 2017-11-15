@@ -436,6 +436,7 @@
             this.startBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.startBtn.DownBack = null;
             this.startBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.startBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
             this.startBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.startBtn.ForeColor = System.Drawing.Color.Transparent;
             this.startBtn.IsDrawBorder = false;

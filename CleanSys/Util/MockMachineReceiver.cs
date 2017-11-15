@@ -111,6 +111,7 @@ namespace CleanSys.Util
             this.id = id;
             this.isPause = false;
             this.currentStep = (int)step;
+            this.isDone = false;
         }
 
         public void ContinueForward(RailID id, CleanSteps step)
@@ -129,6 +130,7 @@ namespace CleanSys.Util
             this.id = id;
             this.isPause = false;
             this.currentStep = (int)step;
+            this.isDone = false;
         }
 
         public void ContinueBackword(RailID id, CleanSteps step)

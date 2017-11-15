@@ -38,5 +38,17 @@ namespace CleanSys
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
         }
+
+        private void HomeBtn_Click(object sender, EventArgs e)
+        {
+            myData.mainFrm.Show();
+            this.Close();
+        }
+
+        private void rightBtn_Click(object sender, EventArgs e)
+        {
+            myData.mainFrm.Show();
+            this.Close();
+        }
     }
 }

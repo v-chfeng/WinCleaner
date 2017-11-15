@@ -27,20 +27,16 @@ namespace CleanSys
         private const int UpArrowTop = 301;
         private const int UpArrowLeft = -2;
         private const int RailLength = 12;
-
-        private string spendTimeTemplate = @"用时: {0:00}:{1:00}";
-
-        private string angleOne = "upRight1";
-        private string angleTwo = "upLeft2";
-        private string angleThre = "downLeft3";
-        private string angleFour = "downRight4";
+        
+        private string angleOne = "_1";
+        private string angleTwo = "_2";
+        private string angleThre = "_3";
+        private string angleFour = "_4";
 
         private string stepZeroGray = "Gray";
 
         private delegate void AsynUpdateUI(SyncStatusMode status);
-        
-        private CleanSteps CurrentCleanStep;
-        
+
         private Thread updateUiThread;
 
         private RailControler railsControler;
@@ -71,16 +67,17 @@ namespace CleanSys
             DataLabel.Text = myData.MiddleTitle();
             TimeLabel.Text = myData.RightTime();
 
-            this.process1.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepOne"));
-            this.process2.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepTwo"));
-            this.process3.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepThree"));
-
             this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
 
 
             this.railsControler = new RailControler(this.eightAngle1.ImgList);
 
-            this.InitProcessBar();
+            this.upArrow.Location = new Point(ManualCleanFrm.UpArrowLeft, ManualCleanFrm.UpArrowTop);
+
+            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
+            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
+            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
+            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
         }
 
         /// <summary>
@@ -106,24 +103,6 @@ namespace CleanSys
             TimeLabel.Text = myData.RightTime();
             //testProcess();
         }
-
-        /// <summary>
-        /// 变量初始化器
-        /// </summary>
-        private void InitProcessBar()
-        {
-            /// 三个步骤用时初始化
-            string defaultSpend = string.Format(this.spendTimeTemplate, "00","00");
-
-            this.upArrow.Location = new Point(ManualCleanFrm.UpArrowLeft, ManualCleanFrm.UpArrowTop);
-            
-            this.CurrentCleanStep = CleanSteps.UnSupported;
-
-            this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
-            this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
-            this.eightAngle1.ImgThree.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleThre + this.stepZeroGray)));
-            this.eightAngle1.ImgFour.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleFour + this.stepZeroGray)));
-        }
         
         private void stopBtn_Click(object sender, EventArgs e)
         {
@@ -133,7 +112,7 @@ namespace CleanSys
                 if (result == DialogResult.OK)
                 {
                     RailID id = this.railsControler.WorkingNum;
-                    bool isSuccess = MachinePortal.StopAutoClean(id);
+                    bool isSuccess = MachinePortal.StopManualClean(id);
                     if (!isSuccess)
                     {
                         MessageBox.Show("终止清理失败!");
@@ -141,9 +120,10 @@ namespace CleanSys
                     else
                     {
                         this.railsControler.Stop();
-                        this.CurrentCleanStep = CleanSteps.UnSupported;
-                        this.saveSpendTimeDic.Clear();
-                        this.updateUiThread.Abort();
+                        this.cleanStep = CleanSteps.UnSupported;
+                        this.UpdateUpArrowLocation(0);
+                        this.ClearStepBtns();
+                        this.PauseManual();
                     }
                 }
             }
@@ -151,6 +131,13 @@ namespace CleanSys
             {
                 MessageBox.Show("清理没有进行，无需终止!");
             }
+        }
+
+        private void ClearStepBtns()
+        {
+            this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepOne;
+            this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepTwo;
+            this.stepThreeBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepThree;
         }
 
         private void HomeBtn_Click(object sender, EventArgs e)
@@ -187,6 +174,10 @@ namespace CleanSys
             ;
         }
 
+        /// <summary>
+        /// 更新界面
+        /// </summary>
+        /// <param name="status"></param>
         private void Update(SyncStatusMode status)
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -198,6 +189,12 @@ namespace CleanSys
             else
             { 
                 this.UpdateUpArrowLocation(status.ProgressRate);
+
+                if (status.CleanSteps == CleanSteps.Done)
+                {
+                    MessageBox.Show("到达终点，清理停止！");
+                    this.PauseManual();
+                }
                 //this.railsControler.SetRailProgress(status.CleanSteps);
             }
         }
@@ -240,7 +237,7 @@ namespace CleanSys
             }
         }
 
-        private void forward_mouseDown(object sender, EventArgs args)
+        private void forward_Click(object sender, EventArgs args)
         {
             if (!this.railsControler.IsSelected)
             {
@@ -250,14 +247,14 @@ namespace CleanSys
             {
                 MessageBox.Show("请先选择清理步骤!");
             }
-            else
+            else if (!this.isWorking)
             {
                 bool success = MachinePortal.Forward(this.railsControler.SelectedRailNum, this.cleanStep);
                 if (success)
                 {
                     this.isWorking = true;
-                    this.backfowrdBtn.Enabled = false;
                     this.railsControler.SetRailStatus(RailStatus.Running);
+                    this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.forwardBtnDown;
 
                     this.updateUiThread = new Thread(this.getter.GetStatus);
                     this.updateUiThread.IsBackground = true;
@@ -266,26 +263,15 @@ namespace CleanSys
                 else
                 {
                     MessageBox.Show("发送清理命令失败，请检查网络连接!");
-                }                
+                }
             }
-        }
-
-        private void forward_mouseUp(object sender, EventArgs args)
-        {
-            bool success = MachinePortal.PauseForward(this.railsControler.SelectedRailNum);
-            if (!success)
+            else
             {
-                MessageBox.Show("发送清理命令失败，请检查网络链接!");
-                return;
+                this.PauseManual();
             }
-
-            this.isWorking = false;
-            this.backfowrdBtn.Enabled = true;
-            this.railsControler.SetRailStatus(RailStatus.Ready);
-            this.updateUiThread.Abort();
         }
 
-        private void backword_mouseDown(object sender, MouseEventArgs args)
+        private void backward_Click(object sender, EventArgs args)
         {
             if (!this.railsControler.IsSelected)
             {
@@ -295,14 +281,14 @@ namespace CleanSys
             {
                 MessageBox.Show("请先选择清理步骤!");
             }
-            else
+            else if (!this.isWorking)
             {
                 bool success = MachinePortal.Backward(this.railsControler.SelectedRailNum, this.cleanStep);
                 if (success)
                 {
                     this.isWorking = true;
-                    this.forwardBtn.Enabled = false;
                     this.railsControler.SetRailStatus(RailStatus.Running);
+                    this.backfowrdBtn.BackgroundImage = global::CleanSys.Properties.Resources.backwardBtnDown;
 
                     this.updateUiThread = new Thread(this.getter.GetStatus);
                     this.updateUiThread.IsBackground = true;
@@ -313,21 +299,33 @@ namespace CleanSys
                     MessageBox.Show("发送清理命令失败，请检查网络连接!");
                 }
             }
+            else
+            {
+                this.PauseManual();
+            }
         }
 
-        private void backword_mouseUp(object sender, MouseEventArgs args)
+        /// <summary>
+        /// 当第二次单击 前进后者后退的时候，就相当于暂停状态
+        /// 只是发送 停止命令，并且杀死 更新UI进程，并不改变 轨道，清理步骤 和模拟小车的状态
+        /// </summary>
+        private void PauseManual()
         {
-            bool success = MachinePortal.PauseForward(this.railsControler.SelectedRailNum);
-            if (!success)
+            bool success = MachinePortal.StopManualClean(this.railsControler.WorkingNum);
+            if (success)
             {
-                MessageBox.Show("发送清理命令失败，请检查网络链接!");
-                return;
+                this.updateUiThread.Abort();
+                this.isWorking = false;
+                this.forwardBtn.Enabled = true;
+                this.backfowrdBtn.Enabled = true;
+                this.railsControler.SetRailStatus(RailStatus.Ready);
+                this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.forwardBtn;
+                this.backfowrdBtn.BackgroundImage = global::CleanSys.Properties.Resources.backwardBtn;
             }
-
-            this.isWorking = false;
-            this.forwardBtn.Enabled = true;
-            this.railsControler.SetRailStatus(RailStatus.Ready);
-            this.updateUiThread.Abort();
+            else
+            {
+                MessageBox.Show("发送暂停前进命令失败，请检查网络连接!");
+            }
         }
 
         private void StepOne_Click(object sender, EventArgs args)
@@ -346,12 +344,12 @@ namespace CleanSys
             }
             else
             {
-                this.process1.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepOne"));
                 this.cleanStep = CleanSteps.CleanRail;
+                this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.StepOneDown;
 
                 ///改变另外两个颜色，颜色变浅变灰
-                this.process2.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepTwo"));
-                this.process3.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepThree"));
+                this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepTwo;
+                this.stepThreeBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepThree;
             }
         }
 
@@ -371,12 +369,13 @@ namespace CleanSys
             }
             else
             {
-                this.process2.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepTwo"));
+
                 this.cleanStep = CleanSteps.CoveredWithGrease;
+                this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.StepTwoDown;
 
                 ///改变另外两个颜色，颜色变浅变灰
-                this.process1.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepOne"));
-                this.process3.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepThree"));
+                this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepOne;
+                this.stepThreeBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepThree;
             }
         }
 
@@ -397,12 +396,12 @@ namespace CleanSys
             }
             else
             {
-                this.process3.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepThree"));
                 this.cleanStep = CleanSteps.DropAlcohol;
+                this.stepThreeBtn.BackgroundImage = global::CleanSys.Properties.Resources.StepThreeDown;
 
                 ///改变另外两个颜色，颜色变浅变灰
-                this.process1.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepOne"));
-                this.process2.BackgroundImage = ((System.Drawing.Image)Resources.ResourceManager.GetObject("stepTwo"));
+                this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepTwo;
+                this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepOne;
             }
         }
     }

@@ -283,6 +283,26 @@ namespace CleanSys.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backwardBtn {
+            get {
+                object obj = ResourceManager.GetObject("backwardBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backwardBtnDown {
+            get {
+                object obj = ResourceManager.GetObject("backwardBtnDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blackBlock {
             get {
                 object obj = ResourceManager.GetObject("blackBlock", resourceCulture);
@@ -406,6 +426,26 @@ namespace CleanSys.Properties {
         internal static System.Drawing.Bitmap eightAngle {
             get {
                 object obj = ResourceManager.GetObject("eightAngle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap forwardBtn {
+            get {
+                object obj = ResourceManager.GetObject("forwardBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap forwardBtnDown {
+            get {
+                object obj = ResourceManager.GetObject("forwardBtnDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -703,6 +743,16 @@ namespace CleanSys.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap StepOneDown {
+            get {
+                object obj = ResourceManager.GetObject("StepOneDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stepThree {
             get {
                 object obj = ResourceManager.GetObject("stepThree", resourceCulture);
@@ -713,9 +763,29 @@ namespace CleanSys.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap StepThreeDown {
+            get {
+                object obj = ResourceManager.GetObject("StepThreeDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stepTwo {
             get {
                 object obj = ResourceManager.GetObject("stepTwo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StepTwoDown {
+            get {
+                object obj = ResourceManager.GetObject("StepTwoDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

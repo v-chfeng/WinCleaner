@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using CleanSys.Properties;
+using System.Windows.Forms;
 
 namespace CleanSys
 {
@@ -50,11 +51,11 @@ namespace CleanSys
             this.upArrow = new CCWin.SkinControl.SkinPictureBox();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
             this.eightAngle1 = new MyControl.EightAngle();
-            this.process3 = new CleanSys.myProcesser();
-            this.process2 = new CleanSys.myProcesser();
-            this.process1 = new CleanSys.myProcesser();
             this.forwardBtn = new CCWin.SkinControl.SkinButton();
             this.backfowrdBtn = new CCWin.SkinControl.SkinButton();
+            this.stepOneBtn = new CCWin.SkinControl.SkinButton();
+            this.stepTwoBtn = new CCWin.SkinControl.SkinButton();
+            this.stepThreeBtn = new CCWin.SkinControl.SkinButton();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upArrow)).BeginInit();
             this.skinPanel1.SuspendLayout();
@@ -173,7 +174,7 @@ namespace CleanSys
             this.stopBtn.IsDrawBorder = false;
             this.stopBtn.IsDrawGlass = false;
             this.stopBtn.IsEnabledDraw = false;
-            this.stopBtn.Location = new System.Drawing.Point(711, 533);
+            this.stopBtn.Location = new System.Drawing.Point(706, 533);
             this.stopBtn.MouseBack = null;
             this.stopBtn.MouseBaseColor = System.Drawing.Color.Transparent;
             this.stopBtn.Name = "stopBtn";
@@ -321,83 +322,123 @@ namespace CleanSys
             this.eightAngle1.Size = new System.Drawing.Size(214, 214);
             this.eightAngle1.TabIndex = 106;
             // 
-            // process3
-            // 
-            this.process3.BackColor = System.Drawing.Color.Transparent;
-            this.process3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process3.BackgroundImage")));
-            this.process3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process3.Location = new System.Drawing.Point(953, 365);
-            this.process3.Name = "process3";
-            this.process3.Size = new System.Drawing.Size(100, 100);
-            this.process3.TabIndex = 101;
-            // 
-            // process2
-            // 
-            this.process2.BackColor = System.Drawing.Color.Transparent;
-            this.process2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process2.BackgroundImage")));
-            this.process2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process2.Location = new System.Drawing.Point(711, 365);
-            this.process2.Name = "process2";
-            this.process2.Size = new System.Drawing.Size(100, 100);
-            this.process2.TabIndex = 101;
-            // 
-            // process1
-            // 
-            this.process1.BackColor = System.Drawing.Color.Transparent;
-            this.process1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("process1.BackgroundImage")));
-            this.process1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.process1.Location = new System.Drawing.Point(458, 365);
-            this.process1.Name = "process1";
-            this.process1.Size = new System.Drawing.Size(100, 100);
-            this.process1.TabIndex = 101;
-            // 
             // forwardBtn
             // 
             this.forwardBtn.BackColor = System.Drawing.Color.Transparent;
-            this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+            this.forwardBtn.BackgroundImage = global::CleanSys.Properties.Resources.forwardBtn;
             this.forwardBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.forwardBtn.BaseColor = System.Drawing.Color.Transparent;
             this.forwardBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.forwardBtn.DownBack = null;
             this.forwardBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.forwardBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
             this.forwardBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.forwardBtn.ForeColor = System.Drawing.Color.Transparent;
             this.forwardBtn.IsDrawBorder = false;
             this.forwardBtn.IsDrawGlass = false;
-            this.forwardBtn.Location = new System.Drawing.Point(519, 533);
+            this.forwardBtn.Location = new System.Drawing.Point(548, 533);
             this.forwardBtn.MouseBack = null;
             this.forwardBtn.MouseBaseColor = System.Drawing.Color.Transparent;
             this.forwardBtn.Name = "forwardBtn";
             this.forwardBtn.NormlBack = null;
-            this.forwardBtn.Size = new System.Drawing.Size(104, 104);
+            this.forwardBtn.Size = new System.Drawing.Size(96, 96);
             this.forwardBtn.TabIndex = 2;
             this.forwardBtn.UseVisualStyleBackColor = false;
-            this.forwardBtn.MouseDown += new MouseEventHandler(this.forward_mouseDown);
-            this.forwardBtn.MouseUp += new MouseEventHandler(this.forward_mouseUp);
+            this.forwardBtn.Click += new System.EventHandler(this.forward_Click);
             // 
             // backfowrdBtn
             // 
             this.backfowrdBtn.BackColor = System.Drawing.Color.Transparent;
-            this.backfowrdBtn.BackgroundImage = global::CleanSys.Properties.Resources.StartBtn;
+            this.backfowrdBtn.BackgroundImage = global::CleanSys.Properties.Resources.backwardBtn;
             this.backfowrdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.backfowrdBtn.BaseColor = System.Drawing.Color.Transparent;
             this.backfowrdBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.backfowrdBtn.DownBack = null;
             this.backfowrdBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.backfowrdBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
             this.backfowrdBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.backfowrdBtn.ForeColor = System.Drawing.Color.Transparent;
             this.backfowrdBtn.IsDrawBorder = false;
             this.backfowrdBtn.IsDrawGlass = false;
-            this.backfowrdBtn.Location = new System.Drawing.Point(862, 533);
+            this.backfowrdBtn.Location = new System.Drawing.Point(864, 534);
             this.backfowrdBtn.MouseBack = null;
             this.backfowrdBtn.MouseBaseColor = System.Drawing.Color.Transparent;
             this.backfowrdBtn.Name = "backfowrdBtn";
             this.backfowrdBtn.NormlBack = null;
-            this.backfowrdBtn.Size = new System.Drawing.Size(104, 104);
+            this.backfowrdBtn.Size = new System.Drawing.Size(96, 96);
             this.backfowrdBtn.TabIndex = 2;
             this.backfowrdBtn.UseVisualStyleBackColor = false;
-            this.backfowrdBtn.MouseDown += new MouseEventHandler(this.backword_mouseDown);
-            this.backfowrdBtn.MouseUp += new MouseEventHandler(this.backword_mouseUp);
+            this.backfowrdBtn.Click += new System.EventHandler(this.backward_Click);
+            // 
+            // stepOneBtn
+            // 
+            this.stepOneBtn.BackColor = System.Drawing.Color.Transparent;
+            this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepOne;
+            this.stepOneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.stepOneBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.stepOneBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.stepOneBtn.DownBack = null;
+            this.stepOneBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.stepOneBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.stepOneBtn.IsDrawBorder = false;
+            this.stepOneBtn.IsDrawGlass = false;
+            this.stepOneBtn.Location = new System.Drawing.Point(462, 357);
+            this.stepOneBtn.MouseBack = null;
+            this.stepOneBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.stepOneBtn.Name = "stepOneBtn";
+            this.stepOneBtn.NormlBack = null;
+            this.stepOneBtn.Size = new System.Drawing.Size(96, 96);
+            this.stepOneBtn.TabIndex = 2;
+            this.stepOneBtn.UseVisualStyleBackColor = false;
+            this.stepOneBtn.Click += new System.EventHandler(this.StepOne_Click);
+            // 
+            // stepTwoBtn
+            // 
+            this.stepTwoBtn.BackColor = System.Drawing.Color.Transparent;
+            this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepTwo;
+            this.stepTwoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.stepTwoBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.stepTwoBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.stepTwoBtn.DownBack = null;
+            this.stepTwoBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.stepTwoBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.stepTwoBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.stepTwoBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.stepTwoBtn.IsDrawBorder = false;
+            this.stepTwoBtn.IsDrawGlass = false;
+            this.stepTwoBtn.Location = new System.Drawing.Point(709, 357);
+            this.stepTwoBtn.MouseBack = null;
+            this.stepTwoBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.stepTwoBtn.Name = "stepTwoBtn";
+            this.stepTwoBtn.NormlBack = null;
+            this.stepTwoBtn.Size = new System.Drawing.Size(96, 96);
+            this.stepTwoBtn.TabIndex = 2;
+            this.stepTwoBtn.UseVisualStyleBackColor = false;
+            this.stepTwoBtn.Click += new System.EventHandler(this.StepTwo_Click);
+            // 
+            // stepThreeBtn
+            // 
+            this.stepThreeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.stepThreeBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepThree;
+            this.stepThreeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.stepThreeBtn.BaseColor = System.Drawing.Color.Transparent;
+            this.stepThreeBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.stepThreeBtn.DownBack = null;
+            this.stepThreeBtn.DownBaseColor = System.Drawing.Color.Transparent;
+            this.stepThreeBtn.DrawType = CCWin.SkinControl.DrawStyle.None;
+            this.stepThreeBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.stepThreeBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.stepThreeBtn.IsDrawBorder = false;
+            this.stepThreeBtn.IsDrawGlass = false;
+            this.stepThreeBtn.Location = new System.Drawing.Point(966, 357);
+            this.stepThreeBtn.MouseBack = null;
+            this.stepThreeBtn.MouseBaseColor = System.Drawing.Color.Transparent;
+            this.stepThreeBtn.Name = "stepThreeBtn";
+            this.stepThreeBtn.NormlBack = null;
+            this.stepThreeBtn.Size = new System.Drawing.Size(96, 96);
+            this.stepThreeBtn.TabIndex = 2;
+            this.stepThreeBtn.UseVisualStyleBackColor = false;
+            this.stepThreeBtn.Click += new System.EventHandler(this.StepThree_Click);
             // 
             // ManualCleanFrm
             // 
@@ -418,13 +459,13 @@ namespace CleanSys
             this.Controls.Add(this.skinLabel1);
             this.Controls.Add(this.eightAngle1);
             this.Controls.Add(this.skinPictureBox1);
-            this.Controls.Add(this.process3);
-            this.Controls.Add(this.process2);
-            this.Controls.Add(this.process1);
             this.Controls.Add(this.stopBtn);
             this.Controls.Add(this.rightBtn);
             this.Controls.Add(this.HomeBtn);
             this.Controls.Add(this.backfowrdBtn);
+            this.Controls.Add(this.stepThreeBtn);
+            this.Controls.Add(this.stepTwoBtn);
+            this.Controls.Add(this.stepOneBtn);
             this.Controls.Add(this.forwardBtn);
             this.Controls.Add(this.AutoClean);
             this.Controls.Add(this.DataLabel);
@@ -450,9 +491,6 @@ namespace CleanSys
         private CCWin.SkinControl.SkinButton HomeBtn;
         private CCWin.SkinControl.SkinButton rightBtn;
         private CCWin.SkinControl.SkinButton stopBtn;
-        private myProcesser process1;
-        private myProcesser process2;
-        private myProcesser process3;
         private CCWin.SkinControl.SkinPictureBox skinPictureBox1;
         private MyControl.EightAngle eightAngle1;
         private CCWin.SkinControl.SkinLabel skinLabel1;
@@ -466,5 +504,8 @@ namespace CleanSys
         private CCWin.SkinControl.SkinPanel skinPanel1;
         private CCWin.SkinControl.SkinButton forwardBtn;
         private CCWin.SkinControl.SkinButton backfowrdBtn;
+        private CCWin.SkinControl.SkinButton stepOneBtn;
+        private CCWin.SkinControl.SkinButton stepTwoBtn;
+        private CCWin.SkinControl.SkinButton stepThreeBtn;
     }
 }
