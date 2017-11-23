@@ -15,14 +15,14 @@ namespace CleanSys.SelfEnum
         CleanRail,//StepOne,
 
         /// <summary>
-        /// step two: 涂润滑油
-        /// </summary>
-        CoveredWithGrease,
-
-        /// <summary>
         /// step three: 滴定无水乙醇
         /// </summary>
         DropAlcohol,
+
+        /// <summary>
+        /// step two: 涂润滑油
+        /// </summary>
+        CoveredWithGrease,
 
         /// <summary>
         /// 清理完成

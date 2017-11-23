@@ -58,6 +58,8 @@
             this.process2 = new CleanSys.myProcesser();
             this.process1 = new CleanSys.myProcesser();
             this.startBtn = new CCWin.SkinControl.SkinButton();
+            this.GunDongFont = new System.Windows.Forms.Label();
+            this.GunDongTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox3)).BeginInit();
@@ -451,6 +453,22 @@
             this.startBtn.UseVisualStyleBackColor = false;
             this.startBtn.Click += new System.EventHandler(this.StartPause_Click);
             // 
+            // GunDongFont
+            // 
+            this.GunDongFont.AutoSize = true;
+            this.GunDongFont.BackColor = System.Drawing.Color.Transparent;
+            this.GunDongFont.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GunDongFont.ForeColor = System.Drawing.SystemColors.Info;
+            this.GunDongFont.Location = new System.Drawing.Point(1068, 648);
+            this.GunDongFont.Name = "GunDongFont";
+            this.GunDongFont.Size = new System.Drawing.Size(101, 38);
+            this.GunDongFont.TabIndex = 111;
+            this.GunDongFont.Text = "label1";
+            // 
+            // GunDongTimer
+            // 
+            this.GunDongTimer.Tick += new System.EventHandler(this.GunDongTimer_Tick);
+            // 
             // AutoCleanFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -460,6 +478,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
+            this.Controls.Add(this.GunDongFont);
             this.Controls.Add(this.skinPanel1);
             this.Controls.Add(this.skinLabel6);
             this.Controls.Add(this.skinLabel5);
@@ -531,5 +550,7 @@
         private CCWin.SkinControl.SkinPictureBox upArrow;
         private CCWin.SkinControl.SkinPanel skinPanel1;
         private CCWin.SkinControl.SkinButton startBtn;
+        private System.Windows.Forms.Label GunDongFont;
+        private System.Windows.Forms.Timer GunDongTimer;
     }
 }

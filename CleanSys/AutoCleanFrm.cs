@@ -27,6 +27,9 @@ namespace CleanSys
         private const int UpArrowTop = 301;
         private const int UpArrowLeft = -2;
         private const int RailLength = 12;
+        private const int GunDongLeft = 268;
+        private const int GunDongRight = 1068;
+        private const int GunDongTop = 648;
 
         private string spendTimeTemplate = @"用时: {0:00}:{1:00}";
 
@@ -40,6 +43,7 @@ namespace CleanSys
         private delegate void AsynUpdateUI(SyncStatusMode status);
         
         private CleanSteps CurrentCleanStep;
+        private string CurrentStatus;
         
         private Thread updateUiThread;
         private Thread timerThread1;
@@ -57,6 +61,10 @@ namespace CleanSys
             getter = new DataStatusSyncer();
             getter.UpdateUIDelegate += this.UpdateProcessUI;
             getter.TaskCallBack += this.DoneClean;
+            this.GunDongFont.Text = "等待清理";
+            this.GunDongTimer.Interval = 100;
+            this.GunDongTimer.Enabled = true;
+            this.CurrentStatus = "ready";
         }
 
         private void AutoCleanFrm_Load(object sender, EventArgs e)
@@ -393,6 +401,8 @@ namespace CleanSys
                 this.updateUiThread.Start();
 
                 this.CurrentCleanStep = CleanSteps.CleanRail;
+                this.CurrentStatus = "running";
+                this.GunDongFont.Text = this.GetGunDongText(selectedID, this.CurrentStatus);
             }
             else
             {
@@ -436,6 +446,8 @@ namespace CleanSys
 
                 //清除记录
                 this.saveSpendTimeDic.Clear();
+                this.CurrentStatus = "running";
+                this.GunDongFont.Text = this.GetGunDongText(selectedID, this.CurrentStatus);
             }
             else
             {
@@ -475,6 +487,8 @@ namespace CleanSys
                 this.timerThread1.Abort();
                 this.timerThread2.Abort();
                 this.timerThread3.Abort();
+                this.CurrentStatus = "pause";
+                this.GunDongFont.Text = this.GetGunDongText(selectedID, this.CurrentStatus);
             }
             else
             {
@@ -515,6 +529,8 @@ namespace CleanSys
                         this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
                         this.InitProcessBar();
                         this.RenewTimer(true);
+                        this.CurrentStatus = "ready";
+                        this.GunDongFont.Text = this.GetGunDongText(id, this.CurrentStatus);
                     }
                 }
             }
@@ -576,28 +592,31 @@ namespace CleanSys
                     case CleanSteps.CleanRail:
                         this.CleanRailStepRate = progress; // AutoCleanFrm.RailLength;
                         this.CurrentCleanStep = CleanSteps.CleanRail;
-                        break;
-                    case CleanSteps.CoveredWithGrease:
-                        this.CleanRailStepRate = 100;
-                        this.timerThread1.Abort();
-                        if (this.CurrentCleanStep != CleanSteps.CoveredWithGrease)
-                        {
-                            this.timerThread2.Start(new TimeSpan(0, 0, 0));
-                        }
-                        this.CoveredWithGreaseStepRate = progress;// AutoCleanFrm.RailLength;
-                        this.CurrentCleanStep = CleanSteps.CoveredWithGrease;
+                        this.GunDongFont.Text = this.GetGunDongText(status.CurrentRailID, this.CurrentStatus);
                         break;
                     case CleanSteps.DropAlcohol:
                         this.CleanRailStepRate = 100;
                         this.timerThread1.Abort();
+                        if (this.CurrentCleanStep != CleanSteps.DropAlcohol)
+                        {
+                            this.timerThread2.Start(new TimeSpan(0, 0, 0));
+                        }
+                        this.CoveredWithGreaseStepRate = progress;// AutoCleanFrm.RailLength;
+                        this.CurrentCleanStep = CleanSteps.DropAlcohol;
+                        this.GunDongFont.Text = this.GetGunDongText(status.CurrentRailID, this.CurrentStatus);
+                        break;
+                    case CleanSteps.CoveredWithGrease:
+                        this.CleanRailStepRate = 100;
+                        this.timerThread1.Abort();
                         this.CoveredWithGreaseStepRate = 100;
                         this.timerThread2.Abort();
-                        if (this.CurrentCleanStep != CleanSteps.DropAlcohol)
+                        if (this.CurrentCleanStep != CleanSteps.CoveredWithGrease)
                         {
                             this.timerThread3.Start(new TimeSpan(0, 0, 0));
                         }
                         this.DropAlcoholStepRate = progress; // AutoCleanFrm.RailLength;
-                        this.CurrentCleanStep = CleanSteps.DropAlcohol;
+                        this.CurrentCleanStep = CleanSteps.CoveredWithGrease;
+                        this.GunDongFont.Text = this.GetGunDongText(status.CurrentRailID, this.CurrentStatus);
                         break;
                     case CleanSteps.Done:
                         this.CleanRailStepRate = 100;
@@ -611,6 +630,7 @@ namespace CleanSys
                         string numZh = this.ConvertNumToChinese(num);
                         this.startBtn.BackgroundImage = global::CleanSys.Properties.Resources.NewStartBtn;
                         MessageBox.Show($"{numZh}轨道清理完毕!");
+                        this.GunDongFont.Text = this.GetGunDongText(status.CurrentRailID, this.CurrentStatus);
                         break;
                 }
 
@@ -677,6 +697,72 @@ namespace CleanSys
                 bar.Increment(increase);
                 bar.Text = Num.ToString() + "%";
             }
+        }
+
+        private void GunDongTimer_Tick(object sender, EventArgs e)
+        {
+            int newLeft = this.GunDongFont.Location.X - 3;
+            if (newLeft < GunDongLeft)
+            {
+                newLeft = GunDongRight;
+            }
+
+            this.GunDongFont.Location = new Point(newLeft, GunDongTop);
+
+        }
+
+        private string GetGunDongText(RailID id, string cleanStatus)
+        {
+            string text = string.Empty;
+            string railTip = string.Empty;
+            string stepTip = string.Empty;
+
+            switch (id)
+            {
+                case RailID.One:
+                    railTip = "一号轨道";
+                    break;
+                case RailID.Two:
+                    railTip = "二号轨道";
+                    break;
+                case RailID.Three:
+                    railTip = "三号轨道";
+                    break;
+                case RailID.Four:
+                    railTip = "四号轨道";
+                    break;
+            }
+            
+            switch (this.CurrentCleanStep)
+            {
+                case CleanSteps.CleanRail:
+                    stepTip = "清理轨道";
+                    break;
+                case CleanSteps.CoveredWithGrease:
+                    stepTip = "涂润滑油";
+                    break;
+                case CleanSteps.DropAlcohol:
+                    stepTip = "滴定无水乙醇";
+                    break;
+                case CleanSteps.Done:
+                    stepTip = "清理完成";
+                    break;
+            }
+
+            switch (cleanStatus)
+            {
+                case "ready":
+                    text = "等待清理";
+                    break;
+                case "running":
+                    text = railTip + stepTip;
+                    break;
+                case "pause":
+                    text = railTip + "-暂停清理";
+                    break;
+            }            
+
+            return text;
         }
     }
 }
