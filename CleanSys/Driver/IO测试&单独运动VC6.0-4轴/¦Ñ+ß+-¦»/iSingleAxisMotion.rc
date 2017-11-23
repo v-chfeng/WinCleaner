@@ -1,0 +1,236 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\iSingleAxisMotion.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\iSingleAxisMotion.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 iSingleAxisMotion"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "iSingleAxisMotion 1.0 版",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2013",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_ISINGLEAXISMOTION_DIALOG DIALOGEX 0, 0, 225, 202
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "iSingleAxisMotion"
+FONT 9, "宋体"
+BEGIN
+    GROUPBOX        "状态及位置显示",IDC_STATIC,16,10,194,30
+    LTEXT           "状态值:0x00",IDC_STATIC_STATUS,23,21,80,12
+    LTEXT           "当前位置:",IDC_STATIC_POS,122,21,82,14
+    GROUPBOX        "速度",IDC_STATIC,16,48,91,72
+    LTEXT           "速 度:",IDC_STATIC,26,62,26,9
+    EDITTEXT        IDC_EDTSPEED,57,60,41,12,ES_AUTOHSCROLL
+    LTEXT           "加速度:",IDC_STATIC,26,83,28,9
+    EDITTEXT        IDC_EDTSPEEDACC,56,81,41,12,ES_AUTOHSCROLL
+    LTEXT           "减速度:",IDC_STATIC,26,103,28,9
+    EDITTEXT        IDC_EDTSPEEDEC,56,101,41,12,ES_AUTOHSCROLL
+    GROUPBOX        "运动方式",IDC_STATIC,119,48,91,72
+    CONTROL         "逻辑方式:正/反",IDC_CHECK_LOGIC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,56,76,18
+    CONTROL         "点动",IDC_RADIO_ACTIONST,"Button",BS_AUTORADIOBUTTON,
+                    126,76,30,16
+    CONTROL         "连续",IDC_RADIO_CMOVE,"Button",BS_AUTORADIOBUTTON,166,
+                    75,30,16
+    LTEXT           "点位长度:",IDC_STATIC,127,97,39,11
+    EDITTEXT        IDC_EDIT_PULSE,169,95,28,12,ES_AUTOHSCROLL
+    GROUPBOX        "运动轴选择",IDC_STATIC,16,129,89,53
+    CONTROL         "X",IDC_RADIO_X_AXS,"Button",BS_AUTORADIOBUTTON,31,141,
+                    15,14
+    CONTROL         "Y",IDC_RADIO_Y_AXS,"Button",BS_AUTORADIOBUTTON,66,141,
+                    15,14
+    CONTROL         "Z",IDC_RADIO_Z_AXS,"Button",BS_AUTORADIOBUTTON,31,160,
+                    15,14
+    CONTROL         "W",IDC_RADIO_W_AXS,"Button",BS_AUTORADIOBUTTON,66,160,
+                    15,14
+    PUSHBUTTON      "执行",IDC_BTNEXC,122,136,34,13
+    PUSHBUTTON      "停止",IDC_BTNSTOP,166,136,34,13
+    PUSHBUTTON      "位置清零",IDC_BTNZERO,122,154,34,13
+    PUSHBUTTON      "急停",IDC_BTNEMGSTOP,166,154,34,13
+    PUSHBUTTON      "回零",IDC_BTNRETZERO,122,172,34,13
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "iSingleAxisMotion Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "iSingleAxisMotion\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2013\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "iSingleAxisMotion.EXE\0"
+            VALUE "ProductName", "iSingleAxisMotion 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ISINGLEAXISMOTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 iSingleAxisMotion(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\iSingleAxisMotion.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
