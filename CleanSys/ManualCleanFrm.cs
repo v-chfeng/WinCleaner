@@ -1,6 +1,8 @@
 ﻿using CCWin;
 using CCWin.SkinControl;
+using CleanSys.Mode;
 using CleanSys.Properties;
+using CleanSys.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,29 +30,19 @@ namespace CleanSys
         private string stepOneRed = "Red";
         private string stepTwoYellow = "Yellow";
         private string stepThreeGreen = "Green";
-
-        private DateTime startTime1;
-        private DateTime startTime2;
-        private DateTime startTime3;
+        
         private delegate void AsynUpdateUI(MachineStatus status);
 
         private int currentMachineNum;
         private int currentStepNum;
-        private int stepOneProcess;
-        private int stepTwoProcess;
-        private int stepThreeProcess;
 
         private List<myProcesser> _processList;
         private List<WinTimer> _timerList;
-        private List<DateTime> _startList;
         private List<SkinLabel> _spendTextList;
         private List<Thread> _threadList;
 
         private bool isWorking;
-
-        //private WinTimer timer1;
-        //private WinTimer timer2;
-        //private WinTimer timer3;
+        
 
         private Thread thread;
         private Thread timerThread1;
@@ -86,10 +78,6 @@ namespace CleanSys
             this.timer2.Enabled = false;
             this.timer3.Enabled = false;
 
-            this.timer1.Tick += new EventHandler(Timer1_Tick);
-            this.timer2.Tick += new EventHandler(Timer2_Tick);
-            this.timer3.Tick += new EventHandler(Timer3_Tick);
-
             this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
             this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
             this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
@@ -104,12 +92,6 @@ namespace CleanSys
             this.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject("backgroud2")));
 
             this.InitProcessBar();
-        }
-
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime1;
-            this.spendTime1.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
         }
 
         private void Thread1_Tick(object start)
@@ -148,19 +130,6 @@ namespace CleanSys
             }
         }
 
-        private void Timer2_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime2;
-            MessageBox.Show(string.Format(spendTimeTemplate, span.Minutes, span.Seconds));
-            this.spendTime2.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
-        }
-
-        private void Timer3_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - this.startTime3;
-            this.spendTime3.Text = string.Format(spendTimeTemplate, span.Minutes, span.Seconds);
-        }
-
         protected void RTC_Tick(object sender, EventArgs e)
         {
             DataLabel.Text = myData.MiddleTitle();
@@ -187,9 +156,6 @@ namespace CleanSys
 
             this.currentMachineNum = 0;
             this.currentStepNum = 0;
-            this.stepOneProcess = 0;
-            this.stepTwoProcess = 0;
-            this.stepThreeProcess = 0;
 
             this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepZeroGray)));
             this.eightAngle1.ImgTwo.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleTwo + this.stepZeroGray)));
@@ -243,7 +209,7 @@ namespace CleanSys
             if (this.isWorking == false)
             {
                 // 发送 自动清理请求 到 清理机器
-                bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Start);
+                bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Start);
                 if (isSuccess)
                 {
                     this.isWorking = true;
@@ -253,10 +219,7 @@ namespace CleanSys
                     this.currentMachineNum = 1;
                     this.currentStepNum = 1;
                     this.eightAngle1.ImgOne.BackgroundImage = ((System.Drawing.Image)(Resources.ResourceManager.GetObject(this.angleOne + this.stepOneRed)));
-
-                    this.startTime1 = DateTime.Now;
-                    //this.timer1.Enabled = true;
-
+                    
                     this.timerThread1 = new Thread(new ParameterizedThreadStart(this.Thread1_Tick));
                     this.timerThread2 = new Thread(new ParameterizedThreadStart(this.Thread2_Tick));
                     this.timerThread3 = new Thread(new ParameterizedThreadStart(this.Thread3_Tick));
@@ -265,8 +228,8 @@ namespace CleanSys
                     this.timerThread3.IsBackground = true;
 
                     this.timerThread1.Start(DateTime.Now);
-                    
-                    DataGet getter = new DataGet();
+
+                    DataStatusSyncer getter = new DataStatusSyncer();
                     getter.UpdateUIDelegate += this.Update;
                     getter.TaskCallBack += this.DoneClean;
                     this.thread = new Thread(getter.GetStatus);
@@ -287,7 +250,7 @@ namespace CleanSys
                 DialogResult result = MessageBox.Show("确实终止清理", "确认", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    bool isSuccess = MachineControler.SendCMD(MachineControler.Command_Stop);
+                    bool isSuccess = MachineSender.SendCMD(MachineSender.Command_Stop);
                     if (!isSuccess)
                     {
                         MessageBox.Show("终止清理失败!");
@@ -405,8 +368,6 @@ namespace CleanSys
                     this.ProcessIncreaseTo(this.process3.ProcessBar, status.stepThreeProcess);
 
                     //重置用时
-                    this.StartTimeList[status.stepNum - 1] = DateTime.Now;
-                    //this.TimerList[status.stepNum - 1].Start();
                     this.RefreshThread(status.stepNum);
                     this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
 
@@ -433,9 +394,7 @@ namespace CleanSys
                         this.TimerList[i].Stop();
                         this.ThreadList[i].Abort();
                     }
-
-                    this.StartTimeList[status.stepNum - 1] = DateTime.Now;
-                    //this.TimerList[status.stepNum - 1].Start();
+                    
                     this.RefreshThread(status.stepNum);
                     this.ThreadList[status.stepNum - 1].Start(DateTime.Now);
 
@@ -578,23 +537,6 @@ namespace CleanSys
             }
         }
 
-        public List<DateTime> StartTimeList
-        {
-            get
-            {
-                if (this._startList == null)
-                {
-                    this._startList = new List<DateTime>();
-                    this._startList.Add(this.startTime1);
-                    this._startList.Add(this.startTime2);
-                    this._startList.Add(this.startTime3);
-                }
-
-                //this.sp
-                return this._startList;
-            }
-        }
-
         public List<CCWin.SkinControl.SkinLabel> SpendTextList
         {
             get
@@ -625,29 +567,6 @@ namespace CleanSys
 
                 return this._threadList;
             }
-        }
-    }
-
-    public class ManualDataGet
-    {
-        public delegate void UpdateUI(MachineStatus status);
-        public UpdateUI UpdateUIDelegate;
-
-        public delegate void AccomplishTask();
-        public AccomplishTask TaskCallBack;
-        private MachineStatus status;
-
-        public void GetStatus()
-        {
-            do
-            {
-                status = MachineControler.GetStatus();
-                this.UpdateUIDelegate(status);
-                Thread.Sleep(1000); 
-            }
-            while (!status.AllDone);
-
-            this.TaskCallBack();
         }
     }
 }

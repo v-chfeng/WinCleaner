@@ -67,7 +67,7 @@
             this.TermalCheck.Size = new System.Drawing.Size(323, 30);
             this.TermalCheck.TabIndex = 0;
             this.TermalCheck.TextFormat = CCWin.SkinControl.SkinProgressBar.TxtFormat.None;
-            this.TermalCheck.TrackBack = System.Drawing.Color.Black;
+            this.TermalCheck.TrackBack = System.Drawing.Color.Transparent;
             this.TermalCheck.TrackFore = System.Drawing.Color.Silver;
             // 
             // LoadCarCheck
@@ -121,7 +121,7 @@
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.White;
-            this.DataLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DataLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.DataLabel.ForeColor = System.Drawing.Color.Black;
             this.DataLabel.Location = new System.Drawing.Point(616, 13);
             this.DataLabel.Name = "DataLabel";
@@ -135,7 +135,7 @@
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
-            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TimeLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TimeLabel.ForeColor = System.Drawing.Color.Black;
             this.TimeLabel.Location = new System.Drawing.Point(1225, 13);
             this.TimeLabel.Name = "TimeLabel";
@@ -158,7 +158,7 @@
             this.CkeckBtn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.CkeckBtn.DownBack = null;
             this.CkeckBtn.DownBaseColor = System.Drawing.Color.Transparent;
-            this.CkeckBtn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CkeckBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CkeckBtn.ForeColor = System.Drawing.Color.Transparent;
             this.CkeckBtn.Image = ((System.Drawing.Image)(resources.GetObject("CkeckBtn.Image")));
             this.CkeckBtn.IsDrawBorder = false;
@@ -212,7 +212,7 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.Black;
             this.skinLabel1.BorderSize = 0;
-            this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel1.Location = new System.Drawing.Point(916, 201);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(88, 25);
@@ -225,7 +225,7 @@
             this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel2.BorderColor = System.Drawing.Color.Black;
             this.skinLabel2.BorderSize = 0;
-            this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel2.Location = new System.Drawing.Point(916, 284);
             this.skinLabel2.Name = "skinLabel2";
             this.skinLabel2.Size = new System.Drawing.Size(107, 25);
@@ -238,7 +238,7 @@
             this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel3.BorderColor = System.Drawing.Color.Black;
             this.skinLabel3.BorderSize = 0;
-            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel3.Location = new System.Drawing.Point(916, 373);
             this.skinLabel3.Name = "skinLabel3";
             this.skinLabel3.Size = new System.Drawing.Size(145, 25);
@@ -264,10 +264,11 @@
             this.rightBtn.Size = new System.Drawing.Size(60, 60);
             this.rightBtn.TabIndex = 109;
             this.rightBtn.UseVisualStyleBackColor = false;
+            this.rightBtn.Click += new System.EventHandler(this.rightBtn_Click);
             // 
             // CHeckFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));

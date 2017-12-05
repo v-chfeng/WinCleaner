@@ -1,5 +1,6 @@
 ﻿using CCWin;
 using CleanSys.Properties;
+using CleanSys.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,6 +55,14 @@ namespace CleanSys
         {
             myData.mainFrm.Visible = true;
             this.Close();
+        }
+
+        private void manualBtn_Click(object sender, EventArgs e)
+        {
+            myData.frmStack.Push(this);
+            ManualCleanFrm manualFrm = new ManualCleanFrm();
+            manualFrm.Show();
+            this.Hide();
         }
     }
 }

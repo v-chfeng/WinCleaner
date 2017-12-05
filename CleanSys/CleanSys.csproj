@@ -78,6 +78,16 @@
     <Compile Include="CHeckFrm.Designer.cs">
       <DependentUpon>CHeckFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManualCleanFrmV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualCleanFrmV2.Designer.cs">
+      <DependentUpon>ManualCleanFrmV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mode\RailMode.cs" />
+    <Compile Include="SelfEnum\AutoCleanStatus.cs" />
+    <Compile Include="SelfEnum\CleanCommand.cs" />
+    <Compile Include="SelfEnum\CleanSteps.cs" />
     <Compile Include="formTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,12 +106,6 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManualCleanFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManualCleanFrm.Designer.cs">
-      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
-    </Compile>
     <Compile Include="NumberkeyBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +120,16 @@
     <Compile Include="RecordFrm.Designer.cs">
       <DependentUpon>RecordFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelfEnum\RailProgress.cs" />
+    <Compile Include="SelfEnum\RailStatus.cs" />
+    <Compile Include="Util\DataStatusSyncer.cs" />
+    <Compile Include="Util\MachinePortal.cs" />
+    <Compile Include="Mode\MachineStatusMode.cs" />
+    <Compile Include="Util\MachineSender.cs" />
+    <Compile Include="Util\MockMachineReceiver.cs" />
+    <Compile Include="Util\MyData.cs" />
+    <Compile Include="Util\RailControler.cs" />
+    <Compile Include="SelfEnum\RailID.cs" />
     <Compile Include="XSSFWorkbook.cs" />
     <EmbeddedResource Include="AutoCleanFrm.resx">
       <DependentUpon>AutoCleanFrm.cs</DependentUpon>
@@ -135,8 +149,8 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManualCleanFrm.resx">
-      <DependentUpon>ManualCleanFrm.cs</DependentUpon>
+    <EmbeddedResource Include="ManualCleanFrmV2.resx">
+      <DependentUpon>ManualCleanFrmV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NumberkeyBoard.resx">
       <DependentUpon>NumberkeyBoard.cs</DependentUpon>
@@ -332,6 +346,52 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\backgroud2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\1Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\2Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\3Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\4Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon\1CheckedGray.png" />
+    <Content Include="icon\1CheckedGreen.png" />
+    <Content Include="icon\1CheckedRed.png" />
+    <Content Include="icon\1CheckedYellow.png" />
+    <Content Include="icon\2CheckedGray.png" />
+    <Content Include="icon\2CheckedGreen.png" />
+    <Content Include="icon\2CheckedRed.png" />
+    <Content Include="icon\2CheckedYellow.png" />
+    <Content Include="icon\3CheckedGray.png" />
+    <Content Include="icon\3CheckedGreen.png" />
+    <Content Include="icon\3CheckedRed.png" />
+    <Content Include="icon\3CheckedYellow.png" />
+    <Content Include="icon\4CheckedGray.png" />
+    <Content Include="icon\4CheckedGreen.png" />
+    <Content Include="icon\4CheckedRed.png" />
+    <Content Include="icon\4CheckedYellow.png" />
+    <None Include="icon\StepTwoDown.png" />
+    <None Include="icon\StepThreeDown.png" />
+    <None Include="icon\StepOneDown.png" />
+    <None Include="icon\forwardBtnDown.png" />
+    <None Include="icon\forwardBtn.png" />
+    <None Include="icon\backwardBtnDown.png" />
+    <None Include="icon\backwardBtn.png" />
+    <None Include="icon\NewPauseBtn.png" />
+    <None Include="icon\NewStartBtn.png" />
+    <None Include="icon\NewStartBtn2.png" />
+    <None Include="icon\NewPasueBtnDown.png" />
+    <None Include="icon\NewPause2.png" />
+    <None Include="icon\NewStartBtnDown.png" />
+    <None Include="icon\StopBtn.png" />
+    <None Include="icon\StartBtn.png" />
+    <None Include="icon\PauseBtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

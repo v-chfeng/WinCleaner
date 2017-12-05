@@ -6,19 +6,19 @@ namespace CleanSys
 {
     internal class XSSFWorkbook : IWorkbook
     {
-        public int ActiveSheetIndex { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public int FirstVisibleTab { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int ActiveSheetIndex { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
+        public int FirstVisibleTab { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
-        public int NumberOfSheets => throw new System.NotImplementedException();
+        public int NumberOfSheets { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
-        public short NumberOfFonts => throw new System.NotImplementedException();
+        public short NumberOfFonts { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
-        public short NumCellStyles => throw new System.NotImplementedException();
+        public short NumCellStyles { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
-        public int NumberOfNames => throw new System.NotImplementedException();
+        public int NumberOfNames { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
-        public MissingCellPolicy MissingCellPolicy { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public bool IsHidden { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public MissingCellPolicy MissingCellPolicy { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
+        public bool IsHidden { get { throw new System.NotImplementedException(); } set { throw new System.NotImplementedException(); } }
 
         public int AddPicture(byte[] pictureData, PictureType format)
         {

@@ -47,7 +47,7 @@
             this.DataLabel.AutoSize = true;
             this.DataLabel.BackColor = System.Drawing.Color.Transparent;
             this.DataLabel.BorderColor = System.Drawing.Color.Transparent;
-            this.DataLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DataLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.DataLabel.ForeColor = System.Drawing.Color.Black;
             this.DataLabel.Location = new System.Drawing.Point(616, 13);
             this.DataLabel.Name = "DataLabel";
@@ -67,7 +67,7 @@
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.BorderColor = System.Drawing.Color.White;
-            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TimeLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TimeLabel.ForeColor = System.Drawing.Color.Black;
             this.TimeLabel.Location = new System.Drawing.Point(1225, 13);
             this.TimeLabel.Name = "TimeLabel";
@@ -84,7 +84,7 @@
             this.CleanButton.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.CleanButton.DownBack = null;
             this.CleanButton.DownBaseColor = System.Drawing.Color.Transparent;
-            this.CleanButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CleanButton.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CleanButton.ForeColor = System.Drawing.Color.Transparent;
             this.CleanButton.Image = ((System.Drawing.Image)(resources.GetObject("CleanButton.Image")));
             this.CleanButton.IsDrawBorder = false;
@@ -109,7 +109,7 @@
             this.CheckButton.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.CheckButton.DownBack = null;
             this.CheckButton.DownBaseColor = System.Drawing.Color.Transparent;
-            this.CheckButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CheckButton.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CheckButton.ForeColor = System.Drawing.Color.Transparent;
             this.CheckButton.Image = ((System.Drawing.Image)(resources.GetObject("CheckButton.Image")));
             this.CheckButton.IsDrawBorder = false;
@@ -134,7 +134,7 @@
             this.RecordButton.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.RecordButton.DownBack = null;
             this.RecordButton.DownBaseColor = System.Drawing.Color.Transparent;
-            this.RecordButton.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RecordButton.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecordButton.ForeColor = System.Drawing.Color.Transparent;
             this.RecordButton.Image = ((System.Drawing.Image)(resources.GetObject("RecordButton.Image")));
             this.RecordButton.IsDrawBorder = false;
@@ -159,7 +159,7 @@
             this.Help.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Help.DownBack = null;
             this.Help.DownBaseColor = System.Drawing.Color.Transparent;
-            this.Help.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Help.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Help.ForeColor = System.Drawing.Color.Transparent;
             this.Help.Image = ((System.Drawing.Image)(resources.GetObject("Help.Image")));
             this.Help.IsDrawBorder = false;
@@ -189,7 +189,7 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
