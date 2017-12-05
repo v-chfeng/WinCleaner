@@ -27,13 +27,18 @@ namespace CleanSys
         private const int UpArrowTop = 301;
         private const int UpArrowLeft = -2;
         private const int RailLength = 12;
-        
+
+        private const int GunDongLeft = 268;
+        private const int GunDongRight = 1068;
+        private const int GunDongTop = 648;
+
         private string angleOne = "_1";
         private string angleTwo = "_2";
         private string angleThre = "_3";
         private string angleFour = "_4";
 
         private string stepZeroGray = "Gray";
+        private string CurrentStatus;
 
         private delegate void AsynUpdateUI(SyncStatusMode status);
 
@@ -55,6 +60,10 @@ namespace CleanSys
             getter.TaskCallBack += this.DoneClean;
             this.isWorking = false;
             this.cleanStep = CleanSteps.UnSupported;
+            this.GunDongFont.Text = "等待清理";
+            this.GunDongTimer.Interval = 100;
+            this.GunDongTimer.Enabled = true;
+            this.CurrentStatus = "ready";
         }
 
         private void ManualCleanFrm_Load(object sender, EventArgs e)
@@ -403,6 +412,72 @@ namespace CleanSys
                 this.stepTwoBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepTwo;
                 this.stepOneBtn.BackgroundImage = global::CleanSys.Properties.Resources.stepOne;
             }
+        }
+
+        private void GunDongTimer_Tick(object sender, EventArgs e)
+        {
+            int newLeft = this.GunDongFont.Location.X - 3;
+            if (newLeft < GunDongLeft)
+            {
+                newLeft = GunDongRight;
+            }
+
+            this.GunDongFont.Location = new Point(newLeft, GunDongTop);
+
+        }
+
+        private string GetGunDongText(RailID id, string cleanStatus)
+        {
+            string text = string.Empty;
+            string railTip = string.Empty;
+            string stepTip = string.Empty;
+
+            switch (id)
+            {
+                case RailID.One:
+                    railTip = "一号轨道";
+                    break;
+                case RailID.Two:
+                    railTip = "二号轨道";
+                    break;
+                case RailID.Three:
+                    railTip = "三号轨道";
+                    break;
+                case RailID.Four:
+                    railTip = "四号轨道";
+                    break;
+            }
+
+            switch (this.CurrentCleanStep)
+            {
+                case CleanSteps.CleanRail:
+                    stepTip = "清理轨道";
+                    break;
+                case CleanSteps.CoveredWithGrease:
+                    stepTip = "涂润滑油";
+                    break;
+                case CleanSteps.DropAlcohol:
+                    stepTip = "滴定无水乙醇";
+                    break;
+                case CleanSteps.Done:
+                    stepTip = "清理完成";
+                    break;
+            }
+
+            switch (cleanStatus)
+            {
+                case "ready":
+                    text = "等待清理";
+                    break;
+                case "running":
+                    text = railTip + stepTip;
+                    break;
+                case "pause":
+                    text = railTip + "-暂停清理";
+                    break;
+            }
+
+            return text;
         }
     }
 }

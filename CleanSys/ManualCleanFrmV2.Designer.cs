@@ -56,6 +56,8 @@ namespace CleanSys
             this.stepOneBtn = new CCWin.SkinControl.SkinButton();
             this.stepTwoBtn = new CCWin.SkinControl.SkinButton();
             this.stepThreeBtn = new CCWin.SkinControl.SkinButton();
+            this.GunDongFont = new System.Windows.Forms.Label();
+            this.GunDongTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upArrow)).BeginInit();
             this.skinPanel1.SuspendLayout();
@@ -440,6 +442,18 @@ namespace CleanSys
             this.stepThreeBtn.UseVisualStyleBackColor = false;
             this.stepThreeBtn.Click += new System.EventHandler(this.StepThree_Click);
             // 
+            // GunDongFont
+            // 
+            this.GunDongFont.AutoSize = true;
+            this.GunDongFont.BackColor = System.Drawing.Color.Transparent;
+            this.GunDongFont.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GunDongFont.ForeColor = System.Drawing.SystemColors.Info;
+            this.GunDongFont.Location = new System.Drawing.Point(1068, 648);
+            this.GunDongFont.Name = "GunDongFont";
+            this.GunDongFont.Size = new System.Drawing.Size(101, 38);
+            this.GunDongFont.TabIndex = 112;
+            this.GunDongFont.Text = "label1";
+            // 
             // ManualCleanFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,6 +463,7 @@ namespace CleanSys
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1366, 727);
             this.ControlBox = false;
+            this.Controls.Add(this.GunDongFont);
             this.Controls.Add(this.skinPanel1);
             this.Controls.Add(this.skinLabel6);
             this.Controls.Add(this.skinLabel5);
@@ -507,5 +522,7 @@ namespace CleanSys
         private CCWin.SkinControl.SkinButton stepOneBtn;
         private CCWin.SkinControl.SkinButton stepTwoBtn;
         private CCWin.SkinControl.SkinButton stepThreeBtn;
+        private Label GunDongFont;
+        private Timer GunDongTimer;
     }
 }
